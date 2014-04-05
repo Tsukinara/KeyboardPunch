@@ -23,7 +23,9 @@ public class PianoPanel extends JPanel {
 	ArrayList<Integer> whiteNotes;
 	ArrayList<Integer> blackNotes;
 	int[] whiteSpaces;
+	int[] whiteSpacesColor;
 	int[] blackSpaces;
+	int[] blackSpacesColor;
 
 	public PianoPanel() {
 		super();
@@ -44,7 +46,8 @@ public class PianoPanel extends JPanel {
 
 		whiteSpaces = new int[45];
 		blackSpaces = new int[44];
-		
+		whiteSpacesColor = new int[45];
+		blackSpacesColor = new int[44];
 
 		setBackground(new Color(0xbbddff));
 
@@ -90,7 +93,10 @@ public class PianoPanel extends JPanel {
 		// white keys
 		for (int i = 0; i < 45; i++) {
 			if (whiteSpaces[i] == 1) {
-				g.setColor(Color.BLUE);
+				if (whiteSpacesColor[i] == 0)
+					g.setColor(Color.BLUE);
+				else
+					g.setColor(Color.RED);
 				g.fillRect(i * widthWhite, offset + keylength + 5, widthWhite,
 						5);
 
@@ -99,9 +105,12 @@ public class PianoPanel extends JPanel {
 
 		for (int i = 0; i < 44; i++) {
 			if (blackSpaces[i] == 1) {
-				g.setColor(Color.BLUE);
-				g.fillRect(widthWhite * i +widthWhite - widthBlack / 2, offset - 8,
-						widthBlack, 5);
+				if (blackSpacesColor[i] == 0)
+					g.setColor(Color.BLUE);
+				else
+					g.setColor(Color.RED);
+				g.fillRect(widthWhite * i + widthWhite - widthBlack / 2,
+						offset - 8, widthBlack, 5);
 
 			}
 		}
@@ -113,7 +122,6 @@ public class PianoPanel extends JPanel {
 		g.fillRect(x, y, widthBlack, keylength * 3 / 5);
 
 	}
-
 
 	private int whitePosition(int i) {
 		int whitePos;
@@ -175,41 +183,51 @@ public class PianoPanel extends JPanel {
 
 	// lowest 28 E
 	// highest 103 G
-	public void notePlayed(int note) {
-		note = note-28;
-	
-		if (note == 0){
-				whiteSpaces[0]=1;
+	public void notePlayed(int note, int code) {
+		note = note - 28;
+
+		if (note == 0) {
+			whiteSpaces[0] = 1;
+			whiteSpacesColor[0] = code;
 		}
-		
-		else if (whiteNotes.contains((note % 12))){
-			if (note%12==0)
-				whiteSpaces[whitePosition(note%12)+7*((int) note/12 - 1)]=1;
-			else
-				whiteSpaces[whitePosition(note%12)+7*((int) note/12)]=1;
-		}
-		else{
-				blackSpaces[blackPosition(note%12)+7*((int) note/12)]=1;
+
+		else if (whiteNotes.contains((note % 12))) {
+			if (note % 12 == 0) {
+				whiteSpaces[whitePosition(note % 12) + 7
+						* ((int) note / 12 - 1)] = 1;
+				whiteSpacesColor[whitePosition(note % 12) + 7
+						* ((int) note / 12 - 1)] = code;
+			} else {
+				whiteSpaces[whitePosition(note % 12) + 7 * ((int) note / 12)] = 1;
+				whiteSpacesColor[whitePosition(note % 12) + 7
+						* ((int) note / 12)] = code;
+			}
+		} else {
+			blackSpaces[blackPosition(note % 12) + 7 * ((int) note / 12)] = 1;
+			blackSpacesColor[blackPosition(note % 12) + 7 * ((int) note / 12)] = code;
 		}
 		repaint();
 
 	}
 
 	public void noteReleased(int note) {
-		note = note-28;
-		
-		if (note == 0){
-				whiteSpaces[0]=0;
+		note = note - 28;
+
+		if (note == 0) {
+			whiteSpaces[0] = 0;
+
 		}
-		
-		else if (whiteNotes.contains((note % 12))){
-			if (note%12==0)
-				whiteSpaces[whitePosition(note%12)+7*((int) note/12 - 1)]=0;
-			else
-				whiteSpaces[whitePosition(note%12)+7*((int) note/12)]=0;
-		}
-		else{
-				blackSpaces[blackPosition(note%12)+7*((int) note/12)]=0;
+
+		else if (whiteNotes.contains((note % 12))) {
+			if (note % 12 == 0) {
+				whiteSpaces[whitePosition(note % 12) + 7
+						* ((int) note / 12 - 1)] = 0;
+			} else {
+				whiteSpaces[whitePosition(note % 12) + 7 * ((int) note / 12)] = 0;
+			}
+		} else {
+			blackSpaces[blackPosition(note % 12) + 7 * ((int) note / 12)] = 0;
+
 		}
 		repaint();
 
