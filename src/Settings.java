@@ -104,14 +104,6 @@ public class Settings extends JPanel implements ActionListener, ChangeListener{
 		setBackground(new Color(0x92c9ff));
 	}
 	
-	public void paint(Graphics g) {
-		super.paint(g);
-		Graphics2D g2d = (Graphics2D)g;
-		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		g.setColor(Color.black);
-		g.drawLine(0, 0, 0, getHeight());
-	}
-	
 	public void actionPerformed(ActionEvent a) {
 		JButton b = (JButton)a.getSource();
 		if(b == restart) {
