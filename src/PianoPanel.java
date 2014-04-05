@@ -64,7 +64,17 @@ public class PianoPanel extends JPanel{
 
 	}
 	
+	public void noteReleased(int note){
+		
+	}
 	
+	public void drawIndicator(int x, int y, Graphics g){
+		Graphics2D g2D=(Graphics2D)g;
+		
+		
+	}
+	//lowest 28 E
+	//highest 103 G
 	public void notePlayed(int note){
 		
 	}
