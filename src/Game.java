@@ -15,10 +15,12 @@ public class Game extends JFrame {
 	private TimerPanel t;
 	private ChordPanel c;
 	public static GameData gamedata;
+	public static Interpreter interpreter;
 	
-	public Game(GameData data) {
+	public Game(GameData data, Interpreter i) {
 		super();
 		gamedata = data;
+		interpreter = i;
 		JPanel panel = new JPanel(new GridBagLayout());
 		panel.setBackground(new Color(0x92c9ff));
 		c = new ChordPanel();
@@ -65,5 +67,9 @@ public class Game extends JFrame {
 	
 	public void noteReleased(int note) {
 		p.noteReleased(note);
+	}
+	
+	public void setChord(String s) {
+		c.setChord(s);
 	}
 }
