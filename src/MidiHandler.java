@@ -70,6 +70,7 @@ public class MidiHandler {
 				} else if(message[0] == -128) {
 					if (game != null) game.noteReleased(message[1]);
 					intr.noteReleased(message[1]);
+					game.setChord(intr.get_chord());
 				}
 			}
 		}
@@ -80,25 +81,5 @@ public class MidiHandler {
 	public void close() {
 		device.close();
 		mir.close();
-	}
-
-	private String translate_key(byte key) {
-		String name;
-		switch (key % 12) {
-		case 0:  name = "C";	break;
-		case 1:  name = "C#";	break;
-		case 2:  name = "D";	break;
-		case 3:  name = "D#";	break;
-		case 4:  name = "E";	break;
-		case 5:  name = "F";	break;
-		case 6:  name = "F#";	break;
-		case 7:  name = "G";	break;
-		case 8:  name = "Ab";	break;
-		case 9:  name = "A";	break;
-		case 10: name = "Bb";	break;
-		case 11: name = "B";	break;
-		default: name = "C";
-		}
-		return name;
 	}
 }

@@ -48,16 +48,18 @@ public class Interpreter {
 	}
 
 	private void sort_notes() {
-		int min = notes.get(0);
-		for (int i = 0; i < notes.size(); i++) {
-			min = i;
-			for (int j = i + 1; j < notes.size(); j++) {
-				if (notes.get(j) < notes.get(min)) min = j;
-			}
-			if (min != i) {
-				int temp = notes.get(i);
-				notes.set(i, notes.get(min));
-				notes.set(min, temp);
+		if (!notes.isEmpty()) {
+			int min = notes.get(0);
+			for (int i = 0; i < notes.size(); i++) {
+				min = i;
+				for (int j = i + 1; j < notes.size(); j++) {
+					if (notes.get(j) < notes.get(min)) min = j;
+				}
+				if (min != i) {
+					int temp = notes.get(i);
+					notes.set(i, notes.get(min));
+					notes.set(min, temp);
+				}
 			}
 		}
 	}
@@ -98,22 +100,22 @@ public class Interpreter {
 		String chordString = get_note(base);
 		switch (next - base) {
 		case 1: 
-			chordString = get_note(next);
+			chordString = get_note(next%12);
 			chordString += "maj7";	break;
 		case 2:
-			chordString = get_note(next);
+			chordString = get_note(next%12);
 			chordString += "7"; 	break;
 		case 3: 
 			chordString += "min"; 	break;
 		case 4: case 7:
 			chordString += "maj"; 	break;
 		case 5: case 8:
-			chordString = get_note(next);
+			chordString = get_note(next%12);
 			chordString += "maj"; 	break;
 		case 6:
 			chordString += "dim7";	break;
 		case 9:
-			chordString = get_note(next);
+			chordString = get_note(next%12);
 			chordString += "min";	break;
 		case 10:
 			chordString += "7";		break;
@@ -123,7 +125,7 @@ public class Interpreter {
 		}
 		return chordString;
 	}
-	
+
 	private String three_note_chord(int base, int next, int last) {
 		int baseclone = base;
 		while (baseclone < last) baseclone+=12;
@@ -131,21 +133,23 @@ public class Interpreter {
 		if (next - base == 3 && last - next == 3) return get_note(base) + "dim";
 		if (next - base == 3 && last - next == 6) return get_note(last%12) + "dim";
 		if (next - base == 6 && last - next == 3) return get_note(next%12) + "dim";
-		
+
 		//look for majors
 		if (next - base == 4 && last - next == 3) return get_note(base) + "maj";
 		if (next - base == 3 && last - next == 5) return get_note(last%12) + "maj";
 		if (next - base == 5 && last - next == 4) return get_note(next%12) + "maj";
-		
+		if (next - base == 7 && last - next == 9) return get_note(base) + "maj";
+
 		//look for minors
 		if (next - base == 3 && last - next == 4) return get_note(base) + "min";
 		if (next - base == 4 && last - next == 5) return get_note(last%12) + "min";
 		if (next - base == 5 && last - next == 3) return get_note(next%12) + "min";
-		
+		if (next - base == 7 && last - next == 8) return get_note(base) + "min";
+
 		//check for 7ths
-		
+
 		//check major minor
-		
+
 		return "???";
 	}
 
