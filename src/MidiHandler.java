@@ -10,8 +10,12 @@ import javax.sound.midi.Transmitter;
 public class MidiHandler {
 	MidiDevice device;
 	MidiInputReceiver mir;
+	Game game;
+	Interpreter intr;
 
-	public MidiHandler() {
+	public MidiHandler(Game game, Interpreter intr) {
+		this.game = game;
+		this.intr = intr;
 		MidiDevice.Info[] infos = MidiSystem.getMidiDeviceInfo();
 		for (int i = 0; i < infos.length; i++) {
 			try {
@@ -45,28 +49,38 @@ public class MidiHandler {
 			}
 		}
 	}
-	
+
 	public class MidiInputReceiver implements Receiver {
 		public String name;
 		public MidiInputReceiver(String name) {
 			this.name = name;
 		}
-		
+
 		public void send(MidiMessage msg, long timeStamp) {
 			byte message[] = new byte[3];
 			message = msg.getMessage();
-			if(message[2] != 64) {
-				System.out.println("Number:" + message[1] + ", Name: " + translate_key(message[1]) + ", Velocity: " + message[2]);
+			if (message.length == 3) {
+				if(message[0] == -80) {
+					if (message[1] == 64) {
+						System.out.println("Damper pedal " + (message[2] == 0 ? "released" : "depresed"));
+					}
+				} else if(message[0] == -112) {
+					Game.notePlayed(message[1]);
+					
+					System.out.println("Key Pressed: Number: " + message[0] + ", " + message[1] + ", Name: " + translate_key(message[1]) + ", Velocity: " + message[2]);
+				} else if(message[0] == -128) {
+					System.out.println("Key Released: Number: " + message[0] + ", " + message[1] + ", Name: " + translate_key(message[1]));
+				}
 			}
 		}
 		public void close() {}
 	}
-	
+
 	public void close() {
 		device.close();
 		mir.close();
 	}
-	
+
 	private String translate_key(byte key) {
 		String name;
 		switch (key % 12) {

@@ -33,7 +33,7 @@ public class MidiPlayer {
 	
 	public static void main(String [] args) throws Exception {
 		MidiPlayer mp = new MidiPlayer();
-		MidiHandler mh = new MidiHandler();
+		MidiHandler mh = new MidiHandler(null, null);
 		try {
 			Scanner scan = new Scanner(new FileReader("song_test.txt"));
 			while(scan.hasNext()) {

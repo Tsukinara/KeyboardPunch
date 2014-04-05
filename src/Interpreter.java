@@ -1,12 +1,24 @@
+import java.util.ArrayList;
+
 public class Interpreter {
 	
-	private Game game;
-	private int[] notes;
+	private ArrayList<Integer> notes;
 	
-	public Interpreter(Game g) {
-		game = g;
-		notes = new int[10];
+	public Interpreter() {
+		new ArrayList<Integer>();
 	}
 	
+	public void notePlayed(int note) {
+		notes.add(note);
+	}
+	
+	public void noteReleased(int note) {
+		notes.remove(notes.indexOf(note));
+	}
+	
+	public String getChord() {
+		String chord = "";
+		return chord;
+	}
 	
 }
