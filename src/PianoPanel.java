@@ -63,7 +63,7 @@ public class PianoPanel extends JPanel {
 		
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		g2d.drawLine(0, 0, getWidth(), 0);
+	//	g2d.drawLine(0, 0, getWidth(), 0);
 		widthWhite = getWidth()/45;
 		widthBlack = widthWhite * 2 / 3;
 		keylength = widthWhite * 7;
@@ -120,7 +120,7 @@ public class PianoPanel extends JPanel {
 				else
 					g.setColor(Color.RED);
 				g.fillRect(widthWhite * i + widthWhite - widthBlack / 2+leftOffset,
-						offset - 8, widthBlack, 7);
+						offset - 10, widthBlack, 8);
 			}
 		}
 

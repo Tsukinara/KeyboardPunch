@@ -38,8 +38,8 @@ public class TimerPanel extends JPanel implements ActionListener {
 			g2d.drawString(String.valueOf(i + 1), (i+1) * getWidth() / 5 - g2d.getFontMetrics().stringWidth(String.valueOf(i + 1))/2, getHeight()/2);
 		}
     	g2d.setColor(Color.black);
-    	g2d.drawLine(1, 0, 1, getHeight());
-    	g2d.drawLine(getWidth()-1, 0, getWidth()-1, getHeight());
+    //	g2d.drawLine(1, 0, 1, getHeight());
+    //	g2d.drawLine(getWidth()-1, 0, getWidth()-1, getHeight());
     	g2d.setFont(new Font("Trebuchet MS", Font.BOLD, 72));
     	g2d.drawString(String.valueOf(Game.gamedata.get_bpm()) + " bpm", getWidth()/2 - g2d.getFontMetrics().stringWidth(String.valueOf(Game.gamedata.get_bpm()) + " bpm")/2, 7*getHeight()/8);
     }//end paint
