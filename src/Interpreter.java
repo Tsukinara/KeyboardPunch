@@ -128,10 +128,19 @@ public class Interpreter {
 		int baseclone = base;
 		while (baseclone < last) baseclone+=12;
 		//check for dims
+		if (next - base == 3 && last - next == 3) return get_note(base) + "dim";
+		if (next - base == 3 && last - next == 6) return get_note(last%12) + "dim";
+		if (next - base == 6 && last - next == 3) return get_note(next%12) + "dim";
+		
+		//look for majors
+		if (next - base == 4 && last - next == 3) return get_note(base) + "maj";
+		if (next - base == 4 && last - base == 5) return get_note(last) + "maj";
+		if (next - base == 5 && last - base == 4) return get_note(next) + "maj";
+		
+		//look for minors
 		
 		//check for 7ths
 		
-		//look for 5ths
 		//check major minor
 		
 		return "Unknown";
