@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.sound.midi.MidiDevice;
@@ -8,14 +9,17 @@ import javax.sound.midi.Receiver;
 import javax.sound.midi.Transmitter;
 
 public class MidiHandler {
-	MidiDevice device;
-	MidiInputReceiver mir;
-	Game game;
-	Interpreter intr;
+	private MidiDevice device;
+	private MidiInputReceiver mir;
+	private Game game;
+	private Interpreter intr;
+	private ArrayList<Integer> noteBuffer;
+	private boolean dampened;
 
 	public MidiHandler(Game game, Interpreter intr) {
 		this.game = game;
 		this.intr = intr;
+		noteBuffer = new ArrayList<Integer>();
 		MidiDevice.Info[] infos = MidiSystem.getMidiDeviceInfo();
 		for (int i = 0; i < infos.length; i++) {
 			try {
@@ -60,17 +64,31 @@ public class MidiHandler {
 			byte message[] = new byte[3];
 			message = msg.getMessage();
 			if (message.length == 3) {
-				if(message[0] == -80) {
-					if (message[1] == 64) System.out.println("Damper pedal " + (message[2] == 0 ? "released" : "depresed"));
+				if(message[0] == -80 && message[1] == 64) {
+					if (message[2] == 127) {
+						dampened = true;
+					}
+					else {
+						dampened = false;
+						for(int i : noteBuffer) {
+							if (game != null) game.noteReleased(i);
+							intr.noteReleased(i);
+							game.setChord(intr.get_chord());
+						}
+					}
 				} else if(message[0] == -112) {
 					if (game != null) game.notePlayed(message[1], 0);
 					if (message[1] < 65) intr.notePlayed(message[1]);
 					game.setChord(intr.get_chord());
 					System.out.println(intr.get_chord());
 				} else if(message[0] == -128) {
-					if (game != null) game.noteReleased(message[1]);
-					if (message[1] < 65) intr.noteReleased(message[1]);
-					game.setChord(intr.get_chord());
+					if(!dampened) {
+						if (game != null) game.noteReleased(message[1]);
+						if (message[1] < 65) intr.noteReleased(message[1]);
+						game.setChord(intr.get_chord());
+					} else {
+						noteBuffer.add((int)message[1]);
+					}
 				}
 			}
 		}
