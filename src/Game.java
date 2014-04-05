@@ -1,6 +1,7 @@
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -38,10 +39,12 @@ public class Game extends JFrame {
 		gbc.fill = GridBagConstraints.BOTH;
 		gbc.gridx = 2;
 		gbc.gridy = 0;
-		gbc.weightx = 0.0;
+		gbc.insets = new Insets(0,50,0,50);
+		gbc.weightx = 1.0;
 		gbc.weighty = 0.0;
 		panel.add(s, gbc);
 		gbc.fill = GridBagConstraints.BOTH;
+		gbc.insets = new Insets(0,0,0,0);
 		gbc.gridx = 0;
 		gbc.gridy = 1;
 		gbc.gridwidth = 3;
@@ -50,7 +53,7 @@ public class Game extends JFrame {
 		panel.add(p, gbc);
 		
 		getContentPane().add(panel);
-		setMinimumSize(new Dimension(700,700));
+		setMinimumSize(new Dimension(800,800));
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 	

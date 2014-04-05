@@ -29,6 +29,6 @@ public class ChordPanel extends JPanel {
 		add(next, gbc);
 		gbc.gridy = 2;
 		add(seq, gbc);
-		setBackground(Color.yellow);
+		setBackground(new Color(240,240,240));
 	}
 }

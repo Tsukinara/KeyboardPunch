@@ -95,7 +95,7 @@ public class Settings extends JPanel implements ActionListener, ChangeListener{
 		gbc.weightx = 1.0;
 		gbc.gridx = 1;
 		add(exit, gbc);
-		setBackground(Color.green);
+		setBackground(new Color(240,240,240));
 	}
 	
 	public void actionPerformed(ActionEvent a) {
