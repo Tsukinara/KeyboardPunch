@@ -134,10 +134,13 @@ public class Interpreter {
 		
 		//look for majors
 		if (next - base == 4 && last - next == 3) return get_note(base) + "maj";
-		if (next - base == 4 && last - base == 5) return get_note(last) + "maj";
-		if (next - base == 5 && last - base == 4) return get_note(next) + "maj";
+		if (next - base == 3 && last - next == 5) return get_note(last%12) + "maj";
+		if (next - base == 5 && last - next == 4) return get_note(next%12) + "maj";
 		
 		//look for minors
+		if (next - base == 3 && last - next == 4) return get_note(base) + "min";
+		if (next - base == 4 && last - next == 5) return get_note(last%12) + "min";
+		if (next - base == 5 && last - next == 3) return get_note(next%12) + "min";
 		
 		//check for 7ths
 		

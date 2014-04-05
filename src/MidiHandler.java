@@ -68,6 +68,7 @@ public class MidiHandler {
 					if (game != null) game.notePlayed(message[1], 0);
 					intr.notePlayed(message[1]);
 //					System.out.println("Key Pressed: Number: " + message[0] + ", " + message[1] + ", Name: " + translate_key(message[1]) + ", Velocity: " + message[2]);
+					game.setChord(intr.get_chord())
 					System.out.println(intr.get_chord());
 				} else if(message[0] == -128) {
 					if (game != null) game.noteReleased(message[1]);
