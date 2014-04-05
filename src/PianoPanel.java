@@ -12,9 +12,9 @@ import javax.swing.Timer;
 public class PianoPanel extends JPanel implements ActionListener {
 	private static final long serialVersionUID = 3875360370099517808L;
 	
-	final int width = Toolkit.getDefaultToolkit().getScreenSize().getWidth(); //size of panel
+	final int width = (int)Toolkit.getDefaultToolkit().getScreenSize().getWidth(); //size of panel
 	final int keylength = 50; //sizeofkeys
-	final int offset = 20; //offset for formatting
+	final int offset = width / 30; //offset for formatting
 	int widthWhite = width / 45;
 	int widthBlack = widthWhite * 2 / 3;
 	int space = widthWhite * 7;
@@ -31,13 +31,13 @@ public class PianoPanel extends JPanel implements ActionListener {
 	public void paint(Graphics g) {
 		super.paint(g);
 		Graphics2D g2d = (Graphics2D)g;
-		g2d.setFont(new Font("Trebuchet MS", Font.BOLD, 72));
+		g2d.setFont(new Font("Trebuchet MS", Font.BOLD, 3 * width / 25));
 		for(int i = 0; i < 4; i++) {
 			if(i == beat)
-				g2d.setColor(Color.blue);
+				g2d.setColor(new Color(0x323232));
 			else
-				g2d.setColor(Color.black);
-			g2d.drawString(String.valueOf(i + 1),i*50 + 50, 250);
+				g2d.setColor(new Color(0x787878));
+			g2d.drawString(String.valueOf(i + 1), i * width / 12 + width / 12, width / 12);
 		}
 	
 		for (int i = 0; i < 45; i++) {
