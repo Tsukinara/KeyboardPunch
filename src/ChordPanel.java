@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 public class ChordPanel extends JPanel {
 	
 	private Font thefuckingfont;
-	private String chrod = "G Maj";
+	private String chrod = "---";
 	private String next = "Next:";
 	private String seq = "A B C D E F G Lop.";
 	
