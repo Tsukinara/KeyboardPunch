@@ -27,10 +27,10 @@ public class Interpreter {
 	}
 
 	public String get_chord() {
-		chord.clear();
+		this.chord.clear();
 		String chordString = "";
 		get_most_relevant();
-		chordString = calculate_chord();
+		chordString = calculate_chord(this.chord);
 		return chordString;
 	}
 
@@ -62,8 +62,9 @@ public class Interpreter {
 		}
 	}
 
-	private String calculate_chord() {
+	private String calculate_chord(ArrayList<Integer> chord) {
 		String chordString = "";
+		if (chord.size() == 0) return chordString;
 		if (chord.size() == 1) {
 			chordString += get_note(chord.get(0));
 			chordString += "maj";
@@ -73,39 +74,68 @@ public class Interpreter {
 			int base = chord.get(0);
 			int next = chord.get(1);
 			if (next < base) next +=12;
-			chordString+=get_note(base);
-			switch (next - base) {
-			case 1: 
-				chordString = get_note(next);
-				chordString += "maj7";	break;
-			case 2:
-				chordString = get_note(next);
-				chordString += "7"; 	break;
-			case 3: 
-				chordString += "min"; 	break;
-			case 4: case 7:
-				chordString += "maj"; 	break;
-			case 5: case 8:
-				chordString = get_note(next);
-				chordString += "maj"; 	break;
-			case 6:
-				chordString += "dim7";	break;
-			case 9:
-				chordString = get_note(next);
-				chordString += "min";	break;
-			case 10:
-				chordString += "7";		break;
-			case 11:
-				chordString += "maj7";	break;				
-			default: return "Unknown";
-			}
+			return two_note_chord(base, next);			
 		}
 		if (chord.size() == 3) {
 			int base = chord.get(0);
+			int next = chord.get(1);
+			if (next < base) next += 12;
+			int last = chord.get(2);
+			while (last < next) last += 12;
+			return chordString;
+		}
+		int base = chord.get(0);
+		int next = chord.get(1);
+		int third = chord.get(2);
+		int last = chord.get(3);
+		while (next < base) next +=12;
+		while (third < next) third +=12;
+		while (last < third) last +=12;
+		return four_note_chord(base, next, third, last);
+	}
+	
+	private String two_note_chord(int base, int next) {
+		String chordString = get_note(base);
+		switch (next - base) {
+		case 1: 
+			chordString = get_note(next);
+			chordString += "maj7";	break;
+		case 2:
+			chordString = get_note(next);
+			chordString += "7"; 	break;
+		case 3: 
+			chordString += "min"; 	break;
+		case 4: case 7:
+			chordString += "maj"; 	break;
+		case 5: case 8:
+			chordString = get_note(next);
+			chordString += "maj"; 	break;
+		case 6:
+			chordString += "dim7";	break;
+		case 9:
+			chordString = get_note(next);
+			chordString += "min";	break;
+		case 10:
+			chordString += "7";		break;
+		case 11:
+			chordString += "maj7";	break;				
+		default: return "Unknown";
 		}
 		return chordString;
 	}
 
+	private String four_note_chord(int base, int next, int third, int last) {
+		String chordString = get_note(base);
+		//check for diminished chords first
+		if(next - base == 3 && third - next == 3 && last - third == 3) return chordString + "dim7";
+		
+		//check overall validity next
+		if(!(next-base == 1 || next-base == 2 || third-next == 1 || third-next == 2 || last-third == 1 || last-next == 2  || Math.abs(base-(last%12)) == 1 || Math.abs(base-(last%12))== 2))
+			return "Unknown";
+		
+		return "Unknown";
+	}
+	
 	public static String get_note(int key) {
 		String name;
 		switch (key) {

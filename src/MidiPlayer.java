@@ -31,17 +31,15 @@ public class MidiPlayer {
 		}
 	}
 	
-	public static void main(String [] args) throws Exception {
-		MidiPlayer mp = new MidiPlayer();
-		MidiHandler mh = new MidiHandler(null, new Interpreter());
+	public void play_song(String filename) {
 		try {
-			Scanner scan = new Scanner(new FileReader("song_test.txt"));
+			Scanner scan = new Scanner(new FileReader(filename));
 			while(scan.hasNext()) {
 				String s = scan.nextLine();
 				while (!s.contains("delay")) {
 					int note = Integer.parseInt(s.substring(0, s.indexOf(' ')));
 					int code = Integer.parseInt(s.substring(s.indexOf(' ') + 1, s.length()));
-					mp.play_note(code, note, stdVelocity);
+					play_note(code, note, stdVelocity);
 					s = scan.nextLine();
 				}
 				int delay = Integer.parseInt(s.substring(6, s.length()));
@@ -50,8 +48,13 @@ public class MidiPlayer {
 			scan.close();
 		} catch (IOException e) {
 			System.err.println("404 Error: File Not Found");
+		} catch (InterruptedException e) {
+			System.err.println("You interrupted my sleep, you jerk.");
 		}
-		mh.close();
 	}
-
+	
+	public static void main(String [] args) throws Exception {
+		MidiPlayer mp = new MidiPlayer();
+		mp.play_song("song_test.txt");
+	}
 }
