@@ -34,5 +34,6 @@ public class ChordPanel extends JPanel {
 	
 	public void setChord(String s) {
 		chrod = s;
+		repaint();
 	}
 }
