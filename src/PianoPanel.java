@@ -46,6 +46,13 @@ public class PianoPanel extends JPanel {
 		blackSpaces = new int[44];
 		whiteSpacesColor = new int[45];
 		blackSpacesColor = new int[44];
+		
+		notePlayed(47,0);
+		notePlayed(101,0);
+		notePlayed(60,0);
+		notePlayed(48,1);
+		notePlayed(34,1);
+		notePlayed(42,0);
 
 		setBackground(new Color(0xbbddff));
 
@@ -101,7 +108,7 @@ public class PianoPanel extends JPanel {
 				else
 					g.setColor(Color.RED);
 				g.fillRect(i * widthWhite+leftOffset, offset + keylength + 5, widthWhite,
-						5);
+						7);
 
 			}
 		}
@@ -113,7 +120,7 @@ public class PianoPanel extends JPanel {
 				else
 					g.setColor(Color.RED);
 				g.fillRect(widthWhite * i + widthWhite - widthBlack / 2+leftOffset,
-						offset - 8, widthBlack, 5);
+						offset - 8, widthBlack, 7);
 			}
 		}
 
