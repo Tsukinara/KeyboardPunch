@@ -50,14 +50,12 @@ public class Interpreter {
 			next_chords = majorNextChords(key);
 		else
 			next_chords = minorNextChords(key);
-		System.out.println(next_chords);
 		return next_chords;
 	}
 	
 	private ArrayList<String> majorNextChords(int key) {
 		ArrayList<String> options = new ArrayList<String>();
 		if (currentChord < key) currentChord+=12;
-		System.out.println(currentChord - key);
 		switch (currentChord - key) {
 		case 0:
 			if (currentType == 0) addValues(options, new int[]{2, 1, 3, 0, 4, 0, 4, 1, 4, 6, 5, 0, 5, 1, 7, 0, 8, 0, 9, 1, 11, 2, 11, 3});

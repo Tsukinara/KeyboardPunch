@@ -101,6 +101,7 @@ public class MidiHandler {
 
 	}
 
+	public void imNotUseless() {}
 	public void close() {
 		device.close();
 		mir.close();

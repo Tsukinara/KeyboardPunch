@@ -7,6 +7,7 @@ public class Main {
 		//mp.play_song("song_test.txt");*/
 		Game g = new Game(gd, i);
 		MidiHandler mh = new MidiHandler(g, i);
+		mh.imNotUseless();
 		g.setVisible(true);
 	}
 }
