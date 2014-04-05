@@ -12,7 +12,7 @@ public class PianoPanel extends JPanel {
 
 	final int width = (int) Toolkit.getDefaultToolkit().getScreenSize()
 			.getWidth(); // size of panel
-	final int keylength = 200; // size of keys
+	int keylength = 200; // size of keys
 	int offset = width / 30; // offset for formatting
 	final int leftOffset=10;
 	int widthWhite = width / 45;
@@ -53,9 +53,11 @@ public class PianoPanel extends JPanel {
 
 	public void paint(Graphics g) {
 		super.paint(g);
+		
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		g2d.drawLine(0, 0, getWidth(), 0);
+		keylength = (int) (getHeight() * 200.0/275.0);
 		widthWhite = getWidth()/45;
 		widthBlack = widthWhite * 2 / 3;
 		space = widthWhite * 7;
