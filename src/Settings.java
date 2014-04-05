@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -99,6 +100,12 @@ public class Settings extends JPanel implements ActionListener, ChangeListener{
 		gbc.gridx = 1;
 		add(exit, gbc);
 		setBackground(new Color(0x92c9ff));
+	}
+	
+	public void paint(Graphics g) {
+		super.paint(g);
+		g.setColor(Color.black);
+		g.drawLine(0, 0, 0, getHeight());
 	}
 	
 	public void actionPerformed(ActionEvent a) {

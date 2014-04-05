@@ -53,6 +53,7 @@ public class PianoPanel extends JPanel {
 		super.paint(g);
 		Graphics2D g2d = (Graphics2D) g;
 
+		g2d.drawLine(0, 0, getWidth(), 0);
 		for (int i = 0; i < 45; i++) {
 			drawWhite(i * widthWhite, offset, g);
 		}
@@ -75,7 +76,8 @@ public class PianoPanel extends JPanel {
 
 		// array of pointers
 		drawArray(g);
-
+			
+		
 	}
 
 	public void drawWhite(int x, int y, Graphics g) {
