@@ -61,11 +61,11 @@ public class GameData {
 	public static String get_type(int type) {
 		String name;
 		switch (type) {
-		case 0: name="maj";	break;
-		case 1: name="min";	break;
+		case 0: name="maj";		break;
+		case 1: name="min";		break;
 		case 2: name="maj7";	break;
 		case 3: name="min7";	break;
-		case 4: name="dim";	break;
+		case 4: name="dim";		break;
 		case 5: name="dim7";	break;
 		case 6: name="7";		break;
 		default: name="maj";	break;

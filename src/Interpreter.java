@@ -5,6 +5,7 @@ public class Interpreter {
 	private ArrayList<Integer> notes;
 	private ArrayList<Integer> chord;
 	GameData gd;
+	int currentChord, currentType;
 
 	public Interpreter() {
 		notes = new ArrayList<Integer>();
@@ -37,6 +38,109 @@ public class Interpreter {
 		get_most_relevant();
 		chordString = calculate_chord(this.chord);
 		return chordString;
+	}
+	
+	public ArrayList<String> get_next_chords() {
+		ArrayList<String> next_chords = new ArrayList<String>();
+		setConstants(get_chord());
+		int key = gd.get_key();
+		boolean majmin = gd.getMajMin();
+		if (majmin)
+			next_chords = majorNextChords(key);
+		else
+			next_chords = minorNextChords(key);
+		return next_chords;
+	}
+	
+	private ArrayList<String> majorNextChords(int key) {
+		ArrayList<String> options = new ArrayList<String>();
+		if (currentChord < key) currentChord+=12;
+		switch (currentChord - key) {
+		case 0:
+			if (currentType == 0) addValues(options, new int[]{0, 0, 2, 1, 3, 0, 4, 0, 4, 1, 4, 6, 5, 0, 5, 1, 7, 0, 8, 0, 9, 1, 11, 2, 11, 3});
+			else if (currentType == 6) addValues(options, new int[]{5, 0});
+			else if (currentType == 7) addValues(options, new int[]{0, 0});
+			else options.add("You messed up lol.");
+			break;
+		case 1:
+			if (currentType == 2 || currentType == 3) addValues(options, new int[]{2, 1});
+			else options.add("You messed up lol");
+			break;
+		case 2:
+			if (currentType == 0 || currentType == 6) addValues(options, new int[]{7, 0, 7, 7});
+			else if (currentType == 1 || currentType == 5) addValues(options, new int[]{7, 0, 7, 7, 11, 1, 11, 3});
+			else options.add("You messed up lol."); 
+			break;
+		case 3:
+			if (currentType == 0) addValues(options, new int[]{0, 0, 5, 0});
+			else options.add("You messed up lol.");
+			break;
+		case 4:
+			if (currentType == 4 || currentType == 6) addValues(options, new int[]{9, 1});
+			else if (currentType == 1) addValues(options, new int[]{9, 1, 5, 0, 2, 1, 2, 5});
+			else if (currentType == 7) addValues(options, new int[]{4, 0});
+			break;
+		case 5:
+			if (currentType == 0) addValues(options, new int[]{2, 1, 2, 5, 0, 0, 0, 7, 7, 0, 7, 6, 11, 2, 11, 3});
+			else if (currentType == 7) addValues(options, new int[]{5, 0});
+			else if (currentType == 1) addValues(options, new int[]{0, 0, 0, 7});
+			else if (currentType == 4) addValues(options, new int[]{7, 0, 7, 7});
+			else options.add("You messed up lol.");
+			break;
+		case 6:
+			options.add("You messed up lol.");
+			break;
+		case 7:
+			if (currentType == 0 || currentType == 6) addValues(options, new int[]{4, 0, 4, 6, 0, 0, 0, 7, 9, 1, 9, 5});
+			else if (currentType == 7) addValues(options, new int[]{7, 0});
+			else options.add("You messed up lol.");
+			break;
+		case 8:
+			break;
+		case 9:
+			break;
+		case 10:
+			break;
+		case 11:
+			break;
+		default:
+			options.add("You messed up lol.");
+		}
+		return options;
+	}
+	
+	private ArrayList<String> minorNextChords(int key) {
+		ArrayList<String> options = new ArrayList<String>();
+		if (currentChord < key) currentChord+=12;
+		switch (currentChord - key) {
+		case 0:
+			break;
+		case 1:
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
+		case 4:
+			break;
+		case 5:
+			break;
+		case 6:
+			break;
+		case 7:
+			break;
+		case 8:
+			break;
+		case 9:
+			break;
+		case 10:
+			break;
+		case 11:
+			break;
+		default:
+			options.add("You messed up lol.");
+		}
+		return options;
 	}
 
 	private void get_most_relevant() {
@@ -225,6 +329,62 @@ public class Interpreter {
 		default: name = "C";	break;
 		}
 		return name;
+	}
+	
+	public static String get_type(int type) {
+		String name;
+		switch (type) {
+		case 0: name="maj";		break;
+		case 1: name="min";		break;
+		case 2: name="maj7";	break;
+		case 3: name="min7";	break;
+		case 4: name="dim";		break;
+		case 5: name="dim7";	break;
+		case 6: name="7";		break;
+		case 7: name="sus4";	break;
+		default: name="maj";	break;
+		}
+		return name;
+	}
+	
+	private void setConstants(String chordName) {
+		String type;
+		if(chordName.charAt(1) == '#' || chordName.charAt(1) == 'b') {
+			type = chordName.substring(2, chordName.length());
+			switch(chordName.charAt(0)) {
+			case 'C': currentChord = 1; break;
+			case 'D': currentChord = 3; break;
+			case 'F': currentChord = 6; break;
+			case 'A': currentChord = 8; break;
+			default: currentChord = 11; break;
+			}
+		} else {
+			type = chordName.substring(1, chordName.length());
+			switch(chordName.charAt(0)) {
+			case 'C': currentChord = 0; break;
+			case 'D': currentChord = 2; break;
+			case 'E': currentChord = 4; break;
+			case 'F': currentChord = 5; break;
+			case 'G': currentChord = 7; break;
+			case 'A': currentChord = 9; break;
+			case 'B': currentChord = 11; break;
+			}
+		}
+		if (type.equals("maj")) currentType = 0;
+		if (type.equals("min")) currentType = 1;
+		if (type.equals("maj7")) currentType = 2;
+		if (type.equals("min7")) currentType = 3;
+		if (type.equals("dim")) currentType = 4;
+		if (type.equals("dim7")) currentType = 5;
+		if (type.equals("7")) currentType = 6;
+		if (type.equals("sus4")) currentType = 7;
+	}
+	
+	private ArrayList<String> addValues(ArrayList<String> orig, int[] contents) {
+		for (int i = 0; i < contents.length; i+=2) {
+			orig.add(get_note(contents[i] + gd.get_key()) + get_type(contents[i+1]));
+		}
+		return orig;
 	}
 
 }
