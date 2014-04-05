@@ -3,6 +3,7 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -82,5 +83,9 @@ public class Game extends JFrame {
 	
 	public void setChord(String s) {
 		c.setChord(s);
+	}
+	
+	public void setNext(ArrayList<String> l) {
+		c.setNext(l);
 	}
 }

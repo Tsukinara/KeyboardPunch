@@ -3,6 +3,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
@@ -35,5 +36,13 @@ public class ChordPanel extends JPanel {
 	public void setChord(String s) {
 		chrod = s;
 		repaint();
+	}
+	
+	public void setNext(ArrayList<String> l) {
+		String str = "";
+		for(String s : l) {
+			str += s + " ";
+		}
+		next = str;
 	}
 }
