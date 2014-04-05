@@ -67,21 +67,24 @@ public class MidiHandler {
 				if(message[0] == -80 && message[1] == 64) {
 					if (message[2] == 127) {
 						dampened = true;
+						System.out.println("DAMPENED");
 					}
 					else {
 						dampened = false;
+						System.out.println("RELEASED");
 						for(int i : noteBuffer) {
 							if (game != null) game.noteReleased(i);
-							intr.noteReleased(i);
+							if (message[1] < 65) intr.noteReleased(i);
 							game.setChord(intr.get_chord());
 						}
+						noteBuffer.clear();
 					}
 				} else if(message[0] == -112) {
 					if (game != null) game.notePlayed(message[1], 0);
 					if (message[1] < 65) intr.notePlayed(message[1]);
 					game.setChord(intr.get_chord());
-					System.out.println(intr.get_chord());
 				} else if(message[0] == -128) {
+					System.out.println(message[0]);
 					if(!dampened) {
 						if (game != null) game.noteReleased(message[1]);
 						if (message[1] < 65) intr.noteReleased(message[1]);
