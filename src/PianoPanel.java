@@ -13,6 +13,7 @@ public class PianoPanel extends JPanel {
 			.getWidth(); // size of panel
 	final int keylength = 200; // size of keys
 	final int offset = width / 30; // offset for formatting
+	final int leftOffset=10;
 	int widthWhite = width / 45;
 	int widthBlack = widthWhite * 2 / 3;
 	int space = widthWhite * 7;
@@ -55,24 +56,24 @@ public class PianoPanel extends JPanel {
 
 		g2d.drawLine(0, 0, getWidth(), 0);
 		for (int i = 0; i < 45; i++) {
-			drawWhite(i * widthWhite, offset, g);
+			drawWhite(i * widthWhite+leftOffset, offset, g);
 		}
 
 		// groups of 3
 		for (int i = (2 * widthWhite - widthBlack / 2); i < (width - 3 * widthWhite); i += space) {
-			drawBlack(i, offset, g);
-			drawBlack(i + widthWhite, offset, g);
-			drawBlack(i + 2 * widthWhite, offset, g);
+			drawBlack(i+leftOffset, offset, g);
+			drawBlack(i +leftOffset+ widthWhite, offset, g);
+			drawBlack(i +leftOffset+ 2 * widthWhite, offset, g);
 		}
 
 		// groups of 2
 		for (int i = (6 * widthWhite - widthBlack / 2); i < width; i += space) {
-			drawBlack(i, offset, g);
-			drawBlack(i + widthWhite, offset, g);
+			drawBlack(i+leftOffset, offset, g);
+			drawBlack(i + widthWhite+leftOffset, offset, g);
 		}
 
 		// last key (black)
-		drawBlack(width - widthWhite * 2, offset, g);
+		drawBlack(width - widthWhite * 2+leftOffset, offset, g);
 
 		// array of pointers
 		drawArray(g);
@@ -82,9 +83,9 @@ public class PianoPanel extends JPanel {
 
 	public void drawWhite(int x, int y, Graphics g) {
 		g.setColor(Color.WHITE);
-		g.fillRect(x, y, widthWhite, keylength);
+		g.fillRect(x+leftOffset, y, widthWhite, keylength);
 		g.setColor(Color.BLACK);
-		g.drawRect(x, y, widthWhite, keylength);
+		g.drawRect(x+leftOffset, y, widthWhite, keylength);
 	}
 
 	public void drawArray(Graphics g) {
@@ -95,7 +96,7 @@ public class PianoPanel extends JPanel {
 					g.setColor(Color.BLUE);
 				else
 					g.setColor(Color.RED);
-				g.fillRect(i * widthWhite, offset + keylength + 5, widthWhite,
+				g.fillRect(i * widthWhite+leftOffset, offset + keylength + 5, widthWhite,
 						5);
 
 			}
@@ -107,7 +108,7 @@ public class PianoPanel extends JPanel {
 					g.setColor(Color.BLUE);
 				else
 					g.setColor(Color.RED);
-				g.fillRect(widthWhite * i + widthWhite - widthBlack / 2,
+				g.fillRect(widthWhite * i + widthWhite - widthBlack / 2+leftOffset,
 						offset - 8, widthBlack, 5);
 			}
 		}
@@ -116,7 +117,7 @@ public class PianoPanel extends JPanel {
 
 	public void drawBlack(int x, int y, Graphics g) {
 		g.setColor(Color.BLACK);
-		g.fillRect(x, y, widthBlack, keylength * 3 / 5);
+		g.fillRect(x+leftOffset, y, widthBlack, keylength * 3 / 5);
 
 	}
 
