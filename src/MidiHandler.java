@@ -9,9 +9,9 @@ import javax.sound.midi.Transmitter;
 
 public class MidiHandler {
 	MidiDevice device;
+	MidiInputReceiver mir;
 
-	public MidiHandler()
-	{
+	public MidiHandler() {
 		MidiDevice.Info[] infos = MidiSystem.getMidiDeviceInfo();
 		for (int i = 0; i < infos.length; i++) {
 			try {
@@ -26,11 +26,13 @@ public class MidiHandler {
 
 				for(int j = 0; j<transmitters.size();j++) {
 					//create a new receiver
-					transmitters.get(j).setReceiver(new MidiInputReceiver(device.getDeviceInfo().toString()));
+					mir = new MidiInputReceiver(device.getDeviceInfo().toString());
+					transmitters.get(j).setReceiver(mir);
 				}
 
 				Transmitter trans = device.getTransmitter();
-				trans.setReceiver(new MidiInputReceiver(device.getDeviceInfo().toString()));
+				mir = new MidiInputReceiver(device.getDeviceInfo().toString());
+				trans.setReceiver(mir);
 
 				//open each device
 				device.open();
@@ -38,7 +40,9 @@ public class MidiHandler {
 				//print a success message
 				System.out.println(device.getDeviceInfo()+" Was Opened");
 
-			} catch (MidiUnavailableException e) {}
+			} catch (MidiUnavailableException e) {
+				System.out.println("MIDI Unavailable Exception Thrown");
+			}
 		}
 	}
 	
@@ -47,14 +51,20 @@ public class MidiHandler {
 		public MidiInputReceiver(String name) {
 			this.name = name;
 		}
+		
 		public void send(MidiMessage msg, long timeStamp) {
 			byte message[] = new byte[3];
 			message = msg.getMessage();
 			if(message[2] != 64) {
-				System.out.println("Note number: " + translate_key(message[1]) + ", Note velocity: " + message[2]);
+				System.out.println("Number:" + message[1] + ", Name: " + translate_key(message[1]) + ", Velocity: " + message[2]);
 			}
 		}
 		public void close() {}
+	}
+	
+	public void close() {
+		device.close();
+		mir.close();
 	}
 	
 	private String translate_key(byte key) {
