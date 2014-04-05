@@ -23,7 +23,7 @@ public class Game extends JFrame {
 		super();
 		gamedata = data;
 		interpreter = i;
-		//i.setGD(data);
+		i.setGD(data);
 		JPanel panel = new JPanel(new GridBagLayout());		
 		panel.setBackground(new Color(0x92c9ff));
 		c = new ChordPanel();

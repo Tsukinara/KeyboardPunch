@@ -44,5 +44,6 @@ public class ChordPanel extends JPanel {
 			str += s + " ";
 		}
 		next = str;
+		repaint();
 	}
 }

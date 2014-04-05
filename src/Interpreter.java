@@ -50,6 +50,7 @@ public class Interpreter {
 			next_chords = majorNextChords(key);
 		else
 			next_chords = minorNextChords(key);
+		System.out.println(next_chords);
 		return next_chords;
 	}
 	
@@ -58,7 +59,7 @@ public class Interpreter {
 		if (currentChord < key) currentChord+=12;
 		switch (currentChord - key) {
 		case 0:
-			if (currentType == 0) addValues(options, new int[]{0, 0, 2, 1, 3, 0, 4, 0, 4, 1, 4, 6, 5, 0, 5, 1, 7, 0, 8, 0, 9, 1, 11, 2, 11, 3});
+			if (currentType == 0) addValues(options, new int[]{2, 1, 3, 0, 4, 0, 4, 1, 4, 6, 5, 0, 5, 1, 7, 0, 8, 0, 9, 1, 11, 2, 11, 3});
 			else if (currentType == 6) addValues(options, new int[]{5, 0});
 			else if (currentType == 7) addValues(options, new int[]{0, 0});
 			else options.add(lolstring);
@@ -78,9 +79,10 @@ public class Interpreter {
 			else options.add(lolstring);
 			break;
 		case 4:
-			if (currentType == 4 || currentType == 6) addValues(options, new int[]{9, 1});
+			if (currentType == 4 || currentType == 6 || currentType == 0) addValues(options, new int[]{9, 1});
 			else if (currentType == 1) addValues(options, new int[]{9, 1, 5, 0, 2, 1, 2, 5});
 			else if (currentType == 7) addValues(options, new int[]{4, 0});
+			else options.add(lolstring);
 			break;
 		case 5:
 			if (currentType == 0) addValues(options, new int[]{2, 1, 2, 5, 0, 0, 0, 7, 7, 0, 7, 6, 11, 2, 11, 3});
