@@ -36,6 +36,9 @@ public class Settings extends JPanel implements ActionListener, ChangeListener{
 		key = new JSlider(0, 11, Game.gamedata.key);
 		Hashtable s = speed.createStandardLabels(120, 60);
 		Hashtable d = diff.createStandardLabels(1, 1);
+		speed.setBackground(new Color(0x92c9ff));
+		diff.setBackground(new Color(0x92c9ff));
+		key.setBackground(new Color(0x92c9ff));
 		speed.setLabelTable(s);
 		diff.setLabelTable(d);
 		speed.setPaintLabels(true);
