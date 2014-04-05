@@ -24,8 +24,9 @@ public class Game extends JFrame {
 		gamedata = data;
 		interpreter = i;
 		i.setGD(data);
-		JPanel panel = new JPanel(new GridBagLayout());		
-		panel.setBackground(new Color(0x92c9ff));
+		JPanel panel = new JPanel(new GridBagLayout());	
+		panel.setBackground(new Color(0xbbddff));
+		//panel.setBackground(new Color(0x92c9ff));
 		c = new ChordPanel();
 		s = new Settings();
 		t = new TimerPanel();

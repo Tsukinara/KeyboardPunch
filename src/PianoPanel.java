@@ -47,7 +47,8 @@ public class PianoPanel extends JPanel {
 		whiteSpacesColor = new int[45];
 		blackSpacesColor = new int[44];
 		
-		setBackground(new Color(0xbbddff));
+		setBackground(new Color(0x92c9ff));
+		//setBackground(new Color(0xbbddff));
 
 	}
 

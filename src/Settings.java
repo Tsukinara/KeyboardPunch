@@ -34,9 +34,12 @@ public class Settings extends JPanel implements ActionListener, ChangeListener{
 		speed = new JSlider(60, 180, Game.gamedata.bpm);
 		diff = new JSlider(1, 4, Game.gamedata.difficulty);
 		key = new JSlider(0, 11, Game.gamedata.key);
-		speed.setBackground(new Color(0x92c9ff));
-		diff.setBackground(new Color(0x92c9ff));
-		key.setBackground(new Color(0x92c9ff));
+		speed.setBackground(new Color(0xbbddff));
+		diff.setBackground(new Color(0xbbddff));
+		key.setBackground(new Color(0xbbddff));
+//		speed.setBackground(new Color(0x92c9ff));
+//		diff.setBackground(new Color(0x92c9ff));
+//		key.setBackground(new Color(0x92c9ff));
 		speed.setLabelTable(speed.createStandardLabels(120, 60));
 		diff.setLabelTable(diff.createStandardLabels(1, 1));
 		speed.setPaintLabels(true);
@@ -96,7 +99,8 @@ public class Settings extends JPanel implements ActionListener, ChangeListener{
 		gbc.weightx = 1.0;
 		gbc.gridx = 1;
 		add(exit, gbc);
-		setBackground(new Color(0x92c9ff));
+		setBackground(new Color(0xbbddff));
+		//setBackground(new Color(0x92c9ff));
 	}
 	
 	public void actionPerformed(ActionEvent a) {

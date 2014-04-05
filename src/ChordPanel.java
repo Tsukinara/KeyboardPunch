@@ -18,7 +18,8 @@ public class ChordPanel extends JPanel {
 	public ChordPanel() {
 		super();
 		thefuckingfont = new Font("Trebuchet MS", Font.BOLD, 36);
-		setBackground(new Color(0x92c9ff));
+		setBackground(new Color(0xbbddff));
+		//setBackground(new Color(0x92c9ff));
 	}
 	
 	public void paint(Graphics g) {

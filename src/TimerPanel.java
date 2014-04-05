@@ -24,7 +24,8 @@ public class TimerPanel extends JPanel implements ActionListener {
 		fading = new Timer(10,this);
 		timer.start();
 		fading.start();
-		setBackground(new Color(0x92c9ff));
+		setBackground(new Color(250,250,255));
+		//setBackground(new Color(0xd2ebfb));
 	}
 	
     public void paint(Graphics g){
