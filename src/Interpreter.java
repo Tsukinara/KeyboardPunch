@@ -82,7 +82,7 @@ public class Interpreter {
 			if (next < base) next += 12;
 			int last = chord.get(2);
 			while (last < next) last += 12;
-			return chordString;
+			return three_note_chord(base, next, last);
 		}
 		int base = chord.get(0);
 		int next = chord.get(1);
@@ -93,7 +93,7 @@ public class Interpreter {
 		while (last < third) last +=12;
 		return four_note_chord(base, next, third, last);
 	}
-	
+
 	private String two_note_chord(int base, int next) {
 		String chordString = get_note(base);
 		switch (next - base) {
@@ -123,19 +123,56 @@ public class Interpreter {
 		}
 		return chordString;
 	}
-
-	private String four_note_chord(int base, int next, int third, int last) {
-		String chordString = get_note(base);
-		//check for diminished chords first
-		if(next - base == 3 && third - next == 3 && last - third == 3) return chordString + "dim7";
+	
+	private String three_note_chord(int base, int next, int last) {
+		int baseclone = base;
+		while (baseclone < last) baseclone+=12;
+		//check for dims
 		
-		//check overall validity next
-		if(!(next-base == 1 || next-base == 2 || third-next == 1 || third-next == 2 || last-third == 1 || last-next == 2  || Math.abs(base-(last%12)) == 1 || Math.abs(base-(last%12))== 2))
-			return "Unknown";
+		//check for 7ths
+		
+		//look for 5ths
+		//check major minor
 		
 		return "Unknown";
 	}
-	
+
+	private String four_note_chord(int base, int next, int third, int last) {
+		String chordString = get_note(base);
+		int baseclone = base;
+		while (baseclone < last) baseclone+=12;
+		//check for diminished chords first
+		if(next - base == 3 && third - next == 3 && last - third == 3) return chordString + "dim7";
+
+		//check overall validity next
+		int numClose = 0;
+		if (next-base == 1 || next-base == 2) numClose++;
+		if (third-next == 1 || third-next == 2) numClose++;
+		if (last-third == 1 || last-third == 2) numClose++;
+		if (baseclone-last == 1 || baseclone-last == 2) numClose++;
+		if(numClose != 1) return "Unknown";
+
+		//check for major 7ths
+		if (next-base == 1 && third == next+4 && last == third+3) return get_note(next%12) + "maj7";
+		if (third-next == 1 && next == base+4 && last == third+4) return get_note(third%12) + "maj7";
+		if (last-third == 1 && base == next-3 && next == third-4) return get_note(last%12) + "maj7";
+		if (baseclone-last == 1 && next == base+4 && third == next+3) return chordString + "maj7";
+
+		//check for minor 7ths
+		if (next-base == 2 && third == next+3 && last == third+4) return get_note(next%12) + "min7";
+		if (third-next == 2 && next == base+3 && last == third+3) return get_note(third%12) + "min7";
+		if (last-third == 2 && base == next-4 && next == third-3) return get_note(last%12) + "min7";
+		if (baseclone-last == 2 && next == base+3 && third == next+4) return chordString + "min7";
+
+		//check for major-minor 7ths
+		if (next-base == 2 && third == next+4 && last == third+3) return get_note(next%12) + "7";
+		if (third-next == 2 && next == base+3 && last == third+4) return get_note(third%12) + "7";
+		if (last-third == 2 && base == next-3 && next == third-3) return get_note(last%12) + "7";
+		if (baseclone-last == 2 && next == base+4 && third == next+3) return chordString + "7";
+
+		return "Unknown";
+	}
+
 	public static String get_note(int key) {
 		String name;
 		switch (key) {

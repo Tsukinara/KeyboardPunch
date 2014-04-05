@@ -57,11 +57,11 @@ public class Game extends JFrame {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 	
-	public void notePlayed(int note) {
-		p.notePlayed(note);
+	public void notePlayed(int note, int code) {
+		p.notePlayed(note, code);
 	}
 	
-	public void noteReleased(int note) {
-		p.noteReleased(note);
+	public void noteReleased(int note, int code) {
+		p.noteReleased(note, code);
 	}
 }

@@ -53,8 +53,8 @@ public class MidiPlayer {
 		}
 	}
 	
-	public static void main(String [] args) throws Exception {
-		MidiPlayer mp = new MidiPlayer();
-		mp.play_song("song_test.txt");
-	}
+//	public static void main(String [] args) throws Exception {
+//		MidiPlayer mp = new MidiPlayer();
+//		mp.play_song("song_test.txt");
+//	}
 }
