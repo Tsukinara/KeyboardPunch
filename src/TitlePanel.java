@@ -10,14 +10,12 @@ import javax.swing.SwingConstants;
 
 public class TitlePanel extends JPanel {
 	
-	private JLabel label;
+	private String title = "KeyboardPunch";
 	
 	public TitlePanel() {
 		super();
-		label = new JLabel("KeyboardPunch", SwingConstants.CENTER);
-		label.setFont(new Font("Trebuchet MS", Font.BOLD, 36));
 		setBackground(new Color(0x003864));
-		add(label);
+
 	}
 	
 	public void paint(Graphics g) {
@@ -25,5 +23,8 @@ public class TitlePanel extends JPanel {
 		Graphics2D g2d = (Graphics2D)g;
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		g2d.drawLine(0, getHeight(), getWidth(), getHeight());
+		g2d.setFont(new Font("Trebuchet MS", Font.BOLD, 72));
+		g2d.setColor(Color.white);
+		g2d.drawString(title, getWidth()/2 - g2d.getFontMetrics().stringWidth(title)/2, getHeight()/2 + g2d.getFontMetrics().getMaxAscent()/2 - 5);
 	}
 }
