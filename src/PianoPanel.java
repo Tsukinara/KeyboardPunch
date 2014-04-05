@@ -23,7 +23,7 @@ public class PianoPanel extends JPanel{
 	
 	public PianoPanel() {
 		super();
-		
+		setBackground(Color.red);
 	}
 	
 	public void paint(Graphics g) {
