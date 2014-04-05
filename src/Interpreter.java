@@ -352,10 +352,10 @@ public class Interpreter {
 		switch (type) {
 		case 0: name="maj";		break;
 		case 1: name="min";		break;
-		case 2: name="maj7";	break;
-		case 3: name="min7";	break;
-		case 4: name="dim";		break;
-		case 5: name="dim7";	break;
+		case 2: name="dim";		break;
+		case 3: name="dim7";	break;
+		case 4: name="maj7";		break;
+		case 5: name="min7";	break;
 		case 6: name="7";		break;
 		case 7: name="sus4";	break;
 		default: name="maj";	break;
@@ -390,8 +390,8 @@ public class Interpreter {
 		if (type.equals("min")) currentType = 1;
 		if (type.equals("dim")) currentType = 2;
 		if (type.equals("dim7")) currentType = 3;
-		if (type.equals("min7")) currentType = 4;
-		if (type.equals("maj7")) currentType = 5;
+		if (type.equals("maj7")) currentType = 4;
+		if (type.equals("min7")) currentType = 5;
 		if (type.equals("7")) currentType = 6;
 		if (type.equals("sus4")) currentType = 7;
 	}
