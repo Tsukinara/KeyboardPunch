@@ -2,10 +2,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class ChordPanel extends JPanel {
