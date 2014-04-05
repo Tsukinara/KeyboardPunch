@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -6,7 +7,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Hashtable;
 
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -16,6 +16,7 @@ import javax.swing.event.ChangeListener;
 
 public class Settings extends JPanel implements ActionListener, ChangeListener{
 	
+	private Font thefuckingfont;
 	private JSlider speed;
 	private JSlider diff;
 	private JSlider key;
@@ -29,6 +30,7 @@ public class Settings extends JPanel implements ActionListener, ChangeListener{
 		super();
 		setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
+		thefuckingfont = new Font("Trebuchet MS", Font.BOLD, 12);
 		speed = new JSlider(60, 180, Game.gamedata.bpm);
 		diff = new JSlider(1, 4, Game.gamedata.difficulty);
 		key = new JSlider(0, 11, Game.gamedata.key);
@@ -38,20 +40,25 @@ public class Settings extends JPanel implements ActionListener, ChangeListener{
 		diff.setLabelTable(d);
 		speed.setPaintLabels(true);
 		diff.setPaintLabels(true);
-//		speed.setPaintTrack(false);
-//		diff.setPaintTrack(false);
-//		key.setPaintTrack(false);
 		speed.setPaintTicks(true);
 		diff.setPaintTicks(true);
 		key.setPaintTicks(true);
 		speed.setMajorTickSpacing(10);
 		diff.setMajorTickSpacing(1);
 		key.setMajorTickSpacing(1);
+		speed.setFont(thefuckingfont);
+		diff.setFont(thefuckingfont);
+		key.setFont(thefuckingfont);
 		speedL = new JLabel("Speed: " + Game.gamedata.bpm + " bpm");
 		diffL = new JLabel("Difficulty: " + Game.gamedata.difficulty);
 		keyL = new JLabel("Key: " + GameData.get_note(Game.gamedata.key));
+		speedL.setFont(thefuckingfont);
+		diffL.setFont(thefuckingfont);
+		keyL.setFont(thefuckingfont);		
 		restart = new JButton("RESTART");
 		exit = new JButton("EXIT");
+		restart.setFont(thefuckingfont);
+		exit.setFont(thefuckingfont);
 		speed.addChangeListener(this);
 		diff.addChangeListener(this);
 		key.addChangeListener(this);
