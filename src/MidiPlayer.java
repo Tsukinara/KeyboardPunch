@@ -20,10 +20,10 @@ public class MidiPlayer {
 		}
 	}
 
-	public void play_note(int note, int velocity) {
+	public void play_note(int code, int note, int velocity) {
 		try{
 			ShortMessage myMsg = new ShortMessage();
-			myMsg.setMessage(ShortMessage.NOTE_ON, 0, note, velocity);
+			myMsg.setMessage((code == 0? ShortMessage.NOTE_OFF : ShortMessage.NOTE_ON), 0, note, velocity);
 			long timeStamp = -1;
 			midiReceiver.send(myMsg, timeStamp);
 		} catch (InvalidMidiDataException e) {
@@ -39,7 +39,9 @@ public class MidiPlayer {
 			while(scan.hasNext()) {
 				String s = scan.nextLine();
 				while (!s.contains("delay")) {
-					mp.play_note(Integer.parseInt(s), stdVelocity);
+					int note = Integer.parseInt(s.substring(0, s.indexOf(' ')));
+					int code = Integer.parseInt(s.substring(s.indexOf(' ') + 1, s.length()));
+					mp.play_note(code, note, stdVelocity);
 					s = scan.nextLine();
 				}
 				int delay = Integer.parseInt(s.substring(6, s.length()));
