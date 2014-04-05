@@ -1,7 +1,6 @@
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -11,7 +10,6 @@ import javax.swing.Timer;
 
 public class TimerPanel extends JPanel implements ActionListener {
 	private static final long serialVersionUID = 3875360370099517808L;
-	final int width = (int)Toolkit.getDefaultToolkit().getScreenSize().getWidth(); //size of panel
 	private Timer timer;
 	private int beat = 0;
 	
@@ -30,7 +28,7 @@ public class TimerPanel extends JPanel implements ActionListener {
 				g2d.setColor(new Color(0x323232));
 			else
 				g2d.setColor(new Color(0x787878));
-			g2d.drawString(String.valueOf(i + 1), i * width / 12 + width / 12, width / 12);
+			g2d.drawString(String.valueOf(i + 1), i * getWidth() / 4 + getWidth() / 8, getHeight()/2);
 		}
 	
     }//end paint
