@@ -28,13 +28,13 @@ public class TimerPanel extends JPanel implements ActionListener {
     public void paint(Graphics g){
     	super.paint(g);
     	Graphics2D g2d = (Graphics2D)g;
-    	g2d.setFont(new Font("Trebuchet MS", Font.BOLD, 48));
+    	g2d.setFont(new Font("Trebuchet MS", Font.BOLD, 144));
     	for(int i = 0; i < 4; i++) {
 			if(i == beat)
 				g2d.setColor(new Color(0x323232));
 			else
 				g2d.setColor(new Color(0xaaaaaa));
-			g2d.drawString(String.valueOf(i + 1), i * getWidth() / 4 + getWidth() / 8, getHeight()/2);
+			g2d.drawString(String.valueOf(i + 1), i * getWidth() / 4 + getWidth() / 16, getHeight()/2);
 		}
     	g2d.setColor(Color.black);
     	g2d.setFont(new Font("Trebuchet MS", Font.BOLD, 24));
