@@ -17,7 +17,6 @@ public class TimerPanel extends JPanel implements ActionListener {
 	private static final long serialVersionUID = 3875360370099517808L;
 	private Timer timer;
 	private int beat = 0;
-	private String title = "Metronome";
 	
 	public TimerPanel(){
 		super();
@@ -36,12 +35,11 @@ public class TimerPanel extends JPanel implements ActionListener {
 				g2d.setColor(new Color(0x323232));
 			else
 				g2d.setColor(new Color(0xaaaaaa));
-			g2d.drawString(String.valueOf(i + 1), i * getWidth() / 4 + getWidth() / 16, getHeight()/2);
+			g2d.drawString(String.valueOf(i + 1), (i+1) * getWidth() / 5 - g2d.getFontMetrics().stringWidth(String.valueOf(i + 1))/2, getHeight()/2);
 		}
     	g2d.setColor(Color.black);
-    	g2d.setFont(new Font("Trebuchet MS", Font.BOLD, 24));
-    	g2d.drawString(title, getWidth() - g2d.getFontMetrics().stringWidth(title),3*getHeight()/4);
-    	g2d.drawString(String.valueOf(Game.gamedata.get_bpm()) + " bpm", getWidth() - g2d.getFontMetrics().stringWidth(title), 7*getHeight()/8);
+    	g2d.setFont(new Font("Trebuchet MS", Font.BOLD, 72));
+    	g2d.drawString(String.valueOf(Game.gamedata.get_bpm()) + " bpm", getWidth()/2 - g2d.getFontMetrics().stringWidth(String.valueOf(Game.gamedata.get_bpm()) + " bpm")/2, 7*getHeight()/8);
     }//end paint
     
 	public void actionPerformed(ActionEvent e) {
