@@ -76,8 +76,4 @@ public class MidiHandler {
 		}
 		return name;
 	}
-
-	public static void main(String [] args) throws Exception{
-		new MidiHandler();
-	}
 }
