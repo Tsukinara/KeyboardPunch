@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Toolkit;
@@ -21,10 +22,10 @@ public class TimerPanel extends JPanel implements ActionListener {
 		timer.start();
 	}
 	
-    public void Paint(Graphics g){
+    public void paint(Graphics g){
     	super.paint(g);
     	Graphics2D g2d = (Graphics2D)g;
-    	
+    	g2d.setFont(new Font("Comic Sans MS", Font.BOLD, 72));
     	for(int i = 0; i < 4; i++) {
 			if(i == beat)
 				g2d.setColor(new Color(0x323232));

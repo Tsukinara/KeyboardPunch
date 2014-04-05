@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-public class PianoPanel extends JPanel implements ActionListener {
+public class PianoPanel extends JPanel{
 	private static final long serialVersionUID = 3875360370099517808L;
 	
 	final int width = (int)Toolkit.getDefaultToolkit().getScreenSize().getWidth(); //size of panel
@@ -36,9 +36,9 @@ public class PianoPanel extends JPanel implements ActionListener {
 
 		//groups of 3
 		 for (int i=(2*widthWhite-widthBlack/2);i<(width-3*widthWhite);i+=space){
-		 drawBlack(i,offset,g);
-		 drawBlack(i+widthWhite,offset,g);
-		 drawBlack(i+2*widthWhite,offset,g);
+			 drawBlack(i,offset,g);
+			 drawBlack(i+widthWhite,offset,g);
+			 drawBlack(i+2*widthWhite,offset,g);
 		 }
 		 
 		 //groups of 2
@@ -69,9 +69,4 @@ public class PianoPanel extends JPanel implements ActionListener {
 		
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
 }

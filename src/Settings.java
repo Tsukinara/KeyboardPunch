@@ -1,5 +1,6 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Hashtable;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -26,6 +27,12 @@ public class Settings extends JPanel implements ActionListener, ChangeListener{
 		speed = new JSlider(60, 180, Game.gamedata.bpm);
 		diff = new JSlider(1, 4, Game.gamedata.difficulty);
 		key = new JSlider(0, 11, Game.gamedata.key);
+		Hashtable s = speed.createStandardLabels(120, 60);
+		Hashtable d = diff.createStandardLabels(1, 1);
+		speed.setLabelTable(s);
+		diff.setLabelTable(d);
+		speed.setPaintLabels(true);
+		diff.setPaintLabels(true);
 //		speed.setPaintTrack(false);
 //		diff.setPaintTrack(false);
 //		key.setPaintTrack(false);
