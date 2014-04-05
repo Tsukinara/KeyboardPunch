@@ -55,7 +55,7 @@ public class Settings extends JPanel implements ActionListener, ChangeListener{
 		key.setFont(thefuckingfont);
 		speedL = new JLabel("Speed: " + Game.gamedata.bpm + " bpm");
 		diffL = new JLabel("Difficulty: " + Game.gamedata.difficulty);
-		keyL = new JLabel("Key: " + GameData.get_note(Game.gamedata.key));
+		keyL = new JLabel("Key: " + Interpreter.get_note(Game.gamedata.key));
 		speedL.setFont(thefuckingfont);
 		diffL.setFont(thefuckingfont);
 		keyL.setFont(thefuckingfont);		
@@ -124,7 +124,7 @@ public class Settings extends JPanel implements ActionListener, ChangeListener{
 			diffL.setText("Difficulty: " + diff.getValue());
 		}
 		else if(s == key) {
-			keyL.setText("Key: " + GameData.get_note(key.getValue()));
+			keyL.setText("Key: " + Interpreter.get_note(key.getValue()));
 		}
 	}
 }
