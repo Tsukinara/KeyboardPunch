@@ -61,19 +61,15 @@ public class MidiHandler {
 			message = msg.getMessage();
 			if (message.length == 3) {
 				if(message[0] == -80) {
-					if (message[1] == 64) {
-						System.out.println("Damper pedal " + (message[2] == 0 ? "released" : "depresed"));
-					}
+					if (message[1] == 64) System.out.println("Damper pedal " + (message[2] == 0 ? "released" : "depresed"));
 				} else if(message[0] == -112) {
 					if (game != null) game.notePlayed(message[1], 0);
 					intr.notePlayed(message[1]);
-//					System.out.println("Key Pressed: Number: " + message[0] + ", " + message[1] + ", Name: " + translate_key(message[1]) + ", Velocity: " + message[2]);
 					game.setChord(intr.get_chord());
 					System.out.println(intr.get_chord());
 				} else if(message[0] == -128) {
 					if (game != null) game.noteReleased(message[1]);
 					intr.noteReleased(message[1]);
-//					System.out.println("Key Released: Number: " + message[0] + ", " + message[1] + ", Name: " + translate_key(message[1]));
 				}
 			}
 		}
