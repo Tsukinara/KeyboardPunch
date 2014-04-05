@@ -1,21 +1,17 @@
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
-import javax.swing.Timer;
 
 public class PianoPanel extends JPanel {
 	private static final long serialVersionUID = 3875360370099517808L;
 
 	final int width = (int) Toolkit.getDefaultToolkit().getScreenSize()
 			.getWidth(); // size of panel
-	final int keylength = 80; // sizeofkeys
+	final int keylength = 200; // size of keys
 	final int offset = width / 30; // offset for formatting
 	int widthWhite = width / 45;
 	int widthBlack = widthWhite * 2 / 3;
@@ -111,7 +107,6 @@ public class PianoPanel extends JPanel {
 					g.setColor(Color.RED);
 				g.fillRect(widthWhite * i + widthWhite - widthBlack / 2,
 						offset - 8, widthBlack, 5);
-
 			}
 		}
 
@@ -194,13 +189,13 @@ public class PianoPanel extends JPanel {
 		else if (whiteNotes.contains((note % 12))) {
 			if (note % 12 == 0) {
 				whiteSpaces[whitePosition(note % 12) + 7
-						* ((int) note / 12 - 1)] = 1;
+				            * ((int) note / 12 - 1)] = 1;
 				whiteSpacesColor[whitePosition(note % 12) + 7
-						* ((int) note / 12 - 1)] = code;
+				                 * ((int) note / 12 - 1)] = code;
 			} else {
 				whiteSpaces[whitePosition(note % 12) + 7 * ((int) note / 12)] = 1;
 				whiteSpacesColor[whitePosition(note % 12) + 7
-						* ((int) note / 12)] = code;
+				                 * ((int) note / 12)] = code;
 			}
 		} else {
 			blackSpaces[blackPosition(note % 12) + 7 * ((int) note / 12)] = 1;
@@ -215,13 +210,12 @@ public class PianoPanel extends JPanel {
 
 		if (note == 0) {
 			whiteSpaces[0] = 0;
-
 		}
 
 		else if (whiteNotes.contains((note % 12))) {
 			if (note % 12 == 0) {
 				whiteSpaces[whitePosition(note % 12) + 7
-						* ((int) note / 12 - 1)] = 0;
+				            * ((int) note / 12 - 1)] = 0;
 			} else {
 				whiteSpaces[whitePosition(note % 12) + 7 * ((int) note / 12)] = 0;
 			}

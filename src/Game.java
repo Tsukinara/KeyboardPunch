@@ -59,10 +59,10 @@ public class Game extends JFrame {
 	}
 	
 	public void notePlayed(int note, int code) {
-		//p.notePlayed(note, code);
+		p.notePlayed(note, code);
 	}
 	
-	public void noteReleased(int note, int code) {
-		//p.noteReleased(note, code);
+	public void noteReleased(int note) {
+		p.noteReleased(note);
 	}
 }
