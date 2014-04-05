@@ -19,27 +19,17 @@ public class PianoPanel extends JPanel implements ActionListener {
 	int widthBlack = widthWhite * 2 / 3;
 	int space = widthWhite * 7;
 	
-	private Timer timer;
-	private int beat = 0;
+	
 	
 	public PianoPanel() {
 		super();
-		timer = new Timer(500, this);
-		timer.start();
+		
 	}
 	
 	public void paint(Graphics g) {
 		super.paint(g);
 		Graphics2D g2d = (Graphics2D)g;
-		g2d.setFont(new Font("Trebuchet MS", Font.BOLD, 3 * width / 25));
-		for(int i = 0; i < 4; i++) {
-			if(i == beat)
-				g2d.setColor(new Color(0x323232));
-			else
-				g2d.setColor(new Color(0x787878));
-			g2d.drawString(String.valueOf(i + 1), i * width / 12 + width / 12, width / 12);
-		}
-	
+		
 		for (int i = 0; i < 45; i++) {
 			drawWhite(i*widthWhite, offset, g);
 		}
@@ -74,9 +64,14 @@ public class PianoPanel extends JPanel implements ActionListener {
 
 	}
 	
-	public void actionPerformed(ActionEvent e) {
-		beat = (beat + 1) % 4;
-		timer.setDelay((int) ((1.0/(Game.gamedata.get_bpm()/60.0))*1000.0));
-		repaint();
+	
+	public void notePlayed(int note){
+		
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 }
