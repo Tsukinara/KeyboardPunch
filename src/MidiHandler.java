@@ -80,6 +80,7 @@ public class MidiHandler {
 					if (game != null) game.notePlayed(message[1], 0);
 					if (message[1] < 65) intr.notePlayed(message[1]);
 					game.setChord(intr.get_chord());
+					game.setNext(intr.get_next_chords());
 				} else if(message[0] == -128) {
 					System.out.println(message[0]);
 					if(!dampened) {

@@ -6,6 +6,7 @@ public class Interpreter {
 	private ArrayList<Integer> chord;
 	GameData gd;
 	int currentChord, currentType;
+	private String lolstring = "You messed up lol.";
 
 	public Interpreter() {
 		notes = new ArrayList<Integer>();
@@ -60,20 +61,21 @@ public class Interpreter {
 			if (currentType == 0) addValues(options, new int[]{0, 0, 2, 1, 3, 0, 4, 0, 4, 1, 4, 6, 5, 0, 5, 1, 7, 0, 8, 0, 9, 1, 11, 2, 11, 3});
 			else if (currentType == 6) addValues(options, new int[]{5, 0});
 			else if (currentType == 7) addValues(options, new int[]{0, 0});
-			else options.add("You messed up lol.");
+			else options.add(lolstring);
 			break;
 		case 1:
 			if (currentType == 2 || currentType == 3) addValues(options, new int[]{2, 1});
-			else options.add("You messed up lol");
+			else options.add(lolstring);
 			break;
 		case 2:
 			if (currentType == 0 || currentType == 6) addValues(options, new int[]{7, 0, 7, 7});
 			else if (currentType == 1 || currentType == 5) addValues(options, new int[]{7, 0, 7, 7, 11, 1, 11, 3});
-			else options.add("You messed up lol."); 
+			else if (currentType == 2) addValues(options, new int[]{9, 1, 0, 0, 0, 7});
+			else options.add(lolstring); 
 			break;
 		case 3:
 			if (currentType == 0) addValues(options, new int[]{0, 0, 5, 0});
-			else options.add("You messed up lol.");
+			else options.add(lolstring);
 			break;
 		case 4:
 			if (currentType == 4 || currentType == 6) addValues(options, new int[]{9, 1});
@@ -85,26 +87,37 @@ public class Interpreter {
 			else if (currentType == 7) addValues(options, new int[]{5, 0});
 			else if (currentType == 1) addValues(options, new int[]{0, 0, 0, 7});
 			else if (currentType == 4) addValues(options, new int[]{7, 0, 7, 7});
-			else options.add("You messed up lol.");
+			else if (currentType == 2 || currentType == 3) addValues(options, new int[]{9, 1, 0, 0, 0, 7});
+			else options.add(lolstring);
 			break;
 		case 6:
-			options.add("You messed up lol.");
+			options.add(lolstring);
 			break;
 		case 7:
 			if (currentType == 0 || currentType == 6) addValues(options, new int[]{4, 0, 4, 6, 0, 0, 0, 7, 9, 1, 9, 5});
 			else if (currentType == 7) addValues(options, new int[]{7, 0});
-			else options.add("You messed up lol.");
+			else options.add(lolstring);
 			break;
 		case 8:
+			if (currentType == 2 || currentType == 3)  addValues(options, new int[]{9, 1, 0, 0, 0, 7});
+			else if (currentType == 0) addValues(options, new int[]{10, 0});
+			else options.add(lolstring);
 			break;
 		case 9:
+			if (currentType == 0 || currentType == 6) addValues(options, new int[]{2, 1, 2, 5});
+			else if (currentType == 1 || currentType == 5) addValues(options, new int[]{5, 0, 5, 4, 2, 1, 2, 5});
+			else options.add(lolstring);
 			break;
 		case 10:
+			if (currentType == 0) addValues(options, new int[]{0, 0, 0, 7});
+			else options.add(lolstring);
 			break;
 		case 11:
+			if (currentType == 2 || currentType == 3)  addValues(options, new int[]{9, 1, 0, 0, 0, 7});
+			else options.add(lolstring);
 			break;
 		default:
-			options.add("You messed up lol.");
+			options.add(lolstring);
 		}
 		return options;
 	}
@@ -138,7 +151,7 @@ public class Interpreter {
 		case 11:
 			break;
 		default:
-			options.add("You messed up lol.");
+			options.add(lolstring);
 		}
 		return options;
 	}
