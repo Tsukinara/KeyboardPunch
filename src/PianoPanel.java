@@ -22,7 +22,6 @@ public class PianoPanel extends JPanel {
 			 drawBlack(i,0,g);
 			 drawBlack(i+10,0,g);
 		 }
-		 
 		 drawBlack(437,0,g);
 
 	}
@@ -35,6 +34,5 @@ public class PianoPanel extends JPanel {
 	public void drawBlack(int x, int y, Graphics g) {
 		g.setColor(Color.BLACK);
 		g.fillRect(x, y, 6, 30);
-
 	}
 }
