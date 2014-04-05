@@ -20,6 +20,7 @@ public class Game extends JFrame {
 		super();
 		gamedata = data;
 		JPanel panel = new JPanel(new GridBagLayout());
+		panel.setBackground(new Color(0x92c9ff));
 		c = new ChordPanel();
 		s = new Settings();
 		t = new TimerPanel();
@@ -40,7 +41,7 @@ public class Game extends JFrame {
 		gbc.fill = GridBagConstraints.BOTH;
 		gbc.gridx = 2;
 		gbc.gridy = 0;
-		gbc.insets = new Insets(0,50,0,50);
+		gbc.insets = new Insets(0,100,0,100);
 		gbc.weightx = 0.0;
 		gbc.weighty = 0.0;
 		panel.add(s, gbc);
