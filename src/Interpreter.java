@@ -57,6 +57,7 @@ public class Interpreter {
 	private ArrayList<String> majorNextChords(int key) {
 		ArrayList<String> options = new ArrayList<String>();
 		if (currentChord < key) currentChord+=12;
+		System.out.println(currentChord - key);
 		switch (currentChord - key) {
 		case 0:
 			if (currentType == 0) addValues(options, new int[]{2, 1, 3, 0, 4, 0, 4, 1, 4, 6, 5, 0, 5, 1, 7, 0, 8, 0, 9, 1, 11, 2, 11, 3});
@@ -387,17 +388,17 @@ public class Interpreter {
 		}
 		if (type.equals("maj")) currentType = 0;
 		if (type.equals("min")) currentType = 1;
-		if (type.equals("maj7")) currentType = 2;
-		if (type.equals("min7")) currentType = 3;
-		if (type.equals("dim")) currentType = 4;
-		if (type.equals("dim7")) currentType = 5;
+		if (type.equals("dim")) currentType = 2;
+		if (type.equals("dim7")) currentType = 3;
+		if (type.equals("min7")) currentType = 4;
+		if (type.equals("maj7")) currentType = 5;
 		if (type.equals("7")) currentType = 6;
 		if (type.equals("sus4")) currentType = 7;
 	}
 	
 	private ArrayList<String> addValues(ArrayList<String> orig, int[] contents) {
 		for (int i = 0; i < contents.length; i+=2) {
-			orig.add(get_note(contents[i] + gd.get_key()) + get_type(contents[i+1]));
+			orig.add(get_note((contents[i] + gd.get_key())%12) + get_type(contents[i+1]));
 		}
 		return orig;
 	}
