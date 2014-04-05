@@ -65,7 +65,7 @@ public class MidiHandler {
 						System.out.println("Damper pedal " + (message[2] == 0 ? "released" : "depresed"));
 					}
 				} else if(message[0] == -112) {
-					Game.notePlayed(message[1]);
+					game.notePlayed(message[1]);
 					
 					System.out.println("Key Pressed: Number: " + message[0] + ", " + message[1] + ", Name: " + translate_key(message[1]) + ", Velocity: " + message[2]);
 				} else if(message[0] == -128) {
