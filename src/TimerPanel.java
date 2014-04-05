@@ -22,7 +22,7 @@ public class TimerPanel extends JPanel implements ActionListener {
 		super();
 		timer = new Timer(500, this);
 		timer.start();
-		setBackground(new Color(240,240,240));
+		setBackground(new Color(0x92c9ff));
 	}
 	
     public void paint(Graphics g){

@@ -87,7 +87,7 @@ public class Settings extends JPanel implements ActionListener, ChangeListener{
 		gbc.insets = i2;
 		gbc.gridy = 5;
 		add(key, gbc);
-		gbc.insets = new Insets(0,0,0,0);
+		gbc.insets = new Insets(0,10,0,10);
 		gbc.gridwidth = 1;
 		gbc.weightx = 1.0;
 		gbc.gridy = 6;
@@ -95,7 +95,7 @@ public class Settings extends JPanel implements ActionListener, ChangeListener{
 		gbc.weightx = 1.0;
 		gbc.gridx = 1;
 		add(exit, gbc);
-		setBackground(new Color(240,240,240));
+		setBackground(new Color(0x92c9ff));
 	}
 	
 	public void actionPerformed(ActionEvent a) {

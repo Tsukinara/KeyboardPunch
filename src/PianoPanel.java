@@ -46,7 +46,7 @@ public class PianoPanel extends JPanel {
 		blackSpaces = new int[44];
 		
 
-
+		setBackground(new Color(0xbbddff));
 
 	}
 

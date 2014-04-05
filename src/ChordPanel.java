@@ -1,5 +1,7 @@
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
@@ -8,27 +10,24 @@ import javax.swing.JPanel;
 
 public class ChordPanel extends JPanel {
 	
-	private JLabel chrod;
-	private JLabel next;
-	private JLabel seq;
+	private Font thefuckingfont;
+	private String chrod = "G Maj";
+	private String next = "Next:";
+	private String seq = "A B C D E F G Lop.";
 	
 	public ChordPanel() {
 		super();
-		setLayout(new GridBagLayout());
-		GridBagConstraints gbc = new GridBagConstraints();
-		chrod = new JLabel("G Maj");
-		next = new JLabel("Next:");
-		seq = new JLabel("A B C D E F G");
-		chrod.setFont(new Font("Trebuchet MS", Font.BOLD, 36));
-		next.setFont(new Font("Trebuchet MS", Font.BOLD, 36));
-		seq.setFont(new Font("Trebuchet MS", Font.BOLD, 24));
-		gbc.gridx = 0;
-		gbc.gridy = 0;
-		add(chrod, gbc);
-		gbc.gridy = 1;
-		add(next, gbc);
-		gbc.gridy = 2;
-		add(seq, gbc);
-		setBackground(new Color(240,240,240));
+		thefuckingfont = new Font("Trebuchet MS", Font.BOLD, 36);
+		setBackground(new Color(0x92c9ff));
+	}
+	
+	public void paint(Graphics g) {
+		super.paint(g);
+		Graphics2D g2d = (Graphics2D)g;
+		g2d.setColor(Color.black);
+		g2d.setFont(thefuckingfont);
+		g2d.drawString(chrod, getWidth()/2 - g2d.getFontMetrics().stringWidth(chrod)/2, getHeight()/3);
+		g2d.drawString(next, getWidth()/2 - g2d.getFontMetrics().stringWidth(next)/2, 2*getHeight()/3);
+		g2d.drawString(seq, getWidth()/2 - g2d.getFontMetrics().stringWidth(seq)/2, 3*getHeight()/4);
 	}
 }

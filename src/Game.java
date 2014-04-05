@@ -40,7 +40,7 @@ public class Game extends JFrame {
 		gbc.gridx = 2;
 		gbc.gridy = 0;
 		gbc.insets = new Insets(0,50,0,50);
-		gbc.weightx = 1.0;
+		gbc.weightx = 0.0;
 		gbc.weighty = 0.0;
 		panel.add(s, gbc);
 		gbc.fill = GridBagConstraints.BOTH;
@@ -53,7 +53,7 @@ public class Game extends JFrame {
 		panel.add(p, gbc);
 		
 		getContentPane().add(panel);
-		setMinimumSize(new Dimension(800,800));
+		setMinimumSize(new Dimension(1366,768));
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 	
