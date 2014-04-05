@@ -25,7 +25,7 @@ public class ChordPanel extends JPanel {
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		g2d.setColor(Color.black);
 		g2d.setFont(new Font("Trebuchet MS", Font.BOLD, 144));
-		g2d.drawString(chrod, getWidth()/2 - g2d.getFontMetrics().stringWidth(chrod)/2, getHeight()/3);
+		g2d.drawString(chrod, getWidth()/2 - g2d.getFontMetrics().stringWidth(chrod)/2, 2*getHeight()/5);
 		g2d.setFont(thefuckingfont);
 		g2d.drawString(next, getWidth()/2 - g2d.getFontMetrics().stringWidth(next)/2, 2*getHeight()/3);
 		g2d.drawString(seq, getWidth()/2 - g2d.getFontMetrics().stringWidth(seq)/2, 7*getHeight()/8);

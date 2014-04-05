@@ -10,7 +10,7 @@ import javax.swing.SwingConstants;
 
 public class TitlePanel extends JPanel {
 	
-	private String title = "KeyboardPunch";
+	private String title = "KeyboardPuuuuuuuuuuuuuuuuuuunch";
 	
 	public TitlePanel() {
 		super();
