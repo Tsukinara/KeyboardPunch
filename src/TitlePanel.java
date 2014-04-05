@@ -4,12 +4,11 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
 
 public class TitlePanel extends JPanel {
 	
+	private static final long serialVersionUID = -5041963317324596276L;
 	private String title = "KeyboardPuuuuuuuuuuuuuuuuuuunch";
 	
 	public TitlePanel() {

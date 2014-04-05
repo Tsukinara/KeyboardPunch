@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 
 public class ChordPanel extends JPanel {
 	
+	private static final long serialVersionUID = -932172714303934216L;
 	private Font thefuckingfont;
 	private String chrod = "---";
 	private String next = "Next:";

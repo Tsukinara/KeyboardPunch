@@ -1,14 +1,10 @@
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Hashtable;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -19,6 +15,7 @@ import javax.swing.event.ChangeListener;
 
 public class Settings extends JPanel implements ActionListener, ChangeListener{
 	
+	private static final long serialVersionUID = -3752556673462306365L;
 	private Font thefuckingfont;
 	private JSlider speed;
 	private JSlider diff;
@@ -37,13 +34,11 @@ public class Settings extends JPanel implements ActionListener, ChangeListener{
 		speed = new JSlider(60, 180, Game.gamedata.bpm);
 		diff = new JSlider(1, 4, Game.gamedata.difficulty);
 		key = new JSlider(0, 11, Game.gamedata.key);
-		Hashtable s = speed.createStandardLabels(120, 60);
-		Hashtable d = diff.createStandardLabels(1, 1);
 		speed.setBackground(new Color(0x92c9ff));
 		diff.setBackground(new Color(0x92c9ff));
 		key.setBackground(new Color(0x92c9ff));
-		speed.setLabelTable(s);
-		diff.setLabelTable(d);
+		speed.setLabelTable(speed.createStandardLabels(120, 60));
+		diff.setLabelTable(diff.createStandardLabels(1, 1));
 		speed.setPaintLabels(true);
 		diff.setPaintLabels(true);
 		speed.setPaintTicks(true);
