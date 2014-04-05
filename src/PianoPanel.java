@@ -84,9 +84,9 @@ public class PianoPanel extends JPanel {
 
 	public void drawWhite(int x, int y, Graphics g) {
 		g.setColor(Color.WHITE);
-		g.fillRect(x+leftOffset, y, widthWhite, keylength);
+		g.fillRect(x, y, widthWhite, keylength);
 		g.setColor(Color.BLACK);
-		g.drawRect(x+leftOffset, y, widthWhite, keylength);
+		g.drawRect(x, y, widthWhite, keylength);
 	}
 
 	public void drawArray(Graphics g) {
@@ -118,7 +118,7 @@ public class PianoPanel extends JPanel {
 
 	public void drawBlack(int x, int y, Graphics g) {
 		g.setColor(Color.BLACK);
-		g.fillRect(x+leftOffset, y, widthBlack, keylength * 3 / 5);
+		g.fillRect(x, y, widthBlack, keylength * 3 / 5);
 
 	}
 

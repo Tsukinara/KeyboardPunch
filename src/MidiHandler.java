@@ -64,12 +64,12 @@ public class MidiHandler {
 					if (message[1] == 64) System.out.println("Damper pedal " + (message[2] == 0 ? "released" : "depresed"));
 				} else if(message[0] == -112) {
 					if (game != null) game.notePlayed(message[1], 0);
-					intr.notePlayed(message[1]);
+					if (message[1] < 60) intr.notePlayed(message[1]);
 					game.setChord(intr.get_chord());
 					System.out.println(intr.get_chord());
 				} else if(message[0] == -128) {
 					if (game != null) game.noteReleased(message[1]);
-					intr.noteReleased(message[1]);
+					if (message[1] < 60) intr.noteReleased(message[1]);
 					game.setChord(intr.get_chord());
 				}
 			}
