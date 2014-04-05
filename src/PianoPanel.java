@@ -44,6 +44,8 @@ public class PianoPanel extends JPanel {
 
 		whiteSpaces = new int[45];
 		blackSpaces = new int[44];
+		
+
 
 
 	}
@@ -181,6 +183,9 @@ public class PianoPanel extends JPanel {
 		}
 		
 		else if (whiteNotes.contains((note % 12))){
+			if (note%12==0)
+				whiteSpaces[whitePosition(note%12)+7*((int) note/12 - 1)]=1;
+			else
 				whiteSpaces[whitePosition(note%12)+7*((int) note/12)]=1;
 		}
 		else{
@@ -198,6 +203,9 @@ public class PianoPanel extends JPanel {
 		}
 		
 		else if (whiteNotes.contains((note % 12))){
+			if (note%12==0)
+				whiteSpaces[whitePosition(note%12)+7*((int) note/12 - 1)]=0;
+			else
 				whiteSpaces[whitePosition(note%12)+7*((int) note/12)]=0;
 		}
 		else{
