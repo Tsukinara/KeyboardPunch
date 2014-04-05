@@ -31,4 +31,8 @@ public class Game extends JFrame {
 	public void notePlayed(int note) {
 		p.notePlayed(note);
 	}
+	
+	public void noteReleased(int note) {
+		p.noteReleased(note);
+	}
 }

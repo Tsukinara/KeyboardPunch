@@ -66,9 +66,11 @@ public class MidiHandler {
 					}
 				} else if(message[0] == -112) {
 					game.notePlayed(message[1]);
-					
+					intr.notePlayed(message[1]);
 					System.out.println("Key Pressed: Number: " + message[0] + ", " + message[1] + ", Name: " + translate_key(message[1]) + ", Velocity: " + message[2]);
 				} else if(message[0] == -128) {
+					game.noteReleased(message[1]);
+					intr.noteReleased(message[1]);
 					System.out.println("Key Released: Number: " + message[0] + ", " + message[1] + ", Name: " + translate_key(message[1]));
 				}
 			}
