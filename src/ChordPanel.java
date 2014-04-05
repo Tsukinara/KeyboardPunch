@@ -11,13 +11,13 @@ public class ChordPanel extends JPanel {
 	
 	private static final long serialVersionUID = -932172714303934216L;
 	private Font thefuckingfont;
-	private String chrod = "---";
-	private String next = "Next:";
-	private String seq = "A B C D E F G Lop.";
+	private String chrod = "GMaj";
+	private String next = "Suggested Chords:";
+	private static String seq = "";
 	
 	public ChordPanel() {
 		super();
-		thefuckingfont = new Font("Trebuchet MS", Font.BOLD, 36);
+		thefuckingfont = new Font("Trebuchet MS", Font.BOLD, 24);
 		setBackground(new Color(0xbbddff));
 		//setBackground(new Color(0x92c9ff));
 	}
@@ -30,8 +30,8 @@ public class ChordPanel extends JPanel {
 		g2d.setFont(new Font("Trebuchet MS", Font.BOLD, 144));
 		g2d.drawString(chrod, getWidth()/2 - g2d.getFontMetrics().stringWidth(chrod)/2, 2*getHeight()/5);
 		g2d.setFont(thefuckingfont);
-		g2d.drawString(next, getWidth()/2 - g2d.getFontMetrics().stringWidth(next)/2, 2*getHeight()/3);
-		g2d.drawString(seq, getWidth()/2 - g2d.getFontMetrics().stringWidth(seq)/2, 7*getHeight()/8);
+		g2d.drawString(next, getWidth()/2 - g2d.getFontMetrics().stringWidth(next)/2, 3*getHeight()/5);
+		g2d.drawString(seq, getWidth()/2 - g2d.getFontMetrics().stringWidth(seq)/2, 3*getHeight()/4);
 	}
 	
 	public void setChord(String s) {
@@ -44,7 +44,11 @@ public class ChordPanel extends JPanel {
 		for(String s : l) {
 			str += s + " ";
 		}
-		next = str;
+		seq = str;
 		repaint();
+	}
+	
+	public static void reset() {
+		seq = "";
 	}
 }
