@@ -24,16 +24,14 @@ public class MidiHandler {
 		for (int i = 0; i < infos.length; i++) {
 			try {
 				device = MidiSystem.getMidiDevice(infos[i]);
-				//does the device have any transmitters?
-				//if it does, add it to the device list
-				System.out.println(infos[i]);
+				//add all transmitters to the device list
+				System.out.println("Attempting to open " + infos[i]);
 
 				//get all transmitters
 				List<Transmitter> transmitters = device.getTransmitters();
-				//and for each transmitter
 
 				for(int j = 0; j<transmitters.size();j++) {
-					//create a new receiver
+					//create a new receiver for each transmitter
 					mir = new MidiInputReceiver(device.getDeviceInfo().toString());
 					transmitters.get(j).setReceiver(mir);
 				}
@@ -44,12 +42,11 @@ public class MidiHandler {
 
 				//open each device
 				device.open();
-				//if code gets this far without throwing an exception
-				//print a success message
-				System.out.println(device.getDeviceInfo()+" Was Opened");
-
+				
+				//if code gets this far without throwing an exception, print a success message
+				System.out.println("Successfully opened " + device.getDeviceInfo() + "\n");
 			} catch (MidiUnavailableException e) {
-				System.out.println("MIDI Unavailable Exception Thrown");
+				System.out.println("These aren't the devices you are looking for.\n");
 			}
 		}
 	}

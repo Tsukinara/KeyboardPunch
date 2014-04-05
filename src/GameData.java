@@ -5,6 +5,7 @@ public class GameData {
 
 	int key, type;	
 	int bpm, difficulty;
+	boolean majmin = true; //true for major, false for minor
 
 	public GameData(int key, int type) {
 		notes = new int[10][4];
@@ -17,12 +18,14 @@ public class GameData {
 		this.difficulty = difficulty;
 	}
 
+	public boolean getMajMin() {return this.majmin;}
 	public int get_difficulty() {return this.difficulty;}
 	public int get_bpm() {return this.bpm;}
 	public int get_key() {return this.key;}
 	public int get_type() {return this.type;}
 	public String get_chord_name() {return this.chord_name;}
 
+	public void set_majmin(boolean majmin) {this.majmin = majmin;};
 	public void set_bpm(int bpm) {if (bpm > 59 && bpm < 181) this.bpm = bpm;}
 	public void set_key(int key) {if (key >= 0 && key < 12) this.key = key;}
 	public void set_type(int type) {if (type >= 0 && type < 6) this.type = type;}

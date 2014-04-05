@@ -4,10 +4,15 @@ public class Interpreter {
 
 	private ArrayList<Integer> notes;
 	private ArrayList<Integer> chord;
+	GameData gd;
 
 	public Interpreter() {
 		notes = new ArrayList<Integer>();
 		chord = new ArrayList<Integer>();
+	}
+	
+	public void setGD(GameData gd) {
+		this.gd = gd;
 	}
 
 	public void notePlayed(int note) {
@@ -44,7 +49,6 @@ public class Interpreter {
 			if (!chord.contains(note)) chord.add(note);
 			counter++;
 		}
-		System.out.println(chord);
 	}
 
 	private void sort_notes() {
