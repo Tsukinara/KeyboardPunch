@@ -1,3 +1,4 @@
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
@@ -26,13 +27,13 @@ public class Game extends JFrame {
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		gbc.weightx = 1.0;
-		gbc.weighty = 2.0;
+		gbc.weighty = 1.0;
 		panel.add(c, gbc);
 		gbc.fill = GridBagConstraints.BOTH;
 		gbc.gridx = 1;
 		gbc.gridy = 0;
 		gbc.weightx = 1.0;
-		gbc.weighty = 2.0;
+		gbc.weighty = 1.0;
 		panel.add(t, gbc);
 		gbc.fill = GridBagConstraints.BOTH;
 		gbc.gridx = 2;
@@ -48,7 +49,8 @@ public class Game extends JFrame {
 		gbc.weighty = 1.0;
 		panel.add(p, gbc);
 		
-		getContentPane().add(panel);		
+		getContentPane().add(panel);
+		setMinimumSize(new Dimension(700,700));
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 	

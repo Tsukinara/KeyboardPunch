@@ -1,4 +1,6 @@
 import java.awt.Color;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Hashtable;
@@ -24,7 +26,8 @@ public class Settings extends JPanel implements ActionListener, ChangeListener{
 	
 	public Settings() {
 		super();
-		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+		setLayout(new GridBagLayout());
+		GridBagConstraints gbc = new GridBagConstraints();
 		speed = new JSlider(60, 180, Game.gamedata.bpm);
 		diff = new JSlider(1, 4, Game.gamedata.difficulty);
 		key = new JSlider(0, 11, Game.gamedata.key);
@@ -53,14 +56,28 @@ public class Settings extends JPanel implements ActionListener, ChangeListener{
 		key.addChangeListener(this);
 		restart.addActionListener(this);
 		exit.addActionListener(this);
-		add(speedL);
-		add(speed);
-		add(diffL);
-		add(diff);
-		add(keyL);
-		add(key);
-		add(restart);
-		add(exit);
+		gbc.fill = GridBagConstraints.BOTH;
+		gbc.gridwidth = 2;
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		add(speedL, gbc);
+		gbc.gridy = 1;
+		add(speed, gbc);
+		gbc.gridy = 2;
+		add(diffL, gbc);
+		gbc.gridy = 3;
+		add(diff, gbc);
+		gbc.gridy = 4;
+		add(keyL, gbc);
+		gbc.gridy = 5;
+		add(key, gbc);
+		gbc.gridwidth = 1;
+		gbc.weightx = 1.0;
+		gbc.gridy = 6;
+		add(restart, gbc);
+		gbc.weightx = 1.0;
+		gbc.gridx = 1;
+		add(exit, gbc);
 		setBackground(Color.green);
 	}
 	
