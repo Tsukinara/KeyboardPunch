@@ -56,12 +56,11 @@ public class PianoPanel extends JPanel {
 		
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		g2d.drawLine(0, 0, getWidth(), 0);
-		keylength = (int) (getHeight() * 200.0/275.0);
 		widthWhite = getWidth()/45;
 		widthBlack = widthWhite * 2 / 3;
+		keylength = widthWhite * 7;
 		space = widthWhite * 7;
-		offset = getWidth()/30;
+		offset = (getHeight() - keylength)/2;
 		for (int i = 0; i < 45; i++) {
 			drawWhite(i * widthWhite+leftOffset, offset, g);
 		}

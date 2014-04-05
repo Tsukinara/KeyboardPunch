@@ -38,14 +38,14 @@ public class Game extends JFrame {
 		gbc.gridx = 1;
 		gbc.gridy = 0;
 		gbc.weightx = 1.0;
-		gbc.weighty = 1.0;
+		gbc.weighty = 0.5;
 		panel.add(t, gbc);
 		gbc.fill = GridBagConstraints.BOTH;
 		gbc.gridx = 2;
 		gbc.gridy = 0;
 		gbc.insets = new Insets(0,100,0,100);
 		gbc.weightx = 0.0;
-		gbc.weighty = 0.0;
+		gbc.weighty = 1.0;
 		panel.add(s, gbc);
 		gbc.fill = GridBagConstraints.BOTH;
 		gbc.insets = new Insets(0,0,0,0);
@@ -53,7 +53,7 @@ public class Game extends JFrame {
 		gbc.gridy = 1;
 		gbc.gridwidth = 3;
 		gbc.weightx = 1.0;
-		gbc.weighty = 1.0;
+		gbc.weighty = 3.0;
 		panel.add(p, gbc);
 		
 		getContentPane().add(panel);

@@ -28,7 +28,7 @@ public class ChordPanel extends JPanel {
 		g2d.drawString(chrod, getWidth()/2 - g2d.getFontMetrics().stringWidth(chrod)/2, getHeight()/3);
 		g2d.setFont(thefuckingfont);
 		g2d.drawString(next, getWidth()/2 - g2d.getFontMetrics().stringWidth(next)/2, 2*getHeight()/3);
-		g2d.drawString(seq, getWidth()/2 - g2d.getFontMetrics().stringWidth(seq)/2, 3*getHeight()/4);
+		g2d.drawString(seq, getWidth()/2 - g2d.getFontMetrics().stringWidth(seq)/2, 7*getHeight()/8);
 	}
 	
 	public void setChord(String s) {
