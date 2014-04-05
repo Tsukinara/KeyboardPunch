@@ -29,6 +29,7 @@ public class GameData {
 	public void set_difficulty(int diff) {this.difficulty = diff;};
 	
 <<<<<<< HEAD
+<<<<<<< HEAD
 	public static String get_key_name(int key, int type) {
 		String name = "";
 		name += get_note(key);
@@ -37,6 +38,9 @@ public class GameData {
 	}
 	
 	public static String get_note(int key) {
+=======
+	public String get_key_name(int key, int type) {
+>>>>>>> 49d0d5790f015baad2a4001e52e914a82db9c491
 =======
 	public String get_key_name(int key, int type) {
 >>>>>>> 49d0d5790f015baad2a4001e52e914a82db9c491
@@ -57,6 +61,7 @@ public class GameData {
 		default: name = "C";	break;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return name;
 	}
 	
@@ -71,6 +76,8 @@ public class GameData {
 		case 5: name=" dim7";	break;
 		default: name=" maj";	break;
 =======
+=======
+>>>>>>> 49d0d5790f015baad2a4001e52e914a82db9c491
 		switch (type) {
 		case 0: name+=" maj";	break;
 		case 1: name+=" min";	break;
@@ -79,12 +86,19 @@ public class GameData {
 		case 4: name+=" dim";	break;
 		case 5: name+=" dim7";	break;
 		default: name+=" maj";	break;
+<<<<<<< HEAD
+>>>>>>> 49d0d5790f015baad2a4001e52e914a82db9c491
+=======
 >>>>>>> 49d0d5790f015baad2a4001e52e914a82db9c491
 		}
 		return name;
 	}
 	
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+	
+>>>>>>> 49d0d5790f015baad2a4001e52e914a82db9c491
 =======
 	
 >>>>>>> 49d0d5790f015baad2a4001e52e914a82db9c491
