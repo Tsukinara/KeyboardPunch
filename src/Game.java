@@ -1,12 +1,12 @@
 
 
-import java.awt.BorderLayout;
 import java.awt.GridLayout;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class Game extends JFrame {
+	private static final long serialVersionUID = 6674913704274625426L;
 	
 	private Settings settings;
 	private PianoPanel p;
@@ -26,5 +26,9 @@ public class Game extends JFrame {
 		//panel.add(settings);	
 		getContentPane().add(panel);		
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+	}
+	
+	public void notePlayed(int note) {
+		p.notePlayed(note);
 	}
 }
