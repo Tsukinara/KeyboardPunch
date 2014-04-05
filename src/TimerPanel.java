@@ -17,6 +17,7 @@ public class TimerPanel extends JPanel implements ActionListener {
 		super();
 		timer = new Timer(500, this);
 		timer.start();
+		setBackground(Color.blue);
 	}
 	
     public void paint(Graphics g){

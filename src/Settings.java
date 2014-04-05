@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Hashtable;
@@ -60,6 +61,7 @@ public class Settings extends JPanel implements ActionListener, ChangeListener{
 		add(key);
 		add(restart);
 		add(exit);
+		setBackground(Color.green);
 	}
 	
 	public void actionPerformed(ActionEvent a) {

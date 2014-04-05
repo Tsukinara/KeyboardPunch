@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Font;
 
 import javax.swing.BoxLayout;
@@ -21,5 +22,6 @@ public class ChordPanel extends JPanel {
 		add(chrod);
 		add(next);
 		add(seq);
+		setBackground(Color.yellow);
 	}
 }
