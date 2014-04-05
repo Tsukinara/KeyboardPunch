@@ -1,6 +1,7 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -19,15 +20,12 @@ public class Settings extends JPanel implements ActionListener, ChangeListener{
 	private JButton restart;
 	private JButton exit;
 	
-	private int speedVal = 120;
-	private int diffVal = 1;
-	private int	keyVal = 0;
-	
 	public Settings() {
 		super();
-		speed = new JSlider(60, 180, speedVal);
-		diff = new JSlider(1, 4, diffVal);
-		key = new JSlider(0, 11, keyVal);
+		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+		speed = new JSlider(60, 180, Game.gamedata.bpm);
+		diff = new JSlider(1, 4, Game.gamedata.difficulty);
+		key = new JSlider(0, 11, Game.gamedata.key);
 //		speed.setPaintTrack(false);
 //		diff.setPaintTrack(false);
 //		key.setPaintTrack(false);
@@ -37,9 +35,9 @@ public class Settings extends JPanel implements ActionListener, ChangeListener{
 		speed.setMajorTickSpacing(10);
 		diff.setMajorTickSpacing(1);
 		key.setMajorTickSpacing(1);
-		speedL = new JLabel("Speed: " + speedVal + " bpm");
-		diffL = new JLabel("Difficulty: " + diffVal);
-		keyL = new JLabel("Key: " + GameData.get_note(keyVal));
+		speedL = new JLabel("Speed: " + Game.gamedata.bpm + " bpm");
+		diffL = new JLabel("Difficulty: " + Game.gamedata.difficulty);
+		keyL = new JLabel("Key: " + GameData.get_note(Game.gamedata.key));
 		restart = new JButton("RESTART");
 		exit = new JButton("EXIT");
 		speed.addChangeListener(this);
@@ -70,9 +68,11 @@ public class Settings extends JPanel implements ActionListener, ChangeListener{
 	public void stateChanged(ChangeEvent c) {
 		JSlider s = (JSlider)c.getSource();
 		if(s == speed) {
+			Game.gamedata.set_bpm(speed.getValue());
 			speedL.setText("Speed: " + speed.getValue() + "  bpm");
 		}
 		else if(s == diff) {
+			Game.gamedata.set_difficulty(diff.getValue());
 			diffL.setText("Difficulty: " + diff.getValue());
 		}
 		else if(s == key) {

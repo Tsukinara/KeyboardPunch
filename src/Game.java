@@ -8,20 +8,19 @@ import javax.swing.JPanel;
 public class Game extends JFrame {
 	
 	private Settings settings;
-	private Timing timing;
 	private PianoPanel p;
-	public Game() {
+	public static GameData gamedata;
+	
+	public Game(GameData data) {
 		super();
-		setSize(600,700);
+		gamedata = data;
+		setSize(600,800);
 		JPanel panel = new JPanel(new BorderLayout());
 		settings = new Settings();
-		timing = new Timing();
 		p=new PianoPanel();
 		panel.add(p,BorderLayout.CENTER);
-		panel.add(settings,BorderLayout.PAGE_END);
-		
-	getContentPane().add(panel);
-		
+		panel.add(settings,BorderLayout.PAGE_END);	
+		getContentPane().add(panel);		
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 }
