@@ -2,15 +2,33 @@ public class GameData {
 	int[][] notes;
 	String chord_name;
 	int measure_num;
-	int key, type;
+	
+	int key, type;	
+	int bpm, difficulty;
 	
 	public GameData(int key, int type) {
 		notes = new int[10][4];
 		this.key = key;
-		this.chord_name = getKeyName(key, type);
+		this.chord_name = get_key_name(key, type);
 	}
 	
-	public String getKeyName(int key, int type) {
+	public void initialize_data(int bpm, int difficulty) {
+		this.bpm = bpm;
+		this.difficulty = difficulty;
+	}
+	
+	public int get_difficulty() {return this.difficulty;}
+	public int get_bpm() {return this.bpm;}
+	public int get_key() {return this.key;}
+	public int get_type() {return this.type;}
+	public String get_chord_name() {return this.chord_name;}
+	
+	public void set_bpm(int bpm) {if (bpm > 59 && bpm < 181) this.bpm = bpm;}
+	public void set_key(int key) {if (key >= 0 && key < 12) this.key = key;}
+	public void set_type(int type) {if (type >= 0 && type < 6) this.type = type;}
+	public void set_difficulty(int diff) {this.difficulty = diff;};
+	
+	public String get_key_name(int key, int type) {
 		String name;
 		switch (key) {
 		case 0:	 name = "C"; 	break;

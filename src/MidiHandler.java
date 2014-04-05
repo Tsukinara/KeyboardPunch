@@ -1,11 +1,11 @@
 import javax.sound.midi.*;
-import java.util.ArrayList;
 import java.util.List;
 import java.io.*;
 
 public class MidiHandler {
+	MidiDevice device;
+	
 	public MidiHandler() {
-		MidiDevice device;
 		MidiDevice.Info[] infos = MidiSystem.getMidiDeviceInfo();
 		for (int i = 0; i < infos.length; i++) {
 			try {
@@ -18,14 +18,9 @@ public class MidiHandler {
 				List<Transmitter> transmitters = device.getTransmitters();
 				//and for each transmitter
 
-				for(int j = 0; j<transmitters.size();j++) {
-					//create a new receiver
-					transmitters.get(j).setReceiver(
-							//using my own MidiInputReceiver
-							new MidiInputReceiver(device.getDeviceInfo().toString())
-							);
+				for(int j = 0; j < transmitters.size();j++) {
+					transmitters.get(j).setReceiver(new MidiInputReceiver(device.getDeviceInfo().toString()));
 				}
-
 				Transmitter trans = device.getTransmitter();
 				trans.setReceiver(new MidiInputReceiver(device.getDeviceInfo().toString()));
 
@@ -35,11 +30,12 @@ public class MidiHandler {
 				//print a success message
 				System.out.println(device.getDeviceInfo()+" Was Opened");
 
-
 			} catch (MidiUnavailableException e) {}
 		}
-
-
+	}
+	
+	private void close() {
+		device.close();
 	}
 
 	public class MidiInputReceiver implements Receiver {
@@ -55,5 +51,8 @@ public class MidiHandler {
 	
 	public static void main(String [] args) {
 		MidiHandler mh = new MidiHandler();
+		while (true) {
+			System.out.println(mh);
+		}
 	}
 }
