@@ -2,6 +2,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -9,13 +10,14 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 public class PianoPanel extends JPanel implements ActionListener {
+	private static final long serialVersionUID = 3875360370099517808L;
 	
-	final int width=600; //size of panel
-	final int keylength=50; //sizeofkeys
-	final int offset=20; //offset for formatting
-	int widthWhite=width/45;
-	int widthBlack=widthWhite*2/3;
-	int space=widthWhite*7;
+	final int width = Toolkit.getDefaultToolkit().getScreenSize().getWidth(); //size of panel
+	final int keylength = 50; //sizeofkeys
+	final int offset = 20; //offset for formatting
+	int widthWhite = width / 45;
+	int widthBlack = widthWhite * 2 / 3;
+	int space = widthWhite * 7;
 	
 	private Timer timer;
 	private int beat = 0;
@@ -29,7 +31,7 @@ public class PianoPanel extends JPanel implements ActionListener {
 	public void paint(Graphics g) {
 		super.paint(g);
 		Graphics2D g2d = (Graphics2D)g;
-		g2d.setFont(new Font("Times New Roman", Font.BOLD, 72));
+		g2d.setFont(new Font("Trebuchet MS", Font.BOLD, 72));
 		for(int i = 0; i < 4; i++) {
 			if(i == beat)
 				g2d.setColor(Color.blue);
