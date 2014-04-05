@@ -13,7 +13,7 @@ public class PianoPanel extends JPanel {
 	final int width = (int) Toolkit.getDefaultToolkit().getScreenSize()
 			.getWidth(); // size of panel
 	final int keylength = 200; // size of keys
-	final int offset = width / 30; // offset for formatting
+	int offset = width / 30; // offset for formatting
 	final int leftOffset=10;
 	int widthWhite = width / 45;
 	int widthBlack = widthWhite * 2 / 3;
@@ -56,30 +56,31 @@ public class PianoPanel extends JPanel {
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		g2d.drawLine(0, 0, getWidth(), 0);
+		widthWhite = getWidth()/45;
+		widthBlack = widthWhite * 2 / 3;
+		space = widthWhite * 7;
+		offset = getWidth()/30;
 		for (int i = 0; i < 45; i++) {
 			drawWhite(i * widthWhite+leftOffset, offset, g);
 		}
-
-		// groups of 3
-		for (int i = (2 * widthWhite - widthBlack / 2); i < (width - 3 * widthWhite); i += space) {
-			drawBlack(i+leftOffset, offset, g);
-			drawBlack(i +leftOffset+ widthWhite, offset, g);
-			drawBlack(i +leftOffset+ 2 * widthWhite, offset, g);
+		int start = 2*widthWhite - widthBlack / 2;
+		for(int i = 0; i < 6; i++) {
+			drawBlack(start+leftOffset, offset, g);
+			drawBlack(start +leftOffset+ widthWhite, offset, g);
+			drawBlack(start +leftOffset+ 2 * widthWhite, offset, g);
+			start += space;
 		}
+		drawBlack(start +leftOffset, offset, g);
+		start = 6 * widthWhite - widthBlack / 2;
 
-		// groups of 2
-		for (int i = (6 * widthWhite - widthBlack / 2); i < width; i += space) {
-			drawBlack(i+leftOffset, offset, g);
-			drawBlack(i + widthWhite+leftOffset, offset, g);
+		for(int i = 0; i < 6; i++) {
+			drawBlack(start+leftOffset, offset, g);
+			drawBlack(start + widthWhite+leftOffset, offset, g);
+			start +=space;
 		}
-
-		// last key (black)
-		drawBlack(width - widthWhite * 2+leftOffset, offset, g);
 
 		// array of pointers
 		drawArray(g);
-			
-		
 	}
 
 	public void drawWhite(int x, int y, Graphics g) {
