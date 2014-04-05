@@ -147,8 +147,22 @@ public class Interpreter {
 		if (next - base == 7 && last - next == 8) return get_note(base) + "min";
 
 		//check for 7ths
-
-		//check major minor
+		if (next - base == 1 && (last - next == 4 || last - next == 7)) return get_note(next%12) + "maj7";
+		if ((next - base == 4 || next - base ==  7) && last - next == 1) return get_note(last%12) + "maj7";
+		if (last - base == 11 && (next - base == 4 || next - base == 7)) return get_note(base%12) + "maj7";
+		
+		if (next - base == 2 && (last - next == 4 || last - next == 7)) return get_note(next%12) + "7";
+		if ((next - base == 4 || next - base ==  7) && last - next == 2) return get_note(last%12) + "7";
+		if (last - base == 10 && (next - base == 4 || next - base == 7)) return get_note(base%12) + "7";
+		
+		if (next - base == 2 && (last - next == 3 || last - next == 7)) return get_note(next%12) + "min7";
+		if ((next - base == 3 || next - base ==  7) && last - next == 2) return get_note(last%12) + "min7";
+		if (last - base == 10 && (next - base == 3 || next - base == 7)) return get_note(base%12) + "min7";		
+		
+		//check for sus4
+		if (next - base == 2 && last - next == 5) return get_note(last%12) + "sus4";
+		if (next - base == 5 && last - next == 5) return get_note(next%12) + "sus4";
+		if (next - base == 5 && last - next == 2) return get_note(base) + "sus4";
 
 		return "???";
 	}
