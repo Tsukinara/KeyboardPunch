@@ -28,7 +28,7 @@ public class Interpreter {
 
 	public String get_chord() {
 		this.chord.clear();
-		String chordString = "";
+		String chordString;
 		get_most_relevant();
 		chordString = calculate_chord(this.chord);
 		return chordString;
@@ -64,7 +64,7 @@ public class Interpreter {
 
 	private String calculate_chord(ArrayList<Integer> chord) {
 		String chordString = "";
-		if (chord.size() == 0) return chordString;
+		if (chord.size() == 0) return "---";
 		if (chord.size() == 1) {
 			chordString += get_note(chord.get(0));
 			chordString += "maj";
@@ -119,7 +119,7 @@ public class Interpreter {
 			chordString += "7";		break;
 		case 11:
 			chordString += "maj7";	break;				
-		default: return "Unknown";
+		default: return "???";
 		}
 		return chordString;
 	}
@@ -143,7 +143,7 @@ public class Interpreter {
 		
 		//check major minor
 		
-		return "Unknown";
+		return "???";
 	}
 
 	private String four_note_chord(int base, int next, int third, int last) {
@@ -159,7 +159,7 @@ public class Interpreter {
 		if (third-next == 1 || third-next == 2) numClose++;
 		if (last-third == 1 || last-third == 2) numClose++;
 		if (baseclone-last == 1 || baseclone-last == 2) numClose++;
-		if(numClose != 1) return "Unknown";
+		if(numClose != 1) return "???";
 
 		//check for major 7ths
 		if (next-base == 1 && third == next+4 && last == third+3) return get_note(next%12) + "maj7";
@@ -179,7 +179,7 @@ public class Interpreter {
 		if (last-third == 2 && base == next-3 && next == third-3) return get_note(last%12) + "7";
 		if (baseclone-last == 2 && next == base+4 && third == next+3) return chordString + "7";
 
-		return "Unknown";
+		return "???";
 	}
 
 	public static String get_note(int key) {
