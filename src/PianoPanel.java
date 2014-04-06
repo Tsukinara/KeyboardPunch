@@ -236,7 +236,8 @@ public class PianoPanel extends JPanel {
 	}
 
 	public void drawChord(String s) {
-		// TODO Auto-generated method stub
+		LabeledSuggestion lbl=new LabeledSuggestion(s);
+		
 		
 	}
 
