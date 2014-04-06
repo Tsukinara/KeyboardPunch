@@ -3,11 +3,11 @@ public class Main {
 		GameData gd = new GameData(0, 0);
 		Interpreter i = new Interpreter();
 		gd.initialize_data(120, 4);
-		MidiPlayer mp = new MidiPlayer();
-	//	mp.play_song("song_test.txt");
 		Game g = new Game(gd, i);
 		MidiHandler mh = new MidiHandler(g, i);
 		mh.imNotUseless();
+		MidiPlayer mp = new MidiPlayer(g);
+		mp.run();
 		g.setVisible(true);
 	}
 }

@@ -7,12 +7,14 @@ import javax.sound.midi.MidiSystem;
 import javax.sound.midi.MidiUnavailableException;
 import javax.sound.midi.Receiver;
 import javax.sound.midi.ShortMessage;
+import javax.swing.Timer;
 
-public class MidiPlayer {
+public class MidiPlayer implements Runnable {
 	Receiver midiReceiver;
 	static int stdVelocity = 127;
+	Timer timer;
 	
-	public MidiPlayer() {
+	public MidiPlayer(Game g) {
 		try {
 			midiReceiver = MidiSystem.getReceiver();
 		} catch (MidiUnavailableException e) {
@@ -51,6 +53,10 @@ public class MidiPlayer {
 		} catch (InterruptedException e) {
 			System.err.println("You interrupted my sleep, you jerk.");
 		}
+	}
+
+	public void run() {
+		
 	}
 	
 //	public static void main(String [] args) throws Exception {
