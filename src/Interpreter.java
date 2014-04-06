@@ -128,16 +128,32 @@ public class Interpreter {
 		if (currentChord < key) currentChord+=12;
 		switch (currentChord - key) {
 		case 0:
+			if (currentType == 1) addValues(options, new int[]{11, 0, 4, 0, 4, 1, 8, 0, 8, 1, 5, 1, 5, 5, 2, 2, 11, 2, 11, 3, 7, 0, 7, 4});
+			else if (currentType == 0) addValues(options, new int[]{5, 1, 5, 5});
+			else if (currentType == 7) addValues(options, new int[]{0, 1});
+			else options.add(lolstring);
 			break;
 		case 1:
+			if (currentType == 1) addValues(options, new int[]{0, 1});
+			else options.add(lolstring);
 			break;
 		case 2:
+			if (currentType == 2 || currentType == 3) addValues(options, new int[]{11, 2, 11, 3, 7, 0, 7, 4, 8, 0, 0, 1});
+			else options.add(lolstring);
 			break;
 		case 3:
+			if (currentType == 0) addValues(options, new int[]{8, 0, 5, 1, 5, 5, 2, 2, 2, 3});
+			else if (currentType == 6) addValues(options, new int[]{8, 0});
+			else options.add(lolstring);
 			break;
 		case 4:
+			if (currentType == 2 || currentType == 3) addValues(options, new int[]{5, 1, 5, 5});
+			else options.add(lolstring);
 			break;
 		case 5:
+			if (currentType == 1 || currentType == 5) addValues(options, new int[]{2, 2, 2, 3, 0, 1, 11, 2, 11, 3, 7, 0, 7, 4});
+			else if (currentType == 0 || currentType == 4) addValues(options, new int[]{0, 1, 8, 0, 8, 4});
+			else options.add(lolstring);
 			break;
 		case 6:
 			break;
@@ -223,12 +239,12 @@ public class Interpreter {
 		switch (next - base) {
 		case 1: 
 			chordString = get_note(next%12);
-			chordString += "maj7";	break;
+			chordString += "M7";	break;
 		case 2:
 			chordString = get_note(next%12);
 			chordString += "7"; 	break;
 		case 3: 
-			chordString += "min"; 	break;
+			chordString += "m"; 	break;
 		case 4: case 7:
 			chordString += "maj"; 	break;
 		case 5: case 8:
@@ -238,11 +254,11 @@ public class Interpreter {
 			chordString += "dim7";	break;
 		case 9:
 			chordString = get_note(next%12);
-			chordString += "min";	break;
+			chordString += "m";	break;
 		case 10:
 			chordString += "7";		break;
 		case 11:
-			chordString += "maj7";	break;				
+			chordString += "M7";	break;				
 		default: return "???";
 		}
 		return chordString;
@@ -263,23 +279,23 @@ public class Interpreter {
 		if (next - base == 7 && last - next == 9) return get_note(base) + "maj";
 
 		//look for minors
-		if (next - base == 3 && last - next == 4) return get_note(base) + "min";
-		if (next - base == 4 && last - next == 5) return get_note(last%12) + "min";
-		if (next - base == 5 && last - next == 3) return get_note(next%12) + "min";
-		if (next - base == 7 && last - next == 8) return get_note(base) + "min";
+		if (next - base == 3 && last - next == 4) return get_note(base) + "m";
+		if (next - base == 4 && last - next == 5) return get_note(last%12) + "m";
+		if (next - base == 5 && last - next == 3) return get_note(next%12) + "m";
+		if (next - base == 7 && last - next == 8) return get_note(base) + "m";
 
 		//check for 7ths
-		if (next - base == 1 && (last - next == 4 || last - next == 7)) return get_note(next%12) + "maj7";
-		if ((next - base == 4 || next - base ==  7) && last - next == 1) return get_note(last%12) + "maj7";
-		if (last - base == 11 && (next - base == 4 || next - base == 7)) return get_note(base%12) + "maj7";
+		if (next - base == 1 && (last - next == 4 || last - next == 7)) return get_note(next%12) + "M7";
+		if ((next - base == 4 || next - base ==  7) && last - next == 1) return get_note(last%12) + "M7";
+		if (last - base == 11 && (next - base == 4 || next - base == 7)) return get_note(base%12) + "M7";
 		
 		if (next - base == 2 && (last - next == 4 || last - next == 7)) return get_note(next%12) + "7";
 		if ((next - base == 4 || next - base ==  7) && last - next == 2) return get_note(last%12) + "7";
 		if (last - base == 10 && (next - base == 4 || next - base == 7)) return get_note(base%12) + "7";
 		
-		if (next - base == 2 && (last - next == 3 || last - next == 7)) return get_note(next%12) + "min7";
-		if ((next - base == 3 || next - base ==  7) && last - next == 2) return get_note(last%12) + "min7";
-		if (last - base == 10 && (next - base == 3 || next - base == 7)) return get_note(base%12) + "min7";		
+		if (next - base == 2 && (last - next == 3 || last - next == 7)) return get_note(next%12) + "m7";
+		if ((next - base == 3 || next - base ==  7) && last - next == 2) return get_note(last%12) + "m7";
+		if (last - base == 10 && (next - base == 3 || next - base == 7)) return get_note(base%12) + "m7";		
 		
 		//check for sus4
 		if (next - base == 2 && last - next == 5) return get_note(last%12) + "sus4";
@@ -305,16 +321,16 @@ public class Interpreter {
 		if(numClose != 1) return "???";
 
 		//check for major 7ths
-		if (next-base == 1 && third == next+4 && last == third+3) return get_note(next%12) + "maj7";
-		if (third-next == 1 && next == base+4 && last == third+4) return get_note(third%12) + "maj7";
-		if (last-third == 1 && base == next-3 && next == third-4) return get_note(last%12) + "maj7";
-		if (baseclone-last == 1 && next == base+4 && third == next+3) return chordString + "maj7";
+		if (next-base == 1 && third == next+4 && last == third+3) return get_note(next%12) + "M7";
+		if (third-next == 1 && next == base+4 && last == third+4) return get_note(third%12) + "M7";
+		if (last-third == 1 && base == next-3 && next == third-4) return get_note(last%12) + "M7";
+		if (baseclone-last == 1 && next == base+4 && third == next+3) return chordString + "M7";
 
 		//check for minor 7ths
-		if (next-base == 2 && third == next+3 && last == third+4) return get_note(next%12) + "min7";
-		if (third-next == 2 && next == base+3 && last == third+3) return get_note(third%12) + "min7";
-		if (last-third == 2 && base == next-4 && next == third-3) return get_note(last%12) + "min7";
-		if (baseclone-last == 2 && next == base+3 && third == next+4) return chordString + "min7";
+		if (next-base == 2 && third == next+3 && last == third+4) return get_note(next%12) + "m7";
+		if (third-next == 2 && next == base+3 && last == third+3) return get_note(third%12) + "m7";
+		if (last-third == 2 && base == next-4 && next == third-3) return get_note(last%12) + "m7";
+		if (baseclone-last == 2 && next == base+3 && third == next+4) return chordString + "m7";
 
 		//check for major-minor 7ths
 		if (next-base == 2 && third == next+4 && last == third+3) return get_note(next%12) + "7";
@@ -349,11 +365,11 @@ public class Interpreter {
 		String name;
 		switch (type) {
 		case 0: name="maj";		break;
-		case 1: name="min";		break;
+		case 1: name="m";		break;
 		case 2: name="dim";		break;
 		case 3: name="dim7";	break;
-		case 4: name="maj7";		break;
-		case 5: name="min7";	break;
+		case 4: name="M7";	break;
+		case 5: name="m7";	break;
 		case 6: name="7";		break;
 		case 7: name="sus4";	break;
 		default: name="maj";	break;
@@ -385,11 +401,11 @@ public class Interpreter {
 			}
 		}
 		if (type.equals("maj")) currentType = 0;
-		if (type.equals("min")) currentType = 1;
+		if (type.equals("m")) currentType = 1;
 		if (type.equals("dim")) currentType = 2;
 		if (type.equals("dim7")) currentType = 3;
-		if (type.equals("maj7")) currentType = 4;
-		if (type.equals("min7")) currentType = 5;
+		if (type.equals("M7")) currentType = 4;
+		if (type.equals("m7")) currentType = 5;
 		if (type.equals("7")) currentType = 6;
 		if (type.equals("sus4")) currentType = 7;
 	}
