@@ -3,14 +3,13 @@ import java.util.ArrayList;
 public class Interpreter {
 
 	private ArrayList<Integer> notes;
-	private ArrayList<Integer> chord;
+	private Chord chord;
 	GameData gd;
 	int currentChord, currentType;
 	private String lolstring = "You messed up lol.";
 
 	public Interpreter() {
 		notes = new ArrayList<Integer>();
-		chord = new ArrayList<Integer>();
 	}
 	
 	public void setGD(GameData gd) {
@@ -34,10 +33,9 @@ public class Interpreter {
 	}
 
 	public String get_chord() {
-		this.chord.clear();
 		String chordString;
-		get_most_relevant();
-		chordString = calculate_chord(this.chord);
+		chord = new Chord(get_most_relevant(), gd.get_key());
+		chordString = chord.getName();
 		return chordString;
 	}
 	
@@ -184,16 +182,20 @@ public class Interpreter {
 		return options;
 	}
 
-	private void get_most_relevant() {
+	private int[] get_most_relevant() {
+		ArrayList<Integer> holder = new ArrayList<Integer>();
 		int min = (notes.size() < 4 ? notes.size() : 4);
 		int counter = 0;
 		sort_notes();
-		while (chord.size() < min) {
+		while (holder.size() < min) {
 			if(notes.size() == counter) break;
 			int note = notes.get(counter) % 12;
-			if (!chord.contains(note)) chord.add(note);
+			if (!holder.contains(note)) holder.add(note);
 			counter++;
 		}
+		int[]chord = new int[holder.size()];
+		for (int i = 0; i < holder.size(); i++) chord[i] = holder.get(i);
+		return chord;
 	}
 
 	private void sort_notes() {
@@ -211,152 +213,6 @@ public class Interpreter {
 				}
 			}
 		}
-	}
-
-	private String calculate_chord(ArrayList<Integer> chord) {
-		String chordString = "";
-		if (chord.size() == 0) return "---";
-		if (chord.size() == 1) {
-			chordString += get_note(chord.get(0));
-			int relmin = chord.get(0);
-			if (relmin < gd.get_key()) relmin+=12;
-			if(relmin == gd.get_key()+9 || relmin == gd.get_key()+2) chordString += "m";
-			else chordString += "maj";
-			return chordString;
-		}
-		if (chord.size() == 2) {
-			int base = chord.get(0);
-			int next = chord.get(1);
-			if (next < base) next +=12;
-			return two_note_chord(base, next);			
-		}
-		if (chord.size() == 3) {
-			int base = chord.get(0);
-			int next = chord.get(1);
-			if (next < base) next += 12;
-			int last = chord.get(2);
-			while (last < next) last += 12;
-			return three_note_chord(base, next, last);
-		}
-		int base = chord.get(0);
-		int next = chord.get(1);
-		int third = chord.get(2);
-		int last = chord.get(3);
-		while (next < base) next +=12;
-		while (third < next) third +=12;
-		while (last < third) last +=12;
-		return four_note_chord(base, next, third, last);
-	}
-
-	private String two_note_chord(int base, int next) {
-		String chordString = get_note(base);
-		switch (next - base) {
-		case 1: 
-			chordString = get_note(next%12);
-			chordString += "M7";	break;
-		case 2:
-			chordString = get_note(next%12);
-			chordString += "7"; 	break;
-		case 3: 
-			chordString += "m"; 	break;
-		case 4:
-			int relmin = base; if (relmin < gd.get_key()) relmin+=12;
-			if (relmin == gd.get_key()-3 || relmin == gd.get_key()+2) chordString += "m";
-			else chordString += "maj"; break;
-		case 7:
-			chordString += "maj"; 	break;
-		case 5: case 8:
-			chordString = get_note(next%12);
-			chordString += "maj"; 	break;
-		case 6:
-			chordString += "dim7";	break;
-		case 9:
-			chordString = get_note(next%12);
-			chordString += "m";	break;
-		case 10:
-			chordString += "7";		break;
-		case 11:
-			chordString += "M7";	break;				
-		default: return "???";
-		}
-		return chordString;
-	}
-
-	private String three_note_chord(int base, int next, int last) {
-		int baseclone = base;
-		while (baseclone < last) baseclone+=12;
-		//check for dims
-		if (next - base == 3 && last - next == 3) return get_note(base) + "dim";
-		if (next - base == 3 && last - next == 6) return get_note(last%12) + "dim";
-		if (next - base == 6 && last - next == 3) return get_note(next%12) + "dim";
-
-		//look for majors
-		if (next - base == 4 && last - next == 3) return get_note(base) + "maj";
-		if (next - base == 3 && last - next == 5) return get_note(last%12) + "maj";
-		if (next - base == 5 && last - next == 4) return get_note(next%12) + "maj";
-		if (next - base == 7 && last - next == 9) return get_note(base) + "maj";
-
-		//look for minors
-		if (next - base == 3 && last - next == 4) return get_note(base) + "m";
-		if (next - base == 4 && last - next == 5) return get_note(last%12) + "m";
-		if (next - base == 5 && last - next == 3) return get_note(next%12) + "m";
-		if (next - base == 7 && last - next == 8) return get_note(base) + "m";
-
-		//check for 7ths
-		if (next - base == 1 && (last - next == 4 || last - next == 7)) return get_note(next%12) + "M7";
-		if ((next - base == 4 || next - base ==  7) && last - next == 1) return get_note(last%12) + "M7";
-		if (last - base == 11 && (next - base == 4 || next - base == 7)) return get_note(base%12) + "M7";
-		
-		if (next - base == 2 && (last - next == 4 || last - next == 7)) return get_note(next%12) + "7";
-		if ((next - base == 4 || next - base ==  7) && last - next == 2) return get_note(last%12) + "7";
-		if (last - base == 10 && (next - base == 4 || next - base == 7)) return get_note(base%12) + "7";
-		
-		if (next - base == 2 && (last - next == 3 || last - next == 7)) return get_note(next%12) + "m7";
-		if ((next - base == 3 || next - base ==  7) && last - next == 2) return get_note(last%12) + "m7";
-		if (last - base == 10 && (next - base == 3 || next - base == 7)) return get_note(base%12) + "m7";		
-		
-		//check for sus4
-		if (next - base == 2 && last - next == 5) return get_note(last%12) + "sus4";
-		if (next - base == 5 && last - next == 5) return get_note(next%12) + "sus4";
-		if (next - base == 5 && last - next == 2) return get_note(base) + "sus4";
-
-		return "???";
-	}
-
-	private String four_note_chord(int base, int next, int third, int last) {
-		String chordString = get_note(base);
-		int baseclone = base;
-		while (baseclone < last) baseclone+=12;
-		//check for diminished chords first
-		if(next - base == 3 && third - next == 3 && last - third == 3) return chordString + "dim7";
-
-		//check overall validity next
-		int numClose = 0;
-		if (next-base == 1 || next-base == 2) numClose++;
-		if (third-next == 1 || third-next == 2) numClose++;
-		if (last-third == 1 || last-third == 2) numClose++;
-		if (baseclone-last == 1 || baseclone-last == 2) numClose++;
-		if(numClose != 1) return "???";
-
-		//check for major 7ths
-		if (next-base == 1 && third == next+4 && last == third+3) return get_note(next%12) + "M7";
-		if (third-next == 1 && next == base+4 && last == third+4) return get_note(third%12) + "M7";
-		if (last-third == 1 && base == next-3 && next == third-4) return get_note(last%12) + "M7";
-		if (baseclone-last == 1 && next == base+4 && third == next+3) return chordString + "M7";
-
-		//check for minor 7ths
-		if (next-base == 2 && third == next+3 && last == third+4) return get_note(next%12) + "m7";
-		if (third-next == 2 && next == base+3 && last == third+3) return get_note(third%12) + "m7";
-		if (last-third == 2 && base == next-4 && next == third-3) return get_note(last%12) + "m7";
-		if (baseclone-last == 2 && next == base+3 && third == next+4) return chordString + "m7";
-
-		//check for major-minor 7ths
-		if (next-base == 2 && third == next+4 && last == third+3) return get_note(next%12) + "7";
-		if (third-next == 2 && next == base+3 && last == third+4) return get_note(third%12) + "7";
-		if (last-third == 2 && base == next-3 && next == third-3) return get_note(last%12) + "7";
-		if (baseclone-last == 2 && next == base+4 && third == next+3) return chordString + "7";
-
-		return "???";
 	}
 
 	public static String get_note(int key) {
