@@ -51,6 +51,8 @@ public class TimerPanel extends JPanel implements ActionListener {
 		Timer t = (Timer)e.getSource();
 		if(t == timer) {
 			beat = (beat + 1) % 4;
+			Chord p = cp.getPreviousChord();
+			cp.stop_chord(p);
 			Chord c = new Chord(Game.interpreter.getChordName(), 0);
 			cp.play_chord(c);
 			timer.setDelay((int) ((1.0/(Game.gamedata.get_bpm()/60.0))*1000.0));

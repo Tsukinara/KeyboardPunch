@@ -2,6 +2,7 @@ public class ChordPlayer {
 	private Game game;
 	private MidiPlayer mp;
 	private Interpreter i;
+	private Chord prev;
 	
 	public ChordPlayer(Game g) {
 		this.game = g;
@@ -15,7 +16,7 @@ public class ChordPlayer {
 			mp.play_note(c.getNotes()[i] + 60, 127);
 			game.notePlayed(c.getNotes()[i] + 60, 1);
 		}
-		stop_chord(c);
+		prev = c;
 	}
 	
 	public void stop_chord(Chord c) {
@@ -24,5 +25,9 @@ public class ChordPlayer {
 			mp.stop_note(c.getNotes()[i] + 60, 127);
 			game.noteReleased(c.getNotes()[i] + 60);
 		}
+	}
+	
+	public Chord getPreviousChord() {
+		return prev;
 	}
 }
