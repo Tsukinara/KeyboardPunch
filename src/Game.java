@@ -75,17 +75,15 @@ public class Game extends JFrame {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 	
-	public void notePlayed(int note, int code) {
-		p.notePlayed(note, code);
-	}
+	public void notePlayed(int note, int code) {p.notePlayed(note, code);}
 	
-	public void noteReleased(int note) {
-		p.noteReleased(note);
-	}
+	public void noteReleased(int note) {p.noteReleased(note);}
 	
-	public void setChord(String s) {
-		c.setChord(s);
-	}
+	public void setChord(String s) {c.setChord(s);}
+	
+	public TimerPanel getTimerPanel(){return this.t;}
+	public GameData getGameData(){return gamedata;}
+	public Interpreter getInterpreter(){return interpreter;}
 	
 	public void drawChord(String s) {
 		if(suggest)
@@ -94,11 +92,7 @@ public class Game extends JFrame {
 			p.eraseChord();
 	}
 	
-	public void setNext(ArrayList<String> l) {
-		c.setNext(l);
-	}
+	public void setNext(ArrayList<String> l) {c.setNext(l);}
 	
-	public void eraseChord(){
-		p.eraseChord();
-	}
+	public void eraseChord(){p.eraseChord();}
 }

@@ -71,13 +71,13 @@ public class MidiHandler {
 							if (game != null) game.noteReleased(i);
 							if (message[1] < 65) {
 								intr.noteReleased(i);
-								if(intr.currentType==7) { 
+								if(intr.getCurrentType()==7) { 
 									game.setNext(intr.get_next_chords());
 									ArrayList<String> chords = intr.get_next_chords();
 									game.drawChord(chords.get((int)(chords.size() * Math.random()))); 
 								}
 							}
-							game.setChord(intr.get_chord());
+							game.setChord(intr.getChordName());
 							
 						}
 						noteBuffer.clear();
@@ -85,7 +85,7 @@ public class MidiHandler {
 				} else if(message[0] == -112) {
 					if (game != null) game.notePlayed(message[1], 0);
 					if (message[1] < 65) intr.notePlayed(message[1]);
-					game.setChord(intr.get_chord());
+					game.setChord(intr.getChordName());
 					game.setNext(intr.get_next_chords());
 					ArrayList<String> chords = intr.get_next_chords();
 					game.drawChord(chords.get((int)(chords.size() * Math.random()))); 
@@ -94,13 +94,13 @@ public class MidiHandler {
 						if (game != null) game.noteReleased(message[1]);
 						if (message[1] < 65) {
 							intr.noteReleased(message[1]);
-							if(intr.currentType==7) { 
+							if(intr.getCurrentType()==7) { 
 								game.setNext(intr.get_next_chords());
 								ArrayList<String> chords = intr.get_next_chords();
 								game.drawChord(chords.get((int)(chords.size() * Math.random()))); 
 							}
 						}
-						game.setChord(intr.get_chord());
+						game.setChord(intr.getChordName());
 					} else {
 						noteBuffer.add((int)message[1]);
 					}

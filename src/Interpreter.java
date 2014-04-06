@@ -4,8 +4,8 @@ public class Interpreter {
 
 	private ArrayList<Integer> notes;
 	private Chord chord;
-	GameData gd;
-	int currentChord, currentType;
+	private GameData gd;
+	private int currentChord, currentType;
 	private String lolstring = "You messed up lol.";
 
 	public Interpreter() {
@@ -31,8 +31,11 @@ public class Interpreter {
 	public boolean are_we_in_there(int note) {
 		return notes.contains(note);
 	}
+	
+	public Chord getChord() {return this.chord;}
+	public int getCurrentType() {return this.currentType;}
 
-	public String get_chord() {
+	public String getChordName() {
 		String chordString;
 		chord = new Chord(get_most_relevant(), gd.get_key());
 		chordString = chord.getName();
@@ -41,7 +44,7 @@ public class Interpreter {
 	
 	public ArrayList<String> get_next_chords() {
 		ArrayList<String> next_chords = new ArrayList<String>();
-		setConstants(get_chord());
+		setConstants(getChordName());
 		int key = gd.get_key();
 		boolean majmin = gd.getMajMin();
 		if (majmin)

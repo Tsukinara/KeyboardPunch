@@ -6,8 +6,8 @@ public class Main {
 		Game g = new Game(gd, i);
 		MidiHandler mh = new MidiHandler(g, i);
 		mh.imNotUseless();
-		MidiPlayer mp = new MidiPlayer();
-		mp.run();
+		ChordPlayer cp = new ChordPlayer(g);
+		cp.run();
 		g.setVisible(true);
 	}
 }
