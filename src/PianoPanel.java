@@ -269,12 +269,16 @@ public class PianoPanel extends JPanel {
 			if (note % 12 == 0) {
 				whiteSpaces[whitePosition(note % 12) + 7
 				            * ((int) note / 12 - 1)]--;
+				whiteSpacesColor[whitePosition(note % 12) + 7
+				                 * ((int) note / 12 - 1)] = 0;
 			} else {
 				whiteSpaces[whitePosition(note % 12) + 7 * ((int) note / 12)]--;
+				whiteSpacesColor[whitePosition(note % 12) + 7
+				                 * ((int) note / 12)] = 0;
 			}
 		} else {
 			blackSpaces[blackPosition(note % 12) + 7 * ((int) note / 12)]--;
-
+			blackSpacesColor[blackPosition(note % 12) + 7 * ((int) note / 12)] = 0;
 		}
 		repaint();
 
