@@ -14,10 +14,12 @@ public class ChordPanel extends JPanel {
 	private String chrod = "GMaj";
 	private String next = "Suggested Chords:";
 	private String seq = "";
+	private ArrayList<String> chords;
 	
 	public ChordPanel() {
 		super();
 		thefuckingfont = new Font("Trebuchet MS", Font.BOLD, 24);
+		chords = new ArrayList<String>();
 		setBackground(new Color(0xbbddff));
 		//setBackground(new Color(0x92c9ff));
 	}
@@ -31,7 +33,18 @@ public class ChordPanel extends JPanel {
 		g2d.drawString(chrod, getWidth()/2 - g2d.getFontMetrics().stringWidth(chrod)/2, 2*getHeight()/5);
 		g2d.setFont(thefuckingfont);
 		g2d.drawString(next, getWidth()/2 - g2d.getFontMetrics().stringWidth(next)/2, 3*getHeight()/5);
-		g2d.drawString(seq, getWidth()/2 - g2d.getFontMetrics().stringWidth(seq)/2, 3*getHeight()/4);
+		if(chords.size() > 0){
+			for(int i = 0; i < 6; i++) {
+				seq += chords.get(i) + " ";
+			}
+			g2d.drawString(seq, getWidth()/2 - g2d.getFontMetrics().stringWidth(seq)/2, 3*getHeight()/4);
+			if(chords.size() > 6) {
+				for(int i = 0; i < chords.size() - 6; i++) {
+					seq += chords.get(i) + " ";
+				}
+				g2d.drawString(seq, getWidth()/2 - g2d.getFontMetrics().stringWidth(seq)/2, 7*getHeight()/8);
+			}
+		}
 	}
 	
 	public void setChord(String s) {
@@ -40,15 +53,12 @@ public class ChordPanel extends JPanel {
 	}
 	
 	public void setNext(ArrayList<String> l) {
-		String str = "";
-		for(String s : l) {
-			str += s + " ";
-		}
-		seq = str;
+		chords = l;
 		repaint();
 	}
 	
 	public void reset() {
+		chords.clear();
 		seq = "";
 		repaint();
 	}
