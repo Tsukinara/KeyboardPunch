@@ -95,8 +95,15 @@ public class TimerPanel extends JPanel implements ActionListener {
 					int noteID = notes.get(i) + (i<=bassSize?48:72) + tmp[0]; 
 					chordNotes[i] = noteID;
 				}
-				Chord p = cp.getPreviousChord();
-				cp.stop_chord(p);
+				for(int i = 0; i < cp.getPreviousChords().size(); i++) {
+					if(cp.getTimes().get(i) == 0) {
+						cp.stop_chord(cp.getPreviousChords().get(i));
+						cp.getPreviousChords().remove(i);
+						cp.getTimes().remove(i);
+					}
+					else
+						cp.getTimes().set(i, cp.getTimes().get(i) - 1);
+				}
 				Chord c = new Chord(chordNotes, Game.gamedata.get_key());
 				cp.play_chord(c);
 			}

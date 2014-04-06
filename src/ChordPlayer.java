@@ -1,13 +1,18 @@
+import java.util.ArrayList;
+
 public class ChordPlayer {
 	private Game game;
 	private MidiPlayer mp;
 	private Interpreter i;
-	private Chord prev;
+	private ArrayList<Chord> prev;
+	private ArrayList<Integer> time;
 	
 	public ChordPlayer(Game g) {
 		this.game = g;
 		mp = new MidiPlayer();
 		i = g.getInterpreter();
+		prev = new ArrayList<Chord>();
+		time = new ArrayList<Integer>();
 	}
 	
 	public void play_chord(Chord c) {
@@ -16,7 +21,8 @@ public class ChordPlayer {
 			mp.play_note(c.getNotes()[i], 127);
 			game.notePlayed(c.getNotes()[i], 1);
 		}
-		prev = c;
+		prev.add(c);
+		time.add(4);
 	}
 	
 	public void stop_chord(Chord c) {
@@ -27,7 +33,11 @@ public class ChordPlayer {
 		}
 	}
 		
-	public Chord getPreviousChord() {
+	public ArrayList<Chord> getPreviousChords() {
 		return prev;
+	}
+	
+	public ArrayList<Integer> getTimes() {
+		return time;
 	}
 }
