@@ -257,7 +257,6 @@ public class PianoPanel extends JPanel {
 	}
 
 	public void noteReleased(int note) {
-		System.out.println(note);
 		note = note - 28;
 		if (note == 0) {
 			whiteSpaces[0] = 0;
