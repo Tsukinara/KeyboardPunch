@@ -280,30 +280,21 @@ public class PianoPanel extends JPanel {
 	public void drawChord(String s) {
 		LabeledSuggestion lbl = new LabeledSuggestion(s);
 		ArrayList<Integer> keyList = lbl.getKeyList();
-
 		for (int note : keyList) {
 			note = note + 60 - 28;
-
 			if (whiteNotes.contains((note % 12))) {
 				if (note % 12 == 0) {
 					whiteSpacesHighlight[whitePosition(note % 12) + 7
 							* ((int) note / 12 - 1)] = 1;
-
 				} else {
 					whiteSpacesHighlight[whitePosition(note % 12) + 7
 							* ((int) note / 12)] = 1;
-
 				}
 			} else {
 				blackSpacesHighlight[blackPosition(note % 12) + 7
 						* ((int) note / 12)] = 1;
-
 			}
-
 		}
-		
 		repaint();
-
 	}
-
 }
