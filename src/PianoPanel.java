@@ -53,17 +53,13 @@ public class PianoPanel extends JPanel {
 		whiteSpacesHighlight = new int[45];
 		blackSpacesHighlight = new int[44];
 		setBackground(new Color(0x92c9ff));
-		// setBackground(new Color(0xbbddff));
-
 	}
 
 	public void paint(Graphics g) {
 		super.paint(g);
 
 		Graphics2D g2d = (Graphics2D) g;
-		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-				RenderingHints.VALUE_ANTIALIAS_ON);
-		// g2d.drawLine(0, 0, getWidth(), 0);
+		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
 		widthWhite = getWidth() / 45;
 		widthBlack = widthWhite * 2 / 3;
 		keylength = widthWhite * 7;

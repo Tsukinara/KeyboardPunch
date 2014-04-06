@@ -20,7 +20,6 @@ public class ChordPanel extends JPanel {
 		thefuckingfont = new Font("Trebuchet MS", Font.BOLD, 24);
 		chords = new ArrayList<String>();
 		setBackground(new Color(0xbbddff));
-		//setBackground(new Color(0x92c9ff));
 	}
 	
 	public void paint(Graphics g) {

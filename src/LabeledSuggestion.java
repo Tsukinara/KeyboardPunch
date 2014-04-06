@@ -8,7 +8,6 @@ public class LabeledSuggestion {
 		int[] chordAndType = getConstants(chord);
 		int startingNote = chordAndType[0]; // between 0 and 11
 		int chordalType = chordAndType[1]; // has rules
-	//	keyList = new ArrayList<Integer>();
 		setKeyList(startingNote, chordalType);
 		
 	}
