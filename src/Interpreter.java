@@ -128,7 +128,7 @@ public class Interpreter {
 		if (currentChord < key) currentChord+=12;
 		switch (currentChord - key) {
 		case 0:
-			if (currentType == 1) addValues(options, new int[]{11, 0, 4, 0, 4, 1, 8, 0, 8, 1, 5, 1, 5, 5, 2, 2, 11, 2, 11, 3, 7, 0, 7, 4});
+			if (currentType == 1) addValues(options, new int[]{10, 0, 3, 0, 8, 0, 8, 4, 5, 1, 5, 5, 2, 2, 2, 3, 11, 2, 11, 3, 7, 0, 7, 4});
 			else if (currentType == 0) addValues(options, new int[]{5, 1, 5, 5});
 			else if (currentType == 7) addValues(options, new int[]{0, 1});
 			else options.add(lolstring);
@@ -156,16 +156,27 @@ public class Interpreter {
 			else options.add(lolstring);
 			break;
 		case 6:
+			options.add(lolstring);
 			break;
 		case 7:
+			if (currentType == 0 || currentType == 4) addValues(options, new int[]{0, 1, 0, 7, 8, 0});
+			else options.add(lolstring);
 			break;
 		case 8:
+			if (currentType == 0 || currentType == 4) addValues(options, new int[]{5, 1, 5, 5, 2, 2, 2, 3});
+			else if (currentType == 2 || currentType == 3) addValues(options, new int[]{11, 2, 11, 3, 7, 0, 7, 4, 8, 0, 0, 1});
+			else options.add(lolstring);
 			break;
 		case 9:
+			options.add(lolstring);
 			break;
 		case 10:
+			if (currentType == 0 || currentType == 4) addValues(options, new int[]{3, 0, 5, 0});
+			else options.add(lolstring);
 			break;
 		case 11:
+			if (currentType == 2 || currentType == 3) addValues(options, new int[]{8, 0, 0, 1, 0, 4});
+			else options.add(lolstring);
 			break;
 		default:
 			options.add(lolstring);
@@ -207,7 +218,10 @@ public class Interpreter {
 		if (chord.size() == 0) return "---";
 		if (chord.size() == 1) {
 			chordString += get_note(chord.get(0));
-			chordString += "maj";
+			int relmin = chord.get(0);
+			if (relmin < gd.get_key()) relmin+=12;
+			if(relmin == gd.get_key()+9 || relmin == gd.get_key()+2) chordString += "m";
+			else chordString += "maj";
 			return chordString;
 		}
 		if (chord.size() == 2) {
@@ -245,7 +259,11 @@ public class Interpreter {
 			chordString += "7"; 	break;
 		case 3: 
 			chordString += "m"; 	break;
-		case 4: case 7:
+		case 4:
+			int relmin = base; if (relmin < gd.get_key()) relmin+=12;
+			if (relmin == gd.get_key()-3 || relmin == gd.get_key()+2) chordString += "m";
+			else chordString += "maj"; break;
+		case 7:
 			chordString += "maj"; 	break;
 		case 5: case 8:
 			chordString = get_note(next%12);
