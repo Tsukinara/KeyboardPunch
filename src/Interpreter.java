@@ -368,8 +368,8 @@ public class Interpreter {
 		case 1: name="m";		break;
 		case 2: name="dim";		break;
 		case 3: name="dim7";	break;
-		case 4: name="M7";	break;
-		case 5: name="m7";	break;
+		case 4: name="M7";		break;
+		case 5: name="m7";		break;
 		case 6: name="7";		break;
 		case 7: name="sus4";	break;
 		default: name="maj";	break;
