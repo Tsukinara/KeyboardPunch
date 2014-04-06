@@ -86,6 +86,10 @@ public class Game extends JFrame {
 		c.setChord(s);
 	}
 	
+	public void drawChord(String s) {
+		p.drawChord(s);
+	}
+	
 	public void setNext(ArrayList<String> l) {
 		c.setNext(l);
 	}
