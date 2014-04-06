@@ -90,6 +90,8 @@ public class Game extends JFrame {
 	public void drawChord(String s) {
 		if(suggest)
 			p.drawChord(s);
+		else
+			p.eraseChord();
 	}
 	
 	public void setNext(ArrayList<String> l) {

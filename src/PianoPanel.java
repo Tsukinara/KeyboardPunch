@@ -300,8 +300,7 @@ public class PianoPanel extends JPanel {
 	}
 	
 	public void eraseChord(){
-		System.out.println("here");
-		
+				
 		whiteSpacesHighlight=new int[45];
 		blackSpacesHighlight=new int[44];
 		repaint();
