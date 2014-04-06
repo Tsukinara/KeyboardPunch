@@ -81,18 +81,18 @@ public class TimerPanel extends JPanel implements ActionListener {
 			int[] tmp = Game.interpreter.parseHelper();
 			if (tmp != null) {
 				if (tmp[1] == 0) {
-					//					treble = l.getMajorTreble().get(idtreble);
+					treble = l.getMajorTreble().get(idtreble);
 					bass = l.getMajorBass().get(idbass);
 				} else {
-					//					treble = l.getMinorTreble().get(idtreble);
+					treble = l.getMinorTreble().get(idtreble);
 					bass = l.getMinorBass().get(idbass);
 				}
 				ArrayList<Integer> notes = bass.getBeatsThatMatch(subbeat);
 				int bassSize = notes.size();
-				//				notes.addAll(treble.getBeatsThatMatch(subbeat));
+				notes.addAll(treble.getBeatsThatMatch(subbeat));
 				int[] chordNotes = new int [notes.size()];
 				for (int i = 0; i < chordNotes.length; i++)	{
-					int noteID = notes.get(i) + (i<=bassSize?48:72) + tmp[0]; 
+					int noteID = notes.get(i) + (i<bassSize?48:72) + tmp[0]; 
 					chordNotes[i] = noteID;
 				}
 				for(int i = 0; i < cp.getPreviousChords().size(); i++) {
