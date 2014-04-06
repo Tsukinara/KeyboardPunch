@@ -18,7 +18,7 @@ public class Game extends JFrame {
 	private ChordPanel c;
 	public static GameData gamedata;
 	public static Interpreter interpreter;
-	public static boolean suggest = true;
+	public static boolean suggest = false;
 	
 	public Game(GameData data, Interpreter i) {
 		super();

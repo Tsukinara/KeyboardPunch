@@ -26,6 +26,7 @@ public class PianoPanel extends JPanel {
 	int[] blackSpacesColor;
 	int[] whiteSpacesHighlight;
 	int[] blackSpacesHighlight;
+	Color hlColor = new Color(0x00ccdd);
 
 	public PianoPanel() {
 		super();
@@ -132,7 +133,7 @@ public class PianoPanel extends JPanel {
 		// white keys
 		for (int i = 0; i < 45; i++) {
 			if (whiteSpacesHighlight[i] == 1) {
-				g.setColor(Color.GREEN);
+				g.setColor(hlColor);
 
 				g.fillRect(i * widthWhite + leftOffset, offset, widthWhite,
 						keylength);
@@ -150,7 +151,7 @@ public class PianoPanel extends JPanel {
 		for (int i = 0; i < 44; i++) {
 			if (blackSpacesHighlight[i] == 1) {
 
-				g.setColor(Color.GREEN);
+				g.setColor(hlColor);
 
 				g.fillRect(widthWhite * i + widthWhite - widthBlack / 2
 						+ leftOffset, offset, widthBlack, keylength * 3 / 5);
@@ -298,7 +299,6 @@ public class PianoPanel extends JPanel {
 	}
 
 	public void eraseChord(){
-
 		whiteSpacesHighlight=new int[45];
 		blackSpacesHighlight=new int[44];
 		repaint();
