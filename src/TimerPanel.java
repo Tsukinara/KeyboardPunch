@@ -5,6 +5,7 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -16,12 +17,15 @@ public class TimerPanel extends JPanel implements ActionListener {
 	private Timer fading;
 	public Timer song;
 	private Color fade;
-	private int beat = 0;
+	private int beat = 0, idbass, idtreble;
+	private Measure treble, bass;
 	private ChordPlayer cp;
 	private double subbeat = 1;
+	private Loader l;
 
 	public TimerPanel(){
 		super();
+		l = new Loader();
 		fade = new Color(0x323232);
 		timer = new Timer(500, this);
 		fading = new Timer(10,this);
@@ -54,6 +58,10 @@ public class TimerPanel extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		Timer t = (Timer)e.getSource();
 		if(t == timer) {
+			if (beat == 0) {
+				idbass = (int)(Math.random()*l.getMajorBass().size());
+				idtreble = (int)(Math.random()*l.getMajorTreble().size());
+			}
 			beat = (beat + 1) % 4;
 			timer.setDelay((int) ((1.0/(Game.gamedata.get_bpm()/60.0))*1000.0));
 			fade = new Color(0x323232);
@@ -73,10 +81,27 @@ public class TimerPanel extends JPanel implements ActionListener {
 		} else if(t == song) {
 			subbeat = subbeat + .25;
 			if (subbeat >= 5) subbeat-=4;
+			int[] tmp = Game.interpreter.parseHelper();
+			if (tmp[1] == 0) {
+				treble = l.getMajorTreble().get(idtreble);
+				bass = l.getMajorBass().get(idbass);
+			} else {
+				treble = l.getMinorTreble().get(idtreble);
+				bass = l.getMinorBass().get(idbass);
+			}
+			ArrayList<Integer> notes = bass.getBeatsThatMatch(subbeat);
+			int bassSize = notes.size();
+			notes.addAll(treble.getBeatsThatMatch(subbeat));
+			int[] chordNotes = new int [notes.size()];
+			for (int i = 0; i < chordNotes.length; i++)	chordNotes[i] = notes.get(i) + (i<bassSize?48:72) + tmp[0];
 			Chord p = cp.getPreviousChord();
 			cp.stop_chord(p);
-			Chord c = new Chord(Game.interpreter.getChordName(), 0);
+			Chord c = new Chord(chordNotes, Game.gamedata.get_key());
 			cp.play_chord(c);
+			/*Chord p = cp.getPreviousChord();
+			cp.stop_chord(p);
+			Chord c = new Chord(Game.interpreter.getChordName(), 0);
+			cp.play_chord(c);*/
 		}
 		repaint();
 	}

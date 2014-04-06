@@ -26,7 +26,7 @@ public class ChordPlayer {
 			game.noteReleased(c.getNotes()[i] + 60);
 		}
 	}
-	
+		
 	public Chord getPreviousChord() {
 		return prev;
 	}
