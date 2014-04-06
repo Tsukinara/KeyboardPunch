@@ -104,15 +104,15 @@ public class LabeledSuggestion {
 		}
 		if (type.equals("maj"))
 			chordType[1] = 0;
-		if (type.equals("min"))
+		if (type.equals("m"))
 			chordType[1] = 1;
 		if (type.equals("dim"))
 			chordType[1] = 2;
 		if (type.equals("dim7"))
 			chordType[1] = 3;
-		if (type.equals("maj7"))
+		if (type.equals("M7"))
 			chordType[1] = 4;
-		if (type.equals("min7"))
+		if (type.equals("m7"))
 			chordType[1] = 5;
 		if (type.equals("7"))
 			chordType[1] = 6;
