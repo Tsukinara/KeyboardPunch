@@ -14,17 +14,21 @@ public class TimerPanel extends JPanel implements ActionListener {
 	private static final long serialVersionUID = 3875360370099517808L;
 	public Timer timer;
 	private Timer fading;
+	public Timer song;
 	private Color fade;
 	private int beat = 0;
 	private ChordPlayer cp;
+	private double subbeat = 1;
 
 	public TimerPanel(){
 		super();
 		fade = new Color(0x323232);
 		timer = new Timer(500, this);
 		fading = new Timer(10,this);
+		song = new Timer(125, this);
 		timer.start();
 		fading.start();
+		song.start();
 		setBackground(new Color(250,250,255));
 	}
 	
@@ -51,15 +55,11 @@ public class TimerPanel extends JPanel implements ActionListener {
 		Timer t = (Timer)e.getSource();
 		if(t == timer) {
 			beat = (beat + 1) % 4;
-			Chord p = cp.getPreviousChord();
-			cp.stop_chord(p);
-			Chord c = new Chord(Game.interpreter.getChordName(), 0);
-			cp.play_chord(c);
 			timer.setDelay((int) ((1.0/(Game.gamedata.get_bpm()/60.0))*1000.0));
 			fade = new Color(0x323232);
 			fading.setDelay((int) (1000.0/Game.gamedata.get_bpm()));
-		}
-		else if(t == fading) {
+			song.setDelay((int)((1.0/(Game.gamedata.get_bpm()/60.0))*250.0));
+		} else if(t == fading) {
 			int red = fade.getRed() + 2;
 			int blue = fade.getBlue() + 2;
 			int green = fade.getGreen() + 2;
@@ -70,6 +70,13 @@ public class TimerPanel extends JPanel implements ActionListener {
 			if(green > 170)
 				green = 170;
 			fade = new Color(red, green, blue);
+		} else if(t == song) {
+			subbeat = subbeat + .25;
+			if (subbeat >= 5) subbeat-=4;
+			Chord p = cp.getPreviousChord();
+			cp.stop_chord(p);
+			Chord c = new Chord(Game.interpreter.getChordName(), 0);
+			cp.play_chord(c);
 		}
 		repaint();
 	}

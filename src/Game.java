@@ -31,8 +31,8 @@ public class Game extends JFrame {
 		panel.setBackground(new Color(0xbbddff));
 		c = new ChordPanel();
 		s = new Settings(c);
-		t = new TimerPanel();
 		cp = new ChordPlayer(this);
+		t = new TimerPanel();
 		t.setCP(cp);
 		p = new PianoPanel();
 		tp = new TitlePanel();
