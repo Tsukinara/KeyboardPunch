@@ -13,7 +13,6 @@ public class ChordPanel extends JPanel {
 	private Font thefuckingfont;
 	private String chrod = "---";
 	private String next = "Suggested Chords:";
-	private String seq = "";
 	private ArrayList<String> chords;
 	
 	public ChordPanel() {
@@ -35,7 +34,6 @@ public class ChordPanel extends JPanel {
 		g2d.drawLine(0, getHeight()/2, getWidth(), getHeight()/2);
 		g2d.drawString(next, getWidth()/2 - g2d.getFontMetrics().stringWidth(next)/2, 3*getHeight()/5);
 		g2d.drawLine(0, 3*getHeight()/5 + 10, getWidth(), 3*getHeight()/5 + 10);
-		seq = "";
 		if(chords.size() > 6) {
 			for(int i = 0; i < 6; i++) {
 				g2d.drawString(chords.get(i), i*getWidth()/6 + 10, 3*getHeight()/4);
@@ -63,7 +61,6 @@ public class ChordPanel extends JPanel {
 	
 	public void reset() {
 		chords.clear();
-		seq = "";
 		repaint();
 	}
 }

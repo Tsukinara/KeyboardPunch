@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
@@ -73,6 +74,9 @@ public class PianoPanel extends JPanel {
 		}
 		highlightArray(g); // white keys highlighted
 		int start = 2 * widthWhite - widthBlack / 2;
+		g2d.fillPolygon(new int[]{leftOffset + 22*widthWhite, leftOffset + 22*widthWhite, leftOffset + 22*widthWhite - 15}, new int[]{offset - 15, offset - 25, offset - 20}, 3);
+		g2d.setFont(new Font("Trebuchet MS", Font.BOLD, 16));
+		g2d.drawString("Chord", leftOffset + 22*widthWhite + 5, offset - 15);
 		for (int i = 0; i < 6; i++) {
 			drawBlack(start + leftOffset, offset, g);
 			drawBlack(start + leftOffset + widthWhite, offset, g);

@@ -72,7 +72,7 @@ public class Game extends JFrame {
 		panel.add(p, gbc);
 		
 		getContentPane().add(panel);
-		setMinimumSize(new Dimension(1366,768));
+		setMinimumSize(new Dimension(1400,835));
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 	

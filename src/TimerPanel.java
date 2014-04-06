@@ -12,7 +12,7 @@ import javax.swing.Timer;
 
 public class TimerPanel extends JPanel implements ActionListener {
 	private static final long serialVersionUID = 3875360370099517808L;
-	private Timer timer;
+	public Timer timer;
 	private Timer fading;
 	private Color fade;
 	private int beat = 0;
