@@ -22,7 +22,7 @@ public class GameData {
 	public int get_key() {return this.key;}
 
 	public void set_majmin(boolean majmin) {this.majmin = majmin;};
-	public void set_bpm(int bpm) {if (bpm > 59 && bpm < 181) this.bpm = bpm;}
+	public void set_bpm(int bpm) {if (bpm > 59 && bpm < 241) this.bpm = bpm;}
 	public void set_key(int key) {if (key >= 0 && key < 12) this.key = key;}
 	public void set_difficulty(int diff) {this.difficulty = diff;};
 }

@@ -37,13 +37,13 @@ public class Settings extends JPanel implements ActionListener, ChangeListener{
 		setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		thefuckingfont = new Font("Trebuchet MS", Font.BOLD, 12);
-		speed = new JSlider(60, 180, Game.gamedata.bpm);
+		speed = new JSlider(60, 240, Game.gamedata.bpm);
 		diff = new JSlider(1, 4, Game.gamedata.difficulty);
 		key = new JSlider(0, 11, Game.gamedata.key);
 		speed.setBackground(new Color(0xbbddff));
 		diff.setBackground(new Color(0xbbddff));
 		key.setBackground(new Color(0xbbddff));
-		speed.setLabelTable(speed.createStandardLabels(120, 60));
+		speed.setLabelTable(speed.createStandardLabels(180, 60));
 		diff.setLabelTable(diff.createStandardLabels(1, 1));
 		speed.setPaintLabels(true);
 		diff.setPaintLabels(true);
