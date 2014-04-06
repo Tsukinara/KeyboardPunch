@@ -40,7 +40,7 @@ public class LabeledSuggestion {
 			keyList.add(startingNote + 11);
 		}
 		else if (chordalType == 5) {// min7
-			keyList.add(startingNote+3);
+			keyList.add(startingNote + 3);
 			keyList.add(startingNote + 7);
 			keyList.add(startingNote + 10);
 		} 

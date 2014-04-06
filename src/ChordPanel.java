@@ -10,14 +10,12 @@ import javax.swing.JPanel;
 public class ChordPanel extends JPanel {
 	
 	private static final long serialVersionUID = -932172714303934216L;
-	private Font thefuckingfont;
 	private String chrod = "---";
 	private String next = "Suggested Chords:";
 	private ArrayList<String> chords;
 	
 	public ChordPanel() {
 		super();
-		thefuckingfont = new Font("Trebuchet MS", Font.BOLD, 24);
 		chords = new ArrayList<String>();
 		setBackground(new Color(0xbbddff));
 	}
@@ -29,7 +27,7 @@ public class ChordPanel extends JPanel {
 		g2d.setColor(Color.black);
 		g2d.setFont(new Font("Trebuchet MS", Font.BOLD, 144));
 		g2d.drawString(chrod, getWidth()/2 - g2d.getFontMetrics().stringWidth(chrod)/2, 2*getHeight()/5);
-		g2d.setFont(thefuckingfont);
+		g2d.setFont(new Font("Trebuchet MS", Font.BOLD, 24));
 		g2d.drawLine(0, getHeight()/2, getWidth(), getHeight()/2);
 		g2d.drawString(next, getWidth()/2 - g2d.getFontMetrics().stringWidth(next)/2, 3*getHeight()/5);
 		g2d.drawLine(0, 3*getHeight()/5 + 10, getWidth(), 3*getHeight()/5 + 10);
