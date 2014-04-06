@@ -104,7 +104,7 @@ public class PianoPanel extends JPanel {
 	public void drawArray(Graphics g) {
 		// white keys
 		for (int i = 0; i < 45; i++) {
-			if (whiteSpaces[i] == 1) {
+			if (whiteSpaces[i] > 0) {
 				if (whiteSpacesColor[i] == 0)
 					g.setColor(Color.BLUE);
 				else if (whiteSpacesColor[i] == 1)
@@ -118,7 +118,7 @@ public class PianoPanel extends JPanel {
 		}
 
 		for (int i = 0; i < 44; i++) {
-			if (blackSpaces[i] == 1) {
+			if (blackSpaces[i] > 0) {
 				if (blackSpacesColor[i] == 0)
 					g.setColor(Color.BLUE);
 				else if(blackSpacesColor[i] == 1)
