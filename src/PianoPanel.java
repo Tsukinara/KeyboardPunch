@@ -308,4 +308,10 @@ public class PianoPanel extends JPanel {
 		blackSpacesHighlight=new int[44];
 		repaint();
 	}
+	
+	public void eraseAllTheThings() {
+		whiteSpaces=new int[45];
+		blackSpaces=new int[44];
+		repaint();
+	}
 }

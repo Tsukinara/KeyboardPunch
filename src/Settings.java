@@ -176,6 +176,7 @@ public class Settings extends JPanel implements ActionListener, ChangeListener {
 			computer.setSelected(true);
 			Game.suggest = false;
 			Game.melody = true;
+			Game.p.eraseAllTheThings();
 		}
 		
 		if (b == chordhelper) {

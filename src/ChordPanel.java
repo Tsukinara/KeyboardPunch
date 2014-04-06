@@ -28,7 +28,7 @@ public class ChordPanel extends JPanel {
 		g2d.setFont(new Font("Trebuchet MS", Font.BOLD, 144));
 		g2d.drawString(chrod, getWidth()/2 - g2d.getFontMetrics().stringWidth(chrod)/2, 2*getHeight()/5);
 		g2d.setFont(new Font("Trebuchet MS", Font.BOLD, 24));
-		g2d.setColor(new Color(0x54b3f7));//change pls
+		g2d.setColor(new Color(0x76c2f9));//change pls
 		g2d.fillRect(0, getHeight()/2 + 7, getWidth(), 3*getHeight()/5 + 17 - getHeight()/2);
 		g2d.setColor(Color.black);
 		g2d.drawString(next, getWidth()/2 - g2d.getFontMetrics().stringWidth(next)/2, 3*getHeight()/5);

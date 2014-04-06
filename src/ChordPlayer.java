@@ -3,14 +3,12 @@ import java.util.ArrayList;
 public class ChordPlayer {
 	private Game game;
 	private MidiPlayer mp;
-	private Interpreter i;
 	private ArrayList<Chord> prev;
 	private ArrayList<Integer> time;
 	
 	public ChordPlayer(Game g) {
 		this.game = g;
 		mp = new MidiPlayer();
-		i = g.getInterpreter();
 		prev = new ArrayList<Chord>();
 		time = new ArrayList<Integer>();
 	}
