@@ -95,4 +95,8 @@ public class Game extends JFrame {
 	public void setNext(ArrayList<String> l) {
 		c.setNext(l);
 	}
+	
+	public void eraseChord(String s){
+		p.eraseChord(s);
+	}
 }

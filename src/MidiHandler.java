@@ -71,7 +71,7 @@ public class MidiHandler {
 							if (game != null) game.noteReleased(i);
 							if (message[1] < 65) {
 								intr.noteReleased(i);
-								if(intr.currentType==7) { game.setNext(intr.get_next_chords()); game.drawChord(intr.get_next_chords().get(0)); }
+								if(intr.currentType==7) { game.eraseChord(intr.get_next_chords().get(0));game.setNext(intr.get_next_chords()); game.drawChord(intr.get_next_chords().get(0)); }
 							}
 							game.setChord(intr.get_chord());
 							
@@ -89,7 +89,7 @@ public class MidiHandler {
 						if (game != null) game.noteReleased(message[1]);
 						if (message[1] < 65) {
 							intr.noteReleased(message[1]);
-							if(intr.currentType==7) { game.setNext(intr.get_next_chords()); game.drawChord(intr.get_next_chords().get(0)); }
+							if(intr.currentType==7) {game.eraseChord(intr.get_next_chords().get(0)); game.setNext(intr.get_next_chords()); game.drawChord(intr.get_next_chords().get(0)); }
 						}
 						game.setChord(intr.get_chord());
 					} else {
