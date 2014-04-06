@@ -96,7 +96,7 @@ public class Game extends JFrame {
 		c.setNext(l);
 	}
 	
-	public void eraseChord(String s){
-		p.eraseChord(s);
+	public void eraseChord(){
+		p.eraseChord();
 	}
 }
