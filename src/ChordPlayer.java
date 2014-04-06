@@ -23,6 +23,12 @@ public class ChordPlayer {
 		time.add(4);
 	}
 	
+	public void play_strong_beat() {
+		mp.play_strong_beat();
+	}
+	
+	public void play_weak_beat() {mp.play_weak_beat();}
+	
 	public void stop_chord(Chord c) {
 		if (c == null || c.getNotes() == null) return;
 		for (int i = 0; i < c.getNotes().length; i++) {

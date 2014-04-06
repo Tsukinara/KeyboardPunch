@@ -70,9 +70,11 @@ public class TimerPanel extends JPanel implements ActionListener {
 			if (subbeat >= 5) subbeat-=4;
 			if (subbeat == (int)subbeat) {
 				if ((int)subbeat == 1) {
+					//cp.play_strong_beat();
 					idbass = (int)(Math.random()*l.getMajorBass().size());
 					idtreble = (int)(Math.random()*l.getMajorTreble().size());
-				}
+				} //else cp.play_weak_beat();
+				
 				beat = (beat + 1) % 4;
 				fade = new Color(0x323232);
 				fading.setDelay((int) (1000.0/Game.gamedata.get_bpm()));

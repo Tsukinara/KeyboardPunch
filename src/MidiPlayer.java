@@ -31,6 +31,40 @@ public class MidiPlayer {
 		}
 	}
 	
+	public void play_strong_beat() {
+		try {
+			ShortMessage myMsg = new ShortMessage();
+			myMsg.setMessage(ShortMessage.PROGRAM_CHANGE, 0, 116, 127);
+			long timeStamp = -1;
+			midiReceiver.send(myMsg, timeStamp);
+			myMsg = new ShortMessage();
+			myMsg.setMessage(ShortMessage.NOTE_ON, 0, 36, 127);
+			midiReceiver.send(myMsg, timeStamp);
+			myMsg = new ShortMessage();
+			myMsg.setMessage(ShortMessage.PROGRAM_CHANGE, 0, 0, 0);
+			midiReceiver.send(myMsg, timeStamp);
+		} catch (InvalidMidiDataException e) {
+			System.err.println("Invalid MIDI Data Exception Thrown");
+		}
+	}
+	
+	public void play_weak_beat() {
+		try {
+			ShortMessage myMsg = new ShortMessage();
+			myMsg.setMessage(ShortMessage.PROGRAM_CHANGE, 0, 116, 0);
+			long timeStamp = -1;
+			midiReceiver.send(myMsg, timeStamp);
+			myMsg = new ShortMessage();
+			myMsg.setMessage(ShortMessage.NOTE_ON, 0, 36, 127);
+			midiReceiver.send(myMsg, timeStamp);
+			myMsg = new ShortMessage();
+			myMsg.setMessage(ShortMessage.PROGRAM_CHANGE, 0, 0, 0);
+			midiReceiver.send(myMsg, timeStamp);
+		} catch (InvalidMidiDataException e) {
+			System.err.println("Invalid MIDI Data Exception Thrown");
+		}
+	}
+	
 	public void play_song(String filename) {
 		try {
 			Scanner scan = new Scanner(new FileReader(filename));

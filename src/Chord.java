@@ -149,6 +149,7 @@ public class Chord {
 		case 7:
 			int relmin = base; if (relmin < key) relmin+=12;
 			if (relmin == key-3 || relmin == key+2) chordString += "m";
+			else chordString += "maj";
 			break;
 		case 5: case 8:
 			chordString = Interpreter.get_note(next%12);

@@ -71,7 +71,7 @@ public class Interpreter {
 		if (currentChord < key) currentChord+=12;
 		switch (currentChord - key) {
 		case 0:
-			if (currentType == 0) addValues(options, new int[]{2, 1, 3, 0, 4, 0, 4, 1, 4, 6, 5, 0, 5, 1, 7, 0, 8, 0, 9, 1, 11, 2, 11, 3});
+			if (currentType == 0) addValues(options, new int[]{4, 0, 3, 0, 4, 1, 2, 1, 4, 6, 5, 0, 5, 1, 7, 0, 8, 0, 9, 1, 11, 2, 11, 3});
 			else if (currentType == 6) addValues(options, new int[]{5, 0});
 			else if (currentType == 7) addValues(options, new int[]{0, 0});
 			else options.add(lolstring);
@@ -108,7 +108,7 @@ public class Interpreter {
 			options.add(lolstring);
 			break;
 		case 7:
-			if (currentType == 0 || currentType == 6) addValues(options, new int[]{4, 0, 4, 6, 0, 0, 0, 7, 9, 1, 9, 5});
+			if (currentType == 0 || currentType == 6) addValues(options, new int[]{0, 0, 4, 6, 4, 0, 0, 7, 9, 1, 9, 5});
 			else if (currentType == 7) addValues(options, new int[]{7, 0});
 			else options.add(lolstring);
 			break;
