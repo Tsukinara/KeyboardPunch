@@ -18,6 +18,7 @@ public class Game extends JFrame {
 	private ChordPanel c;
 	public static GameData gamedata;
 	public static Interpreter interpreter;
+	public static boolean suggest = true;
 	
 	public Game(GameData data, Interpreter i) {
 		super();
@@ -87,7 +88,8 @@ public class Game extends JFrame {
 	}
 	
 	public void drawChord(String s) {
-		p.drawChord(s);
+		if(suggest)
+			p.drawChord(s);
 	}
 	
 	public void setNext(ArrayList<String> l) {
