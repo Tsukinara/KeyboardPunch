@@ -32,6 +32,16 @@ public class Interpreter {
 		return notes.contains(note);
 	}
 	
+	//value at index 0 is what you add to the sequence
+	//value at index 1 is major / minor (0 is major, 1 is minor)
+	public int[] parseHelper() {
+		int add = chord.getBase();
+		if (add >= 6) add-=12;
+		if (currentType == 0 || currentType == 4 || currentType == 6 || currentType == 7)
+			return new int[]{add, 0};
+		else return new int[]{add, 1};
+	}
+	
 	public Chord getChord() {return this.chord;}
 	public int getCurrentType() {return this.currentType;}
 

@@ -14,6 +14,29 @@ public class Chord {
 		this.name = name;
 		this.notes = getNotes(name);
 	}
+	
+	public int getBase() {
+		if(name.charAt(1) == '#' || name.charAt(1) == 'b') {
+			switch(name.charAt(0)) {
+			case 'C': return 1; 
+			case 'D': return 3; 
+			case 'F': return 6; 
+			case 'A': return 8; 
+			default: return 11; 
+			}
+		} else {
+			switch(name.charAt(0)) {
+			case 'C': return 0; 
+			case 'D': return 2; 
+			case 'E': return 4; 
+			case 'F': return 5; 
+			case 'G': return 7; 
+			case 'A': return 9; 
+			case 'B': return 11; 
+			}
+		}
+		return 0;
+	}
 
 	public String getName() {return this.name;}
 	public int[] getNotes() {return this.notes;}
