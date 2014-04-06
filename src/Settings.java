@@ -127,19 +127,22 @@ public class Settings extends JPanel implements ActionListener, ChangeListener {
 		gbc.gridy = 2;
 		chordhelper.setVisible(true);
 		add(chordhelper, gbc);
-		gbc.gridx=1;
-		gbc.gridy=8;
-		computer.setBackground(new Color(0xbbddff));
-		add(computer,gbc);
+		
 
 		gbc.gridx = 0;
 		gbc.insets = new Insets(20, 10, 0, 10);
 		gbc.weightx = 1.0;
-		gbc.gridy = 7;
+		gbc.gridy = 8;
 		add(reset, gbc);
 		gbc.weightx = 1.0;
 		gbc.gridx = 1;
 		add(exit, gbc);
+		
+		gbc.gridx=0;
+		gbc.gridwidth=2;
+		gbc.gridy=7;
+		computer.setBackground(new Color(0xbbddff));
+		add(computer,gbc);
 
 		setBackground(new Color(0xbbddff));
 	}
