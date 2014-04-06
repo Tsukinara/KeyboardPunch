@@ -16,9 +16,11 @@ public class TimerPanel extends JPanel implements ActionListener {
 	private Timer fading;
 	private Color fade;
 	private int beat = 0;
+	private ChordPlayer cp;
 	
-	public TimerPanel(){
+	public TimerPanel(ChordPlayer cp){
 		super();
+		this.cp = cp;
 		fade = new Color(0x323232);
 		timer = new Timer(500, this);
 		fading = new Timer(10,this);
@@ -48,6 +50,10 @@ public class TimerPanel extends JPanel implements ActionListener {
 		Timer t = (Timer)e.getSource();
 		if(t == timer) {
 			beat = (beat + 1) % 4;
+			Chord c = Game.interpreter.getChord();
+			for (int i = 0; i < c.getNotes().length; i++) {			
+				cp.mp.play_note(c.getNotes()[i] + 60, 127);
+			}
 			timer.setDelay((int) ((1.0/(Game.gamedata.get_bpm()/60.0))*1000.0));
 			fade = new Color(0x323232);
 			fading.setDelay((int) (1000.0/Game.gamedata.get_bpm()));

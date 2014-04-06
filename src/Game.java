@@ -15,6 +15,7 @@ public class Game extends JFrame {
 	private Settings s;
 	private TimerPanel t;
 	private ChordPanel c;
+	private ChordPlayer cp;
 	
 	public static GameData gamedata;
 	public static PianoPanel p;
@@ -30,7 +31,7 @@ public class Game extends JFrame {
 		panel.setBackground(new Color(0xbbddff));
 		c = new ChordPanel();
 		s = new Settings(c);
-		t = new TimerPanel();
+		t = new TimerPanel(cp);
 		p = new PianoPanel();
 		tp = new TitlePanel();
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -79,6 +80,7 @@ public class Game extends JFrame {
 	
 	public void noteReleased(int note) {p.noteReleased(note);}
 	
+	public void setCP(ChordPlayer cp) {this.cp = cp;}
 	public void setChord(String s) {c.setChord(s);}
 	
 	public TimerPanel getTimerPanel(){return this.t;}
