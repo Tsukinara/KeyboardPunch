@@ -11,7 +11,7 @@ public class ChordPanel extends JPanel {
 	
 	private static final long serialVersionUID = -932172714303934216L;
 	private Font thefuckingfont;
-	private String chrod = "GMaj";
+	private String chrod = "---";
 	private String next = "Suggested Chords:";
 	private String seq = "";
 	private ArrayList<String> chords;
@@ -32,7 +32,9 @@ public class ChordPanel extends JPanel {
 		g2d.setFont(new Font("Trebuchet MS", Font.BOLD, 144));
 		g2d.drawString(chrod, getWidth()/2 - g2d.getFontMetrics().stringWidth(chrod)/2, 2*getHeight()/5);
 		g2d.setFont(thefuckingfont);
+		g2d.drawLine(0, getHeight()/2, getWidth(), getHeight()/2);
 		g2d.drawString(next, getWidth()/2 - g2d.getFontMetrics().stringWidth(next)/2, 3*getHeight()/5);
+		g2d.drawLine(0, 3*getHeight()/5 + 10, getWidth(), 3*getHeight()/5 + 10);
 		seq = "";
 		if(chords.size() > 6) {
 			for(int i = 0; i < 6; i++) {

@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 public class TitlePanel extends JPanel {
 	
 	private static final long serialVersionUID = -5041963317324596276L;
-	private String title = "KeyboardPuuuuuuuuuuuuuuuuuuunch";
+	private String title = "KeyboardPunch";
 	
 	public TitlePanel() {
 		super();
