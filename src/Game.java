@@ -13,10 +13,11 @@ public class Game extends JFrame {
 	
 	private TitlePanel tp;
 	private Settings s;
-	private PianoPanel p;
 	private TimerPanel t;
 	private ChordPanel c;
+	
 	public static GameData gamedata;
+	public static PianoPanel p;
 	public static Interpreter interpreter;
 	public static boolean suggest = false;
 	

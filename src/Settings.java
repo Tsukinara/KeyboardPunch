@@ -161,7 +161,8 @@ public class Settings extends JPanel implements ActionListener, ChangeListener{
 		}
 		else if(s == diff) {
 			Game.gamedata.set_difficulty(diff.getValue());
-			if(diff.getValue() > 3) {
+			if(diff.getValue() > 2) {
+				Game.p.eraseChord();
 				Game.suggest = false;
 			}
 			else {
