@@ -13,8 +13,8 @@ public class ChordPlayer {
 	public void play_chord(Chord c) {
 		if (c == null || c.getNotes() == null) return;
 		for (int i = 0; i < c.getNotes().length; i++) {
-			mp.play_note(c.getNotes()[i] + 60, 127);
-			game.notePlayed(c.getNotes()[i] + 60, 1);
+			mp.play_note(c.getNotes()[i], 127);
+			game.notePlayed(c.getNotes()[i], 1);
 		}
 		prev = c;
 	}
@@ -22,8 +22,8 @@ public class ChordPlayer {
 	public void stop_chord(Chord c) {
 		if (c == null || c.getNotes() == null) return;
 		for (int i = 0; i < c.getNotes().length; i++) {
-			mp.stop_note(c.getNotes()[i] + 60, 127);
-			game.noteReleased(c.getNotes()[i] + 60);
+			mp.stop_note(c.getNotes()[i], 127);
+			game.noteReleased(c.getNotes()[i]);
 		}
 	}
 		

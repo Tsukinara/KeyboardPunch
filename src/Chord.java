@@ -14,28 +14,29 @@ public class Chord {
 		this.name = name;
 		this.notes = getNotes(name);
 	}
-	
+
 	public int getBase() {
-		if(name.charAt(1) == '#' || name.charAt(1) == 'b') {
-			switch(name.charAt(0)) {
-			case 'C': return 1; 
-			case 'D': return 3; 
-			case 'F': return 6; 
-			case 'A': return 8; 
-			default: return 11; 
+		if (name.length() > 1) {
+			if(name.charAt(1) == '#' || name.charAt(1) == 'b') {
+				switch(name.charAt(0)) {
+				case 'C': return 1; 
+				case 'D': return 3; 
+				case 'F': return 6; 
+				case 'A': return 8; 
+				default: return 10; 
+				}
+			} else {
+				switch(name.charAt(0)) {
+				case 'C': return 0; 
+				case 'D': return 2; 
+				case 'E': return 4; 
+				case 'F': return 5; 
+				case 'G': return 7; 
+				case 'A': return 9; 
+				case 'B': return 11; 
+				}
 			}
-		} else {
-			switch(name.charAt(0)) {
-			case 'C': return 0; 
-			case 'D': return 2; 
-			case 'E': return 4; 
-			case 'F': return 5; 
-			case 'G': return 7; 
-			case 'A': return 9; 
-			case 'B': return 11; 
-			}
-		}
-		return 0;
+		} return -1;
 	}
 
 	public String getName() {return this.name;}
@@ -67,7 +68,7 @@ public class Chord {
 				case 'D': notes[0] = 3; break;
 				case 'F': notes[0] = 6; break;
 				case 'A': notes[0] = 8; break;
-				default: notes[0] = 11; break;
+				default: notes[0] = 10; break;
 				}
 			} else {
 				type = name.substring(1, name.length());
@@ -144,11 +145,11 @@ public class Chord {
 		case 3: 
 			chordString += "m"; 	break;
 		case 4:
+			chordString += "maj";		break;
+		case 7:
 			int relmin = base; if (relmin < key) relmin+=12;
 			if (relmin == key-3 || relmin == key+2) chordString += "m";
-			else chordString += "maj"; break;
-		case 7:
-			chordString += "maj"; 	break;
+			break;
 		case 5: case 8:
 			chordString = Interpreter.get_note(next%12);
 			chordString += "maj"; 	break;

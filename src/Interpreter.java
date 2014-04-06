@@ -11,7 +11,7 @@ public class Interpreter {
 	public Interpreter() {
 		notes = new ArrayList<Integer>();
 	}
-	
+
 	public void setGD(GameData gd) {
 		this.gd = gd;
 	}
@@ -31,17 +31,19 @@ public class Interpreter {
 	public boolean are_we_in_there(int note) {
 		return notes.contains(note);
 	}
-	
+
 	//value at index 0 is what you add to the sequence
 	//value at index 1 is major / minor (0 is major, 1 is minor)
 	public int[] parseHelper() {
-		int add = chord.getBase();
-		if (add >= 6) add-=12;
-		if (currentType == 0 || currentType == 4 || currentType == 6 || currentType == 7)
-			return new int[]{add, 0};
-		else return new int[]{add, 1};
+		if (chord!=null) {
+			int add = chord.getBase();
+			if (add == -1) return null;
+			if (add >= 6) add-=12;
+			if (currentType == 0 || currentType == 4 || currentType == 6 || currentType == 7) return new int[]{add, 0};
+			else return new int[]{add, 1};
+		} return null;
 	}
-	
+
 	public Chord getChord() {return this.chord;}
 	public int getCurrentType() {return this.currentType;}
 
@@ -51,7 +53,7 @@ public class Interpreter {
 		chordString = chord.getName();
 		return chordString;
 	}
-	
+
 	public ArrayList<String> get_next_chords() {
 		ArrayList<String> next_chords = new ArrayList<String>();
 		setConstants(getChordName());
@@ -63,7 +65,7 @@ public class Interpreter {
 			next_chords = minorNextChords(key);
 		return next_chords;
 	}
-	
+
 	private ArrayList<String> majorNextChords(int key) {
 		ArrayList<String> options = new ArrayList<String>();
 		if (currentChord < key) currentChord+=12;
@@ -133,7 +135,7 @@ public class Interpreter {
 		}
 		return options;
 	}
-	
+
 	private ArrayList<String> minorNextChords(int key) {
 		ArrayList<String> options = new ArrayList<String>();
 		if (currentChord < key) currentChord+=12;
@@ -247,7 +249,7 @@ public class Interpreter {
 		}
 		return name;
 	}
-	
+
 	public static String get_type(int type) {
 		String name;
 		switch (type) {
@@ -263,40 +265,42 @@ public class Interpreter {
 		}
 		return name;
 	}
-	
+
 	private void setConstants(String chordName) {
 		String type;
-		if(chordName.charAt(1) == '#' || chordName.charAt(1) == 'b') {
-			type = chordName.substring(2, chordName.length());
-			switch(chordName.charAt(0)) {
-			case 'C': currentChord = 1; break;
-			case 'D': currentChord = 3; break;
-			case 'F': currentChord = 6; break;
-			case 'A': currentChord = 8; break;
-			default: currentChord = 11; break;
+		if(chordName.length() > 1) {
+			if(chordName.charAt(1) == '#' || chordName.charAt(1) == 'b') {
+				type = chordName.substring(2, chordName.length());
+				switch(chordName.charAt(0)) {
+				case 'C': currentChord = 1; break;
+				case 'D': currentChord = 3; break;
+				case 'F': currentChord = 6; break;
+				case 'A': currentChord = 8; break;
+				default: currentChord = 11; break;
+				}
+			} else {
+				type = chordName.substring(1, chordName.length());
+				switch(chordName.charAt(0)) {
+				case 'C': currentChord = 0; break;
+				case 'D': currentChord = 2; break;
+				case 'E': currentChord = 4; break;
+				case 'F': currentChord = 5; break;
+				case 'G': currentChord = 7; break;
+				case 'A': currentChord = 9; break;
+				case 'B': currentChord = 11; break;
+				}
 			}
-		} else {
-			type = chordName.substring(1, chordName.length());
-			switch(chordName.charAt(0)) {
-			case 'C': currentChord = 0; break;
-			case 'D': currentChord = 2; break;
-			case 'E': currentChord = 4; break;
-			case 'F': currentChord = 5; break;
-			case 'G': currentChord = 7; break;
-			case 'A': currentChord = 9; break;
-			case 'B': currentChord = 11; break;
-			}
+			if (type.equals("maj")) currentType = 0;
+			if (type.equals("m")) currentType = 1;
+			if (type.equals("dim")) currentType = 2;
+			if (type.equals("dim7")) currentType = 3;
+			if (type.equals("M7")) currentType = 4;
+			if (type.equals("m7")) currentType = 5;
+			if (type.equals("7")) currentType = 6;
+			if (type.equals("sus4")) currentType = 7;
 		}
-		if (type.equals("maj")) currentType = 0;
-		if (type.equals("m")) currentType = 1;
-		if (type.equals("dim")) currentType = 2;
-		if (type.equals("dim7")) currentType = 3;
-		if (type.equals("M7")) currentType = 4;
-		if (type.equals("m7")) currentType = 5;
-		if (type.equals("7")) currentType = 6;
-		if (type.equals("sus4")) currentType = 7;
 	}
-	
+
 	private ArrayList<String> addValues(ArrayList<String> orig, int[] contents) {
 		for (int i = 0; i < contents.length; i+=2) {
 			orig.add(get_note((contents[i] + gd.get_key())%12) + get_type(contents[i+1]));
