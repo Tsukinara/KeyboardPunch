@@ -200,18 +200,25 @@ public class Settings extends JPanel implements ActionListener, ChangeListener {
 	}
 
 	public void stateChanged(ChangeEvent c) {
-		System.out.println("here");
+		
 		JSlider s = (JSlider) c.getSource();
 		if (s == speed) {
 			Game.gamedata.set_bpm(speed.getValue());
 			speedL.setText("Speed: " + speed.getValue() + "  bpm");
 		} else if (s == diff) {
 			Game.gamedata.set_difficulty(diff.getValue());
-			if (diff.getValue() > 2) {
-
+			if (diff.getValue() <= 1) {
+System.out.println("I'm sleepy");
 				// stuff
-			} else {
+			}if (diff.getValue() <= 2) {
+				System.out.println("I'm sleepy for realz");
 				// stuff
+			} if (diff.getValue() <= 3) {
+				System.out.println("I'm sleepy for realzies, yo");
+				// stuff
+			}  else {
+				// stuff
+				System.out.println("what am i doing with life");
 			}
 			diffL.setText("Difficulty: " + diff.getValue());
 		} else if (s == key) {
