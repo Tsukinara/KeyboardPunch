@@ -34,12 +34,13 @@ public class Settings extends JPanel implements ActionListener, ChangeListener {
 	private JButton exit;
 	private ChordPanel chord;
 	private JRadioButton chordhelper;
-	private boolean selected;
+	private JRadioButton computer;
+	
 
 	public Settings(ChordPanel c) {
 		super();
 		chord = c;
-		selected = false;
+	
 		setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		thefuckingfont = new Font("Trebuchet MS", Font.BOLD, 12);
@@ -47,6 +48,7 @@ public class Settings extends JPanel implements ActionListener, ChangeListener {
 		diff = new JSlider(1, 4, Game.gamedata.difficulty);
 		key = new JSlider(0, 11, Game.gamedata.key);
 		chordhelper = new JRadioButton("Chord Helper");
+		computer = new JRadioButton("Computer Assisted Melody");
 		speed.setBackground(new Color(0xbbddff));
 		diff.setBackground(new Color(0xbbddff));
 		key.setBackground(new Color(0xbbddff));
@@ -80,6 +82,7 @@ public class Settings extends JPanel implements ActionListener, ChangeListener {
 		reset.addActionListener(this);
 		exit.addActionListener(this);
 		chordhelper.addActionListener(this);
+		computer.addActionListener(this);
 		maj = new JRadioButton("Major");
 		min = new JRadioButton("Minor");
 		maj.setBackground(new Color(0xbbddff));
@@ -124,6 +127,10 @@ public class Settings extends JPanel implements ActionListener, ChangeListener {
 		gbc.gridy = 2;
 		chordhelper.setVisible(true);
 		add(chordhelper, gbc);
+		gbc.gridx=1;
+		gbc.gridy=8;
+		computer.setBackground(new Color(0xbbddff));
+		add(computer,gbc);
 
 		gbc.gridx = 0;
 		gbc.insets = new Insets(20, 10, 0, 10);
@@ -175,6 +182,15 @@ public class Settings extends JPanel implements ActionListener, ChangeListener {
 			
 				Game.p.eraseChord();
 				Game.suggest = false;
+			}
+		}
+		
+		if (b == computer) {
+			if (computer.isSelected()){
+				//play computer melodies
+			}
+			else {
+				//don't play melodies
 			}
 		}
 
