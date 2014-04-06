@@ -45,13 +45,14 @@ public class PianoPanel extends JPanel {
 		blackNotes.add(6);
 		blackNotes.add(9);
 		blackNotes.add(11);
-
+		
 		whiteSpaces = new int[45];
 		blackSpaces = new int[44];
 		whiteSpacesColor = new int[45];
 		blackSpacesColor = new int[44];
 		whiteSpacesHighlight = new int[45];
 		blackSpacesHighlight = new int[44];
+				
 		setBackground(new Color(0x92c9ff));
 	}
 
@@ -104,7 +105,7 @@ public class PianoPanel extends JPanel {
 	public void drawArray(Graphics g) {
 		// white keys
 		for (int i = 0; i < 45; i++) {
-			if (whiteSpaces[i] == 1) {
+			if (whiteSpaces[i] > 0) {
 				if (whiteSpacesColor[i] == 0)
 					g.setColor(Color.BLUE);
 				else if (whiteSpacesColor[i] == 1)
@@ -116,7 +117,7 @@ public class PianoPanel extends JPanel {
 		}
 
 		for (int i = 0; i < 44; i++) {
-			if (blackSpaces[i] == 1) {
+			if (blackSpaces[i] > 0) {
 				if (blackSpacesColor[i] == 0)
 					g.setColor(Color.BLUE);
 				else if(blackSpacesColor[i] == 1)
@@ -233,23 +234,23 @@ public class PianoPanel extends JPanel {
 		note = note - 28;
 
 		if (note == 0) {
-			whiteSpaces[0] = 1;
+			whiteSpaces[0]++;
 			whiteSpacesColor[0] = code;
 		}
 
 		else if (whiteNotes.contains((note % 12))) {
 			if (note % 12 == 0) {
 				whiteSpaces[whitePosition(note % 12) + 7
-				            * ((int) note / 12 - 1)] = 1;
+				            * ((int) note / 12 - 1)]++;
 				whiteSpacesColor[whitePosition(note % 12) + 7
 				                 * ((int) note / 12 - 1)] = code;
 			} else {
-				whiteSpaces[whitePosition(note % 12) + 7 * ((int) note / 12)] = 1;
+				whiteSpaces[whitePosition(note % 12) + 7 * ((int) note / 12)]++;
 				whiteSpacesColor[whitePosition(note % 12) + 7
 				                 * ((int) note / 12)] = code;
 			}
 		} else {
-			blackSpaces[blackPosition(note % 12) + 7 * ((int) note / 12)] = 1;
+			blackSpaces[blackPosition(note % 12) + 7 * ((int) note / 12)]++;
 			blackSpacesColor[blackPosition(note % 12) + 7 * ((int) note / 12)] = code;
 		}
 		repaint();
@@ -259,17 +260,22 @@ public class PianoPanel extends JPanel {
 	public void noteReleased(int note) {
 		note = note - 28;
 		if (note == 0) {
-			whiteSpaces[0] = 0;
+			whiteSpaces[0]--;
 		}
 		else if (whiteNotes.contains((note % 12))) {
 			if (note % 12 == 0) {
 				whiteSpaces[whitePosition(note % 12) + 7
-				            * ((int) note / 12 - 1)] = 0;
+				            * ((int) note / 12 - 1)]--;
+				whiteSpacesColor[whitePosition(note % 12) + 7
+				                 * ((int) note / 12 - 1)] = 0;
 			} else {
-				whiteSpaces[whitePosition(note % 12) + 7 * ((int) note / 12)] = 0;
+				whiteSpaces[whitePosition(note % 12) + 7 * ((int) note / 12)]--;
+				whiteSpacesColor[whitePosition(note % 12) + 7
+				                 * ((int) note / 12)] = 0;
 			}
 		} else {
-			blackSpaces[blackPosition(note % 12) + 7 * ((int) note / 12)] = 0;
+			blackSpaces[blackPosition(note % 12) + 7 * ((int) note / 12)]--;
+			blackSpacesColor[blackPosition(note % 12) + 7 * ((int) note / 12)] = 0;
 		}
 		repaint();
 
