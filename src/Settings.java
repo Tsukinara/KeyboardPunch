@@ -5,9 +5,12 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
@@ -15,8 +18,8 @@ import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-public class Settings extends JPanel implements ActionListener, ChangeListener{
-	
+public class Settings extends JPanel implements ActionListener, ChangeListener {
+
 	private static final long serialVersionUID = -3752556673462306365L;
 	private Font thefuckingfont;
 	private JRadioButton maj;
@@ -30,16 +33,20 @@ public class Settings extends JPanel implements ActionListener, ChangeListener{
 	private JButton reset;
 	private JButton exit;
 	private ChordPanel chord;
-	
+	private JRadioButton chordhelper;
+	private boolean selected;
+
 	public Settings(ChordPanel c) {
 		super();
 		chord = c;
+		selected = false;
 		setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		thefuckingfont = new Font("Trebuchet MS", Font.BOLD, 12);
 		speed = new JSlider(60, 240, Game.gamedata.bpm);
 		diff = new JSlider(1, 4, Game.gamedata.difficulty);
 		key = new JSlider(0, 11, Game.gamedata.key);
+		chordhelper = new JRadioButton("Chord Helper");
 		speed.setBackground(new Color(0xbbddff));
 		diff.setBackground(new Color(0xbbddff));
 		key.setBackground(new Color(0xbbddff));
@@ -61,7 +68,8 @@ public class Settings extends JPanel implements ActionListener, ChangeListener{
 		keyL = new JLabel("Key: " + Interpreter.get_note(Game.gamedata.key));
 		speedL.setFont(thefuckingfont);
 		diffL.setFont(thefuckingfont);
-		keyL.setFont(thefuckingfont);		
+		keyL.setFont(thefuckingfont);
+		chordhelper.setFont(thefuckingfont);
 		reset = new JButton("RESET");
 		exit = new JButton("EXIT");
 		reset.setFont(thefuckingfont);
@@ -71,6 +79,7 @@ public class Settings extends JPanel implements ActionListener, ChangeListener{
 		key.addChangeListener(this);
 		reset.addActionListener(this);
 		exit.addActionListener(this);
+		chordhelper.addActionListener(this);
 		maj = new JRadioButton("Major");
 		min = new JRadioButton("Minor");
 		maj.setBackground(new Color(0xbbddff));
@@ -79,10 +88,10 @@ public class Settings extends JPanel implements ActionListener, ChangeListener{
 		min.addActionListener(this);
 		ButtonGroup group = new ButtonGroup();
 		group.add(maj);
-		group.add(min);		
+		group.add(min);
 		maj.setSelected(true);
-		Insets i1 = new Insets(0,10,10,10);
-		Insets i2 = new Insets(0,10,20,10);
+		Insets i1 = new Insets(0, 10, 10, 10);
+		Insets i2 = new Insets(0, 10, 20, 10);
 		gbc.fill = GridBagConstraints.BOTH;
 		gbc.insets = i1;
 		gbc.gridwidth = 2;
@@ -105,31 +114,42 @@ public class Settings extends JPanel implements ActionListener, ChangeListener{
 		gbc.gridy = 5;
 		add(key, gbc);
 		gbc.gridwidth = 1;
-		gbc.insets = new Insets(0,10,0,10);
+		gbc.insets = new Insets(0, 10, 0, 10);
 		gbc.gridy = 6;
 		add(maj, gbc);
 		gbc.gridx = 1;
 		add(min, gbc);
+
+		chordhelper.setBackground(new Color(0xbbddff));
+		gbc.gridy = 2;
+		chordhelper.setVisible(true);
+		add(chordhelper, gbc);
+
 		gbc.gridx = 0;
-		gbc.insets = new Insets(20,10,0,10);
+		gbc.insets = new Insets(20, 10, 0, 10);
 		gbc.weightx = 1.0;
 		gbc.gridy = 7;
 		add(reset, gbc);
 		gbc.weightx = 1.0;
 		gbc.gridx = 1;
 		add(exit, gbc);
+
 		setBackground(new Color(0xbbddff));
 	}
+
 	
+	
+
+
 	public void actionPerformed(ActionEvent a) {
 		Object b = a.getSource();
-		if(b == maj) {
+		if (b == maj) {
 			Game.gamedata.set_majmin(true);
 		}
-		if(b == min) {
+		if (b == min) {
 			Game.gamedata.set_majmin(false);
 		}
-		if(b == reset) {
+		if (b == reset) {
 			Game.gamedata.set_bpm(120);
 			speed.setValue(120);
 			speedL.setText("Speed: 120 bpm");
@@ -144,31 +164,44 @@ public class Settings extends JPanel implements ActionListener, ChangeListener{
 			maj.setSelected(true);
 			chord.reset();
 		}
-		else if(b == exit) {
+		
+		if (b == chordhelper) {
+		
+			if (chordhelper.isSelected()) {
+		
+				Game.suggest = true;
+			}
+			if (!chordhelper.isSelected()) {
+			
+				Game.p.eraseChord();
+				Game.suggest = false;
+			}
+		}
+
+		else if (b == exit) {
 			System.exit(0);
 		}
 	}
 
 	public void stateChanged(ChangeEvent c) {
-		JSlider s = (JSlider)c.getSource();
-		if(s == speed) {
+		System.out.println("here");
+		JSlider s = (JSlider) c.getSource();
+		if (s == speed) {
 			Game.gamedata.set_bpm(speed.getValue());
 			speedL.setText("Speed: " + speed.getValue() + "  bpm");
-		}
-		else if(s == diff) {
+		} else if (s == diff) {
 			Game.gamedata.set_difficulty(diff.getValue());
-			if(diff.getValue() > 2) {
-				Game.p.eraseChord();
-				Game.suggest = false;
-			}
-			else {
-				Game.suggest = true;
+			if (diff.getValue() > 2) {
+
+				// stuff
+			} else {
+				// stuff
 			}
 			diffL.setText("Difficulty: " + diff.getValue());
-		}
-		else if(s == key) {
+		} else if (s == key) {
 			Game.gamedata.set_key(key.getValue());
 			keyL.setText("Key: " + Interpreter.get_note(key.getValue()));
 		}
+		
 	}
 }
