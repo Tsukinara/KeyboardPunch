@@ -15,6 +15,7 @@ public class ChordPlayer {
 			mp.play_note(c.getNotes()[i] + 60, 127);
 			game.notePlayed(c.getNotes()[i] + 60, 1);
 		}
+		stop_chord(c);
 	}
 	
 	public void stop_chord(Chord c) {
