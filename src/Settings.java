@@ -139,6 +139,7 @@ public class Settings extends JPanel implements ActionListener, ChangeListener{
 			speedL.setText("Speed: 120 bpm");
 			Game.gamedata.set_difficulty(1);
 			diff.setValue(1);
+			Game.suggest = true;
 			diffL.setText("Difficulty: 1");
 			Game.gamedata.set_key(0);
 			key.setValue(0);
@@ -160,6 +161,12 @@ public class Settings extends JPanel implements ActionListener, ChangeListener{
 		}
 		else if(s == diff) {
 			Game.gamedata.set_difficulty(diff.getValue());
+			if(diff.getValue() > 3) {
+				Game.suggest = false;
+			}
+			else {
+				Game.suggest = true;
+			}
 			diffL.setText("Difficulty: " + diff.getValue());
 		}
 		else if(s == key) {
