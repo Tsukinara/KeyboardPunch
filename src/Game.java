@@ -21,6 +21,7 @@ public class Game extends JFrame {
 	public static PianoPanel p;
 	public static Interpreter interpreter;
 	public static boolean suggest = false;
+	public static boolean melody = true;
 	
 	public Game(GameData data, Interpreter i) {
 		super();
