@@ -78,34 +78,36 @@ public class TimerPanel extends JPanel implements ActionListener {
 				fading.setDelay((int) (1000.0/Game.gamedata.get_bpm()));
 				song.setDelay((int)((1.0/(Game.gamedata.get_bpm()/60.0))*250.0));
 			}
-			int[] tmp = Game.interpreter.parseHelper();
-			if (tmp != null) {
-				if (tmp[1] == 0) {
-					treble = l.getMajorTreble().get(idtreble);
-					bass = l.getMajorBass().get(idbass);
-				} else {
-					treble = l.getMinorTreble().get(idtreble);
-					bass = l.getMinorBass().get(idbass);
-				}
-				ArrayList<Integer> notes = bass.getBeatsThatMatch(subbeat);
-				int bassSize = notes.size();
-				notes.addAll(treble.getBeatsThatMatch(subbeat));
-				int[] chordNotes = new int [notes.size()];
-				for (int i = 0; i < chordNotes.length; i++)	{
-					int noteID = notes.get(i) + (i<bassSize?48:72) + tmp[0]; 
-					chordNotes[i] = noteID;
-				}
-				for(int i = 0; i < cp.getPreviousChords().size(); i++) {
-					if(cp.getTimes().get(i) == 0) {
-						cp.stop_chord(cp.getPreviousChords().get(i));
-						cp.getPreviousChords().remove(i);
-						cp.getTimes().remove(i);
+			if(Game.melody) {
+				int[] tmp = Game.interpreter.parseHelper();
+				if (tmp != null) {
+					if (tmp[1] == 0) {
+						treble = l.getMajorTreble().get(idtreble);
+						bass = l.getMajorBass().get(idbass);
+					} else {
+						treble = l.getMinorTreble().get(idtreble);
+						bass = l.getMinorBass().get(idbass);
 					}
-					else
-						cp.getTimes().set(i, cp.getTimes().get(i) - 1);
+					ArrayList<Integer> notes = bass.getBeatsThatMatch(subbeat);
+					int bassSize = notes.size();
+					notes.addAll(treble.getBeatsThatMatch(subbeat));
+					int[] chordNotes = new int [notes.size()];
+					for (int i = 0; i < chordNotes.length; i++)	{
+						int noteID = notes.get(i) + (i<bassSize?48:72) + tmp[0]; 
+						chordNotes[i] = noteID;
+					}
+					for(int i = 0; i < cp.getPreviousChords().size(); i++) {
+						if(cp.getTimes().get(i) == 0) {
+							cp.stop_chord(cp.getPreviousChords().get(i));
+							cp.getPreviousChords().remove(i);
+							cp.getTimes().remove(i);
+						}
+						else
+							cp.getTimes().set(i, cp.getTimes().get(i) - 1);
+					}
+					Chord c = new Chord(chordNotes, Game.gamedata.get_key());
+					cp.play_chord(c);
 				}
-				Chord c = new Chord(chordNotes, Game.gamedata.get_key());
-				cp.play_chord(c);
 			}
 		}
 		repaint();

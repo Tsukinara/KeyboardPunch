@@ -5,12 +5,9 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
@@ -49,6 +46,7 @@ public class Settings extends JPanel implements ActionListener, ChangeListener {
 		key = new JSlider(0, 11, Game.gamedata.key);
 		chordhelper = new JRadioButton("Chord Helper");
 		computer = new JRadioButton("Computer Assisted Melody");
+		computer.setSelected(true);
 		speed.setBackground(new Color(0xbbddff));
 		diff.setBackground(new Color(0xbbddff));
 		key.setBackground(new Color(0xbbddff));
@@ -173,28 +171,23 @@ public class Settings extends JPanel implements ActionListener, ChangeListener {
 			Game.gamedata.set_majmin(true);
 			maj.setSelected(true);
 			chord.reset();
+			chordhelper.setSelected(false);
+			Game.p.eraseChord();
+			computer.setSelected(true);
+			Game.suggest = false;
+			Game.melody = true;
 		}
 		
 		if (b == chordhelper) {
-		
-			if (chordhelper.isSelected()) {
-		
-				Game.suggest = true;
-			}
+			if (chordhelper.isSelected())Game.suggest = true;
 			if (!chordhelper.isSelected()) {
-			
 				Game.p.eraseChord();
 				Game.suggest = false;
 			}
 		}
-		
 		if (b == computer) {
-			if (computer.isSelected()){
-				//play computer melodies
-			}
-			else {
-				//don't play melodies
-			}
+			if (computer.isSelected()) Game.melody = true;
+			else Game.melody = false;
 		}
 
 		else if (b == exit) {
