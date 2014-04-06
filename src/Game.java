@@ -28,7 +28,7 @@ public class Game extends JFrame {
 		panel.setBackground(new Color(0xbbddff));
 		//panel.setBackground(new Color(0x92c9ff));
 		c = new ChordPanel();
-		s = new Settings();
+		s = new Settings(c);
 		t = new TimerPanel();
 		p = new PianoPanel();
 		tp = new TitlePanel();

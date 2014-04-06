@@ -13,7 +13,7 @@ public class ChordPanel extends JPanel {
 	private Font thefuckingfont;
 	private String chrod = "GMaj";
 	private String next = "Suggested Chords:";
-	private static String seq = "";
+	private String seq = "";
 	
 	public ChordPanel() {
 		super();
@@ -48,7 +48,8 @@ public class ChordPanel extends JPanel {
 		repaint();
 	}
 	
-	public static void reset() {
+	public void reset() {
 		seq = "";
+		repaint();
 	}
 }

@@ -29,9 +29,11 @@ public class Settings extends JPanel implements ActionListener, ChangeListener{
 	private JLabel keyL;
 	private JButton reset;
 	private JButton exit;
+	private ChordPanel chord;
 	
-	public Settings() {
+	public Settings(ChordPanel c) {
 		super();
+		chord = c;
 		setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		thefuckingfont = new Font("Trebuchet MS", Font.BOLD, 12);
@@ -141,8 +143,9 @@ public class Settings extends JPanel implements ActionListener, ChangeListener{
 			Game.gamedata.set_key(0);
 			key.setValue(0);
 			keyL.setText("Key: " + Interpreter.get_note(key.getValue()));
+			Game.gamedata.set_majmin(true);
 			maj.setSelected(true);
-			ChordPanel.reset();
+			chord.reset();
 		}
 		else if(b == exit) {
 			System.exit(0);
