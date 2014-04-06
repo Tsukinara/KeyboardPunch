@@ -27,7 +27,7 @@ public class PianoPanel extends JPanel {
 	int[] blackSpacesColor;
 	int[] whiteSpacesHighlight;
 	int[] blackSpacesHighlight;
-	Color hlColor = new Color(0x00ccdd);
+	Color hlColor = new Color(0x54b3f7);
 
 	public PianoPanel() {
 		super();
