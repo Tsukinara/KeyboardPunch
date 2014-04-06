@@ -107,8 +107,10 @@ public class PianoPanel extends JPanel {
 			if (whiteSpaces[i] == 1) {
 				if (whiteSpacesColor[i] == 0)
 					g.setColor(Color.BLUE);
-				else
-					g.setColor(Color.RED);
+				else if (whiteSpacesColor[i] == 1)
+					g.setColor(Color.RED);	
+				else 
+					g.setColor(Color.MAGENTA);
 				g.fillRect(i * widthWhite + leftOffset, offset + keylength + 5,
 						widthWhite, 7);
 
@@ -119,8 +121,10 @@ public class PianoPanel extends JPanel {
 			if (blackSpaces[i] == 1) {
 				if (blackSpacesColor[i] == 0)
 					g.setColor(Color.BLUE);
-				else
+				else if(blackSpacesColor[i] == 1)
 					g.setColor(Color.RED);
+				else
+					g.setColor(Color.MAGENTA);
 				g.fillRect(widthWhite * i + widthWhite - widthBlack / 2
 						+ leftOffset, offset - 10, widthBlack, 8);
 			}
@@ -233,23 +237,23 @@ public class PianoPanel extends JPanel {
 		note = note - 28;
 
 		if (note == 0) {
-			whiteSpaces[0] = 1;
+			whiteSpaces[0]++;
 			whiteSpacesColor[0] = code;
 		}
 
 		else if (whiteNotes.contains((note % 12))) {
 			if (note % 12 == 0) {
 				whiteSpaces[whitePosition(note % 12) + 7
-				            * ((int) note / 12 - 1)] = 1;
+				            * ((int) note / 12 - 1)]++;
 				whiteSpacesColor[whitePosition(note % 12) + 7
 				                 * ((int) note / 12 - 1)] = code;
 			} else {
-				whiteSpaces[whitePosition(note % 12) + 7 * ((int) note / 12)] = 1;
+				whiteSpaces[whitePosition(note % 12) + 7 * ((int) note / 12)]++;
 				whiteSpacesColor[whitePosition(note % 12) + 7
 				                 * ((int) note / 12)] = code;
 			}
 		} else {
-			blackSpaces[blackPosition(note % 12) + 7 * ((int) note / 12)] = 1;
+			blackSpaces[blackPosition(note % 12) + 7 * ((int) note / 12)]++;
 			blackSpacesColor[blackPosition(note % 12) + 7 * ((int) note / 12)] = code;
 		}
 		repaint();
@@ -259,17 +263,17 @@ public class PianoPanel extends JPanel {
 	public void noteReleased(int note) {
 		note = note - 28;
 		if (note == 0) {
-			whiteSpaces[0] = 0;
+			whiteSpaces[0]--;
 		}
 		else if (whiteNotes.contains((note % 12))) {
 			if (note % 12 == 0) {
 				whiteSpaces[whitePosition(note % 12) + 7
-				            * ((int) note / 12 - 1)] = 0;
+				            * ((int) note / 12 - 1)]--;
 			} else {
-				whiteSpaces[whitePosition(note % 12) + 7 * ((int) note / 12)] = 0;
+				whiteSpaces[whitePosition(note % 12) + 7 * ((int) note / 12)]--;
 			}
 		} else {
-			blackSpaces[blackPosition(note % 12) + 7 * ((int) note / 12)] = 0;
+			blackSpaces[blackPosition(note % 12) + 7 * ((int) note / 12)]--;
 
 		}
 		repaint();
