@@ -38,15 +38,15 @@ public class ChordPanel extends JPanel {
 		seq = "";
 		if(chords.size() > 6) {
 			for(int i = 0; i < 6; i++) {
-				g2d.drawString(chords.get(i), i*getWidth()/5 + getWidth()/20, 3*getHeight()/4);
+				g2d.drawString(chords.get(i), i*getWidth()/6 + 10, 3*getHeight()/4);
 			}
 			for(int i = 6; i < chords.size(); i++) {
-				g2d.drawString(chords.get(i), i*getWidth()/5 + getWidth()/20, 7*getHeight()/8);
+				g2d.drawString(chords.get(i), (i - 6)*getWidth()/6 + 10, 7*getHeight()/8);
 			}
 		}
 		else if(chords.size() > 0) {
 			for(int i = 0; i < chords.size(); i++) {
-				g2d.drawString(chords.get(i), i*getWidth()/5, 3*getHeight()/4);
+				g2d.drawString(chords.get(i), i*getWidth()/6 + 10, 3*getHeight()/4);
 			}
 		}
 	}
