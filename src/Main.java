@@ -6,7 +6,7 @@ public class Main {
 		Game g = new Game(gd, i);
 		MidiHandler mh = new MidiHandler(g, i);
 		mh.imNotUseless();
-		MidiPlayer mp = new MidiPlayer(g);
+		MidiPlayer mp = new MidiPlayer();
 		mp.run();
 		g.setVisible(true);
 	}

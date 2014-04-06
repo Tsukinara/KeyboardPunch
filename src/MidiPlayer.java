@@ -13,8 +13,10 @@ public class MidiPlayer implements Runnable {
 	Receiver midiReceiver;
 	static int stdVelocity = 127;
 	Timer timer;
+	GameData gd;
 	
-	public MidiPlayer(Game g) {
+	public MidiPlayer() {
+		this.gd = Game.gamedata;
 		try {
 			midiReceiver = MidiSystem.getReceiver();
 		} catch (MidiUnavailableException e) {
@@ -56,6 +58,7 @@ public class MidiPlayer implements Runnable {
 	}
 
 	public void run() {
+		int key = gd.get_key();
 		
 	}
 	
